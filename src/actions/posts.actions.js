@@ -5,6 +5,8 @@ import {
   GET_POST_REQUEST,
   GET_POST_SUCCESS,
   GET_POST_FAIL,
+  ADD_FAVORITE_POST,
+  REMOVE_FAVORITE_POST,
 } from '../constants/posts.constants';
 import axios from 'axios';
 
@@ -44,4 +46,12 @@ export const getPost = ({ id }) => async (dispatch) => {
       payload: error,
     });
   }
+};
+
+export const addFavoritePost = ({ post }) => (dispatch) => {
+  dispatch({ type: ADD_FAVORITE_POST, payload: post });
+};
+
+export const removeFavoritePost = ({ post }) => (dispatch) => {
+  dispatch({ type: REMOVE_FAVORITE_POST, payload: post });
 };
