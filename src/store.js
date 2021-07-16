@@ -1,10 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { postsReducer, postReducer } from './reducers/posts.reducers';
+import {
+  postsReducer,
+  postReducer,
+  favoritePostsReducer,
+} from './reducers/posts.reducers';
 import {
   commentsReducer,
   articleCommentsReducer,
+  favoriteCommentsReducer,
 } from './reducers/comments.reducers';
 
 const reducer = combineReducers({
@@ -12,6 +17,8 @@ const reducer = combineReducers({
   postState: postReducer,
   commentsState: commentsReducer,
   articleCommentsState: articleCommentsReducer,
+  favoritePostsState: favoritePostsReducer,
+  favoriteCommentsState: favoriteCommentsReducer,
 });
 
 const initialState = {
@@ -19,6 +26,8 @@ const initialState = {
   postState: { post: {}, loading: false, error: null },
   commentsState: { comments: [], loading: false, error: null },
   articleCommentsState: { articleComments: [], loading: false, error: null },
+  favoritePostsState: { favoritePosts: [] },
+  favoriteCommentsState: { favoriteComments: [] },
 };
 
 const middleware = [thunk];
