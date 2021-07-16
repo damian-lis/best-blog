@@ -5,6 +5,8 @@ import {
   GET_ARTICLE_COMMENTS_REQUEST,
   GET_ARTICLE_COMMENTS_SUCCESS,
   GET_ARTICLE_COMMENTS_FAIL,
+  ADD_FAVORITE_COMMENT,
+  REMOVE_FAVORITE_COMMENT,
 } from '../constants/comments.constants';
 import axios from 'axios';
 
@@ -44,4 +46,12 @@ export const getArticleComments = ({ id }) => async (dispatch) => {
       payload: error,
     });
   }
+};
+
+export const addFavoriteComment = ({ comment }) => (dispatch) => {
+  dispatch({ type: ADD_FAVORITE_COMMENT, payload: comment });
+};
+
+export const removeFavoriteComment = ({ comment }) => (dispatch) => {
+  dispatch({ type: REMOVE_FAVORITE_COMMENT, payload: comment });
 };
