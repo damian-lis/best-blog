@@ -5,6 +5,8 @@ import {
   GET_POST_REQUEST,
   GET_POST_SUCCESS,
   GET_POST_FAIL,
+  ADD_FAVORITE_POST,
+  REMOVE_FAVORITE_POST,
 } from '../constants/posts.constants';
 
 export const postsReducer = (state = {}, action) => {
@@ -42,6 +44,32 @@ export const postReducer = (state = {}, action) => {
       };
     case GET_POST_FAIL:
       return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const favoritePostsReducer = (state = [], action) => {
+  switch (action.type) {
+    case ADD_FAVORITE_POST:
+      const postExist = state.favoritePosts.some(
+        (favoritePost) => favoritePost.id === action.payload.id
+      );
+
+      return {
+        ...state,
+        favoritePosts: !postExist
+          ? [...state.favoritePosts, action.payload]
+          : state.favoritePosts,
+      };
+    case REMOVE_FAVORITE_POST:
+      return {
+        ...state,
+        favoritePosts: state.favoritePosts.filter(
+          (post) => post.id !== action.payload.id
+        ),
+      };
+
     default:
       return state;
   }
