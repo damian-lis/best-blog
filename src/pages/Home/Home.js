@@ -14,6 +14,10 @@ const Home = () => {
     error: commentsError,
   } = useSelector((state) => state.commentsState);
   const { searchPosts } = useSelector((state) => state.searchState);
+  const { favoritePosts } = useSelector((state) => state.favoritePostsState);
+  const { favoriteComments } = useSelector(
+    (state) => state.favoriteCommentsState
+  );
 
   posts = posts.filter((post) =>
     post.title.toLowerCase().includes(searchPosts)
@@ -33,14 +37,27 @@ const Home = () => {
             (comment) => comment.postId === post.id
           );
 
+          const postLiked = favoritePosts.some(
+            (favoritePost) => favoritePost.id === post.id
+          );
+
+          const commentsLiked = favoriteComments.filter(
+            (comment) => comment.postId === post.id
+          );
+
           return (
             <div key={post.id}>
               <h3>
-                <Link to={`article/${post.id}`}>{post.title} </Link>
+                <Link to={`article/${post.id}`}>
+                  {post.title} {postLiked && 'Polubiony'}
+                </Link>
               </h3>
               <p>{post.body}</p>
               {commentsMatching && (
-                <span>Comments: {commentsMatching.length}</span>
+                <>
+                  <span>Comments: {commentsMatching.length}</span>
+                  <span>Liked Comments: {commentsLiked.length}</span>
+                </>
               )}
             </div>
           );
