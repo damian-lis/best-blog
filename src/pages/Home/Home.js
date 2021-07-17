@@ -13,9 +13,11 @@ const Home = () => {
     loading: commentsLoading,
     error: commentsError,
   } = useSelector((state) => state.commentsState);
-  const { searchWord } = useSelector((state) => state.searchState);
+  const { searchPosts } = useSelector((state) => state.searchState);
 
-  posts = posts.filter((post) => post.title.toLowerCase().includes(searchWord));
+  posts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchPosts)
+  );
 
   useEffect(() => {
     dispatch(getPosts());

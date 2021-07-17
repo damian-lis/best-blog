@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { search } from '../../actions/search.actions';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Search from '../Search';
 import './navigation.css';
 
 const navLinks = [
@@ -10,29 +10,28 @@ const navLinks = [
 ];
 
 const Navigation = () => {
+  const [currentPagePath, setCurrentPagePath] = useState('/');
+
+  const history = useHistory();
+
+  history.listen((location) => setCurrentPagePath(location.pathname));
+
+  const isFavoritePage =
+    currentPagePath === '/favorites' || currentPagePath.includes('article');
+
+  console.log(isFavoritePage);
+
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector(
     (state) => state.favoriteCommentsState
   );
 
-  const { searchWord } = useSelector((state) => state.searchState);
-
-  const dispatch = useDispatch();
-
   const favoritesNumber = favoritePosts.length + favoriteComments.length;
-
-  const handleOnChange = (e) => {
-    dispatch(search(e.target.value));
-  };
 
   return (
     <nav className='navigation'>
       <h3 className='navigation__logo'>Best Blog</h3>
-      <input
-        value={searchWord}
-        onChange={handleOnChange}
-        placeholder='Wyszukaj...'
-      />
+      {!isFavoritePage && <Search posts />}
       <ul className='navigation__list'>
         {navLinks.map((navLink) => (
           <li className='navigation__item' key={navLink}>

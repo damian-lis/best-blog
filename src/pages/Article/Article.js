@@ -10,6 +10,7 @@ import {
   removeFavoriteComment,
 } from '../../actions/comments.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import Search from '../../components/Search';
 
 const Article = ({ match, history }) => {
   const id = Number(match.params.id);
@@ -26,10 +27,10 @@ const Article = ({ match, history }) => {
     loading: commentsLoading,
     error: errorLoading,
   } = useSelector((state) => state.articleCommentsState);
-  const { searchWord } = useSelector((state) => state.searchState);
+  const { searchComments } = useSelector((state) => state.searchState);
 
   articleComments = articleComments.filter((comment) =>
-    comment.email.toLowerCase().includes(searchWord)
+    comment.email.toLowerCase().includes(searchComments)
   );
 
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
@@ -68,6 +69,8 @@ const Article = ({ match, history }) => {
         {post.title} {postIsLiked && 'Lubisz to!'}
       </h2>
       <p style={{ backgroundColor: 'red' }}>{post.body}</p>
+      <h2>Komentarze</h2>
+      <Search comments />
       {articleComments.map((articleComment, index) => {
         const commentIsLiked = favoriteComments.some(
           (favoriteComment) => favoriteComment.id === articleComment.id

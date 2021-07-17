@@ -3,13 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeFavoritePost } from '../../actions/posts.actions';
 import { removeFavoriteComment } from '../../actions/comments.actions';
+import Search from '../../components/Search';
 
 const Favorites = () => {
   let { favoritePosts } = useSelector((state) => state.favoritePostsState);
   let { favoriteComments } = useSelector(
     (state) => state.favoriteCommentsState
   );
-  const { searchWord } = useSelector((state) => state.searchState);
+  const { searchPosts, searchComments } = useSelector(
+    (state) => state.searchState
+  );
 
   const dispatch = useDispatch();
 
@@ -22,16 +25,17 @@ const Favorites = () => {
   };
 
   favoritePosts = favoritePosts.filter((post) =>
-    post.title.toLowerCase().includes(searchWord)
+    post.title.toLowerCase().includes(searchPosts)
   );
 
   favoriteComments = favoriteComments.filter((comment) =>
-    comment.email.toLowerCase().includes(searchWord)
+    comment.email.toLowerCase().includes(searchComments)
   );
 
   return (
     <div>
       <h3>Ulubione posty</h3>
+      <Search posts />
       {favoritePosts.map((favoritePost, index) => (
         <div key={index} style={{ margin: 20 }}>
           <p>{favoritePost.title}</p>
@@ -42,6 +46,7 @@ const Favorites = () => {
         </div>
       ))}
       <h3>Ulubione komentarze</h3>
+      <Search comments />
       {favoriteComments.map((favoriteComment, index) => (
         <div key={index} style={{ margin: 20 }}>
           <p>{favoriteComment.email}</p>
