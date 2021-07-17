@@ -48,10 +48,18 @@ export const getArticleComments = ({ id }) => async (dispatch) => {
   }
 };
 
-export const addFavoriteComment = ({ comment }) => (dispatch) => {
+export const addFavoriteComment = ({ comment }) => (dispatch, getState) => {
   dispatch({ type: ADD_FAVORITE_COMMENT, payload: comment });
+  localStorage.setItem(
+    'favoriteComments',
+    JSON.stringify(getState().favoriteCommentsState.favoriteComments)
+  );
 };
 
-export const removeFavoriteComment = ({ comment }) => (dispatch) => {
+export const removeFavoriteComment = ({ comment }) => (dispatch, getState) => {
   dispatch({ type: REMOVE_FAVORITE_COMMENT, payload: comment });
+  localStorage.setItem(
+    'favoriteComments',
+    JSON.stringify(getState().favoriteCommentsState.favoriteComments)
+  );
 };

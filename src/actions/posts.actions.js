@@ -48,10 +48,18 @@ export const getPost = ({ id }) => async (dispatch) => {
   }
 };
 
-export const addFavoritePost = ({ post }) => (dispatch) => {
+export const addFavoritePost = ({ post }) => (dispatch, getState) => {
   dispatch({ type: ADD_FAVORITE_POST, payload: post });
+  localStorage.setItem(
+    'favoritePosts',
+    JSON.stringify(getState().favoritePostsState.favoritePosts)
+  );
 };
 
-export const removeFavoritePost = ({ post }) => (dispatch) => {
+export const removeFavoritePost = ({ post }) => (dispatch, getState) => {
   dispatch({ type: REMOVE_FAVORITE_POST, payload: post });
+  localStorage.setItem(
+    'favoritePosts',
+    JSON.stringify(getState().favoritePostsState.favoritePosts)
+  );
 };
