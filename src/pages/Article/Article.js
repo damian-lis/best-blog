@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   getPost,
   addFavoritePost,
@@ -12,10 +12,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import Search from '../../components/Search';
 
-const Article = ({ match, history }) => {
+const Article = ({ match }) => {
   const id = Number(match.params.id);
 
-  console.log(history);
+  const [selectedOption, setSelectedOption] = useState('all');
 
   const dispatch = useDispatch();
 
@@ -56,6 +56,32 @@ const Article = ({ match, history }) => {
     );
   };
 
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
+  let modifiedComments = articleComments.map((articleComment) => {
+    const isCommentLiked = favoriteComments.some(
+      (favoriteComment) =>
+        favoriteComment.postId === post.id &&
+        favoriteComment.id === articleComment.id
+    );
+
+    if (isCommentLiked) {
+      articleComment.like = true;
+    } else {
+      articleComment.like = false;
+    }
+
+    return articleComment;
+  });
+
+  if (selectedOption === 'liked') {
+    modifiedComments = modifiedComments.filter(
+      (modifiedComment) => modifiedComment.like
+    );
+  }
+
   useEffect(() => {
     dispatch(getPost({ id }));
     dispatch(getArticleComments({ id }));
@@ -71,21 +97,25 @@ const Article = ({ match, history }) => {
       <p style={{ backgroundColor: 'red' }}>{post.body}</p>
       <h2>Komentarze</h2>
       <Search comments />
-      {articleComments.map((articleComment, index) => {
-        const commentIsLiked = favoriteComments.some(
-          (favoriteComment) => favoriteComment.id === articleComment.id
-        );
-
+      <select
+        value={selectedOption}
+        onChange={handleSelectChange}
+        name='pets'
+        id='pet-select'
+      >
+        <option value='all'>Wszystkie komentarze</option>
+        <option value='liked'>Polubione komentarze</option>
+      </select>
+      {modifiedComments.map((comment, index) => {
+        console.log(comment);
         return (
           <div
-            onClick={() =>
-              toggleFavoriteComment(commentIsLiked, articleComment)
-            }
+            onClick={() => toggleFavoriteComment(comment.like, comment)}
             key={index}
           >
-            <p>{articleComment.email}</p>
-            <p>{articleComment.body}</p>
-            <p>{commentIsLiked && 'Lubisz to!'}</p>
+            <p>{comment.email}</p>
+            <p>{comment.body}</p>
+            <p>{comment.like && 'Lubisz to!'}</p>
           </div>
         );
       })}
