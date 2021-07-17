@@ -1,1 +1,2 @@
-export const SEARCH = 'SEARCH';
+export const SEARCH_POSTS = 'SEARCH_POSTS';
+export const SEARCH_COMMENTS = 'SEARCH_COMMENTS';

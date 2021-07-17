@@ -1,5 +1,9 @@
-import { SEARCH } from '../constants/search.constants';
+import { SEARCH_POSTS, SEARCH_COMMENTS } from '../constants/search.constants';
 
-export const search = (word) => (dispatch) => {
-  dispatch({ type: SEARCH, payload: word });
+export const searchPosts = (word) => (dispatch) => {
+  dispatch({ type: SEARCH_POSTS, payload: word });
+};
+
+export const searchComments = (word) => (dispatch) => {
+  dispatch({ type: SEARCH_COMMENTS, payload: word });
 };

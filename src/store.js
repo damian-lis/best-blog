@@ -38,7 +38,7 @@ const initialState = {
   articleCommentsState: { articleComments: [], loading: false, error: null },
   favoritePostsState: { favoritePosts },
   favoriteCommentsState: { favoriteComments },
-  searchState: { searchWord: '' },
+  searchState: { searchPosts: '', searchComments: '' },
 };
 
 const middleware = [thunk];
