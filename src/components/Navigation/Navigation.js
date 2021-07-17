@@ -10,9 +10,10 @@ const navLinks = [
 ];
 
 const Navigation = () => {
-  const [currentPagePath, setCurrentPagePath] = useState('/');
-
   const history = useHistory();
+  const [currentPagePath, setCurrentPagePath] = useState(
+    history.location.pathname
+  );
 
   history.listen((location) => setCurrentPagePath(location.pathname));
 
