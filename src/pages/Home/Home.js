@@ -7,12 +7,15 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   const dispatch = useDispatch();
 
-  const { posts, loading, error } = useSelector((state) => state.postsState);
+  let { posts, loading, error } = useSelector((state) => state.postsState);
   const {
     comments,
     loading: commentsLoading,
     error: commentsError,
   } = useSelector((state) => state.commentsState);
+  const { searchWord } = useSelector((state) => state.searchState);
+
+  posts = posts.filter((post) => post.title.toLowerCase().includes(searchWord));
 
   useEffect(() => {
     dispatch(getPosts());
@@ -29,7 +32,7 @@ const Home = () => {
           );
 
           return (
-            <>
+            <div key={post.id}>
               <h3>
                 <Link to={`article/${post.id}`}>{post.title} </Link>
               </h3>
@@ -37,7 +40,7 @@ const Home = () => {
               {commentsMatching && (
                 <span>Comments: {commentsMatching.length}</span>
               )}
-            </>
+            </div>
           );
         })}
       </div>

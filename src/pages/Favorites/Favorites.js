@@ -5,10 +5,12 @@ import { removeFavoritePost } from '../../actions/posts.actions';
 import { removeFavoriteComment } from '../../actions/comments.actions';
 
 const Favorites = () => {
-  const { favoritePosts } = useSelector((state) => state.favoritePostsState);
-  const { favoriteComments } = useSelector(
+  let { favoritePosts } = useSelector((state) => state.favoritePostsState);
+  let { favoriteComments } = useSelector(
     (state) => state.favoriteCommentsState
   );
+  const { searchWord } = useSelector((state) => state.searchState);
+
   const dispatch = useDispatch();
 
   const handleRemoveFavoritePost = (post) => {
@@ -18,6 +20,14 @@ const Favorites = () => {
   const handleRemoveFavoriteComment = (comment) => {
     dispatch(removeFavoriteComment({ comment }));
   };
+
+  favoritePosts = favoritePosts.filter((post) =>
+    post.title.toLowerCase().includes(searchWord)
+  );
+
+  favoriteComments = favoriteComments.filter((comment) =>
+    comment.email.toLowerCase().includes(searchWord)
+  );
 
   return (
     <div>

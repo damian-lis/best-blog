@@ -21,11 +21,16 @@ const Article = ({ match, history }) => {
   const { post, loading: postLoading, error: postError } = useSelector(
     (state) => state.postState
   );
-  const {
+  let {
     articleComments,
     loading: commentsLoading,
     error: errorLoading,
   } = useSelector((state) => state.articleCommentsState);
+  const { searchWord } = useSelector((state) => state.searchState);
+
+  articleComments = articleComments.filter((comment) =>
+    comment.email.toLowerCase().includes(searchWord)
+  );
 
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector(
