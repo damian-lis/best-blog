@@ -1,19 +1,33 @@
 .navigation{
+    -webkit-box-shadow: 1px 1px 5px 1px #dadada; 
+    box-shadow: 1px 1px 5px 1px #cccccc;
+}
+
+.navigation__wrapper{
+    max-width:1300px;
     display:flex;
     height:65px;
     justify-content: space-between;
     align-items: center;
     color: var(--main-text-color);
-    -webkit-box-shadow: 1px 1px 5px 1px #dadada; 
-    box-shadow: 1px 1px 5px 1px #cccccc;
+    margin: 0 auto;
     padding:0 20px;
-  
 }
 
 .navigation__list{
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+.navigation__item-wrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation__item-label{
+    margin-right: 5px;
 }
 
 @media(max-width:600px){

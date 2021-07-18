@@ -31,37 +31,44 @@ const Navigation = () => {
 
   return (
     <nav className='navigation'>
-      <div
-        className={`navigation__item ${
-          isSearchActive ? 'navigation__item--dynamic' : ''
-        }`}
-      >
-        <Link to='/'>
-          <img
-            className='navigation__logo'
-            src={isMobile ? AppLogoMobile : AppLogo}
-          />
-        </Link>
-      </div>
-      {!isTurnOffSearch && (
-        <SearchBar
-          posts
-          setSearchActive={setIsSearchActive}
-          searchActive={isSearchActive}
-        />
-      )}
-      <ul className='navigation__list'>
-        <li
+      <div className='navigation__wrapper'>
+        <div
           className={`navigation__item ${
             isSearchActive ? 'navigation__item--dynamic' : ''
           }`}
-          key={0}
         >
-          <Link to='/favorites'>
-            <Heart number={favoritesNumber} />
+          <Link to='/'>
+            <img
+              className='navigation__logo'
+              src={isMobile ? AppLogoMobile : AppLogo}
+            />
           </Link>
-        </li>
-      </ul>
+        </div>
+        {!isTurnOffSearch && (
+          <SearchBar
+            posts
+            setSearchActive={setIsSearchActive}
+            searchActive={isSearchActive}
+          />
+        )}
+        <ul className='navigation__list'>
+          <li
+            className={`navigation__item ${
+              isSearchActive ? 'navigation__item--dynamic' : ''
+            }`}
+            key={0}
+          >
+            <Link to='/favorites'>
+              <div className='navigation__item-wrapper'>
+                {!isMobile && (
+                  <span className='navigation__item-label'> Favorites</span>
+                )}
+                <Heart number={favoritesNumber} />
+              </div>
+            </Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };
