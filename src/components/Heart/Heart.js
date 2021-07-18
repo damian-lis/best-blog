@@ -2,7 +2,7 @@ import React from 'react';
 import heartIconImg from '../../assets/heartIcon.svg';
 import './heart.css';
 
-const HeartIcon = ({ number }) => {
+const Heart = ({ number }) => {
   return (
     <div className={'heart'}>
       <img className={'heart__icon'} src={heartIconImg} />
@@ -11,4 +11,4 @@ const HeartIcon = ({ number }) => {
   );
 };
 
-export default HeartIcon;
+export default Heart;
