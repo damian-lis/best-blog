@@ -7,17 +7,19 @@ import Favorites from './pages/Favorites';
 
 const App = () => {
   return (
-    <Router>
-      <div className='app'>
+    <div className='app'>
+      <Router>
         <Navigation />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/favorites' component={Favorites} />
-          <Route exact path='/article/:id' component={Article} />
-          <Route component={() => 404} />
-        </Switch>
-      </div>
-    </Router>
+        <div className='app__wrapper'>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/favorites' component={Favorites} />
+            <Route exact path='/article/:id' component={Article} />
+            <Route component={() => 404} />
+          </Switch>
+        </div>
+      </Router>
+    </div>
   );
 };
 
