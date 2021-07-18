@@ -11,6 +11,9 @@ import {
 } from '../../actions/comments.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from '../../components/SearchBar';
+import SneakPeekImg from '../../assets/sneakPeek.svg';
+import './article.css';
+import Heart from '../../components/Heart';
 
 const Article = ({ match }) => {
   const id = Number(match.params.id);
@@ -90,22 +93,40 @@ const Article = ({ match }) => {
   return postLoading || commentsLoading ? (
     <p>Loading</p>
   ) : (
-    <div>
-      <h2 onClick={toggleFavoritePost}>
-        {post.title} {postIsLiked && 'Lubisz to!'}
-      </h2>
-      <p style={{ backgroundColor: 'red' }}>{post.body}</p>
-      <h2>Komentarze</h2>
-      <SearchBar comments />
-      <select
-        value={selectedOption}
-        onChange={handleSelectChange}
-        name='pets'
-        id='pet-select'
-      >
-        <option value='all'>Wszystkie komentarze</option>
-        <option value='liked'>Polubione komentarze</option>
-      </select>
+    <div className='article'>
+      <div className='article__img-container'>
+        <img src={SneakPeekImg} className='article__img' />
+      </div>
+      <h2 className='article__title'>{post.title}</h2>
+      <p>{post.body}</p>
+      <p>{post.body}</p>
+      <p>{post.body}</p>
+      <p>{post.body}</p>
+      <p>{post.body}</p>
+      <p>{post.body}</p>
+      <p>{post.body}</p>
+      <p>{post.body}</p>
+
+      <div className='article__like-container' onClick={toggleFavoritePost}>
+        <span className='article__like-label'>Zareaguj na post</span>
+        <div className='article__like-icon'>
+          <Heart toggle={postIsLiked} small />
+        </div>
+      </div>
+
+      <h3 className='article__header'>Komentarze</h3>
+
+      <div className='article__comments-option'>
+        <SearchBar comments small />
+        <select
+          className='article__select'
+          value={selectedOption}
+          onChange={handleSelectChange}
+        >
+          <option value='all'>Wszystkie komentarze</option>
+          <option value='liked'>Polubione komentarze</option>
+        </select>
+      </div>
       {modifiedComments.map((comment, index) => {
         console.log(comment);
         return (

@@ -41,7 +41,7 @@
     transition: all .4s ease-in-out;
   }
 
-  input{
+  input, select{
     outline-width: 0;
   }
 
