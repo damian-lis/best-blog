@@ -1,0 +1,44 @@
+.comment {
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+    padding:15px;
+  
+    max-width:600px;
+    width:100%;
+    -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
+    box-shadow: 1px 1px 5px 1px #d4d4d4;
+    margin: 0 auto;
+    margin-bottom:25px;
+}
+
+.comment__wrapper{
+    width:80%;
+}
+
+.comment__email {
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.comment__body{
+    color: rgb(61, 61, 61);
+}
+
+.comment__like-container{
+    display:flex;
+align-items: center;
+margin-top:20px;
+cursor:pointer
+}
+
+.comment__like-label{
+    color: rgb(14, 111, 221)
+}
+
+.comment__like-icon{
+    width:20px;
+    margin-left:5px;
+}
+
