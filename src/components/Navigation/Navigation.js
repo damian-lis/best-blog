@@ -46,6 +46,7 @@ const Navigation = () => {
         </div>
         {!isTurnOffSearch && (
           <SearchBar
+            navigation
             posts
             setSearchActive={setIsSearchActive}
             searchActive={isSearchActive}

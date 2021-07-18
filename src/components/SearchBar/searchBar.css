@@ -9,6 +9,10 @@
     transition: .5s;
 }
 
+.search-bar--small{
+    max-width: 250px;
+}
+
 .search-bar--mobile{
     width:20px;
 }

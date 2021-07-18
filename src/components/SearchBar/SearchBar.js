@@ -6,7 +6,13 @@ import './searchBar.css';
 import SearchIcon from '../../assets/searchIcon.svg';
 import DeleteIcon from '../../assets/deleteIcon.svg';
 
-const SearchBar = ({ posts, comments, setSearchActive, searchActive }) => {
+const SearchBar = ({
+  navigation,
+  posts,
+  comments,
+  setSearchActive,
+  searchActive,
+}) => {
   const [isSearch, setIsSearch] = useState(false);
 
   const {
@@ -45,7 +51,7 @@ const SearchBar = ({ posts, comments, setSearchActive, searchActive }) => {
   return (
     <div
       className={`search-bar ${
-        !searchActive && isMobile ? 'search-bar--mobile' : ''
+        navigation && !searchActive && isMobile ? 'search-bar--mobile' : ''
       }
         ${!navigation ? 'search-bar--small' : ''}`}
     >
