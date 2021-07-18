@@ -4,17 +4,32 @@
     justify-content: space-between;
     align-items: center;
     color: var(--main-text-color);
-    border-bottom: 1px solid black;
-}
-
-.navigation__logo{
-    margin-left:20px;
+    -webkit-box-shadow: 1px 1px 5px 1px #dadada; 
+    box-shadow: 1px 1px 5px 1px #cccccc;
+    padding:0 20px;
+  
 }
 
 .navigation__list{
     display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.navigation__item{
-    margin-right:20px;
+@media(max-width:600px){
+    .navigation__item{
+        overflow: hidden;
+        transition:.5s;
+        width:40px;
+    }
+
+    .navigation__logo{
+        width:100%
+    }
+
+    .navigation__item--dynamic {
+        opacity: 0;
+        width: 0;
+        visibility:hidden;
+    }
 }

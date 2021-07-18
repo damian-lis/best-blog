@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Search from '../Search';
+import { useWindowWidth } from '@react-hook/window-size';
+import SearchBar from '../SearchBar';
+import Heart from '../Heart';
+import AppLogo from '../../assets/appLogo.svg';
+import AppLogoMobile from '../../assets/appLogoMobile.svg';
 import './navigation.css';
 
-const navLinks = [
-  { title: 'Home', path: '/' },
-  { title: 'Favorites', path: '/favorites' },
-];
-
 const Navigation = () => {
+  const [isSearchActive, setIsSearchActive] = useState(false);
+
   const history = useHistory();
   const [currentPagePath, setCurrentPagePath] = useState(
     history.location.pathname
   );
+  const isMobile = useWindowWidth() < 600;
 
   history.listen((location) => setCurrentPagePath(location.pathname));
 
-  const isFavoritePage =
+  const isTurnOffSearch =
     currentPagePath === '/favorites' || currentPagePath.includes('article');
-
-  console.log(isFavoritePage);
 
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector(
@@ -31,18 +31,36 @@ const Navigation = () => {
 
   return (
     <nav className='navigation'>
-      <h3 className='navigation__logo'>Best Blog</h3>
-      {!isFavoritePage && <Search posts />}
+      <div
+        className={`navigation__item ${
+          isSearchActive ? 'navigation__item--dynamic' : ''
+        }`}
+      >
+        <Link to='/'>
+          <img
+            className='navigation__logo'
+            src={isMobile ? AppLogoMobile : AppLogo}
+          />
+        </Link>
+      </div>
+      {!isTurnOffSearch && (
+        <SearchBar
+          posts
+          setSearchActive={setIsSearchActive}
+          searchActive={isSearchActive}
+        />
+      )}
       <ul className='navigation__list'>
-        {navLinks.map((navLink) => (
-          <li className='navigation__item' key={navLink}>
-            <Link to={navLink.path}>
-              {navLink.title === 'Favorites'
-                ? navLink.title + ` (${favoritesNumber})`
-                : navLink.title}
-            </Link>
-          </li>
-        ))}
+        <li
+          className={`navigation__item ${
+            isSearchActive ? 'navigation__item--dynamic' : ''
+          }`}
+          key={0}
+        >
+          <Link to='/favorites'>
+            <Heart number={favoritesNumber} />
+          </Link>
+        </li>
       </ul>
     </nav>
   );
