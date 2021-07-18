@@ -44,22 +44,25 @@ const SearchBar = ({ posts, comments, setSearchActive, searchActive }) => {
 
   return (
     <div
-      className={!searchActive && isMobile ? 'search search--mobile' : 'search'}
+      className={`search-bar ${
+        !searchActive && isMobile ? 'search-bar--mobile' : ''
+      }
+        ${!navigation ? 'search-bar--small' : ''}`}
     >
       <input
-        className='search__input'
+        className='search-bar__input'
         value={inputValue}
         onChange={handleInputOnChange}
         placeholder={posts ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}
       />
       <img
-        className='search__search-icon'
+        className='search-bar__search-icon'
         src={SearchIcon}
         onClick={handleSearchIconOnClick}
       />
       {inputValue && (
         <img
-          className='search__delete-icon'
+          className='search-bar__delete-icon'
           src={DeleteIcon}
           onClick={handleDeleteIconOnClick}
         />
