@@ -10,7 +10,7 @@ import {
   removeFavoriteComment,
 } from '../../actions/comments.actions';
 import { useDispatch, useSelector } from 'react-redux';
-import Search from '../../components/Search';
+import SearchBar from '../../components/SearchBar';
 
 const Article = ({ match }) => {
   const id = Number(match.params.id);
@@ -96,7 +96,7 @@ const Article = ({ match }) => {
       </h2>
       <p style={{ backgroundColor: 'red' }}>{post.body}</p>
       <h2>Komentarze</h2>
-      <Search comments />
+      <SearchBar comments />
       <select
         value={selectedOption}
         onChange={handleSelectChange}

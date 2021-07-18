@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeFavoritePost } from '../../actions/posts.actions';
 import { removeFavoriteComment } from '../../actions/comments.actions';
-import Search from '../../components/Search';
+import SearchBar from '../../components/SearchBar';
 
 const Favorites = () => {
   let { favoritePosts } = useSelector((state) => state.favoritePostsState);
@@ -35,7 +35,7 @@ const Favorites = () => {
   return (
     <div>
       <h3>Ulubione posty</h3>
-      <Search posts />
+      <SearchBar posts />
       {favoritePosts.map((favoritePost, index) => (
         <div key={index} style={{ margin: 20 }}>
           <p>{favoritePost.title}</p>
@@ -46,7 +46,7 @@ const Favorites = () => {
         </div>
       ))}
       <h3>Ulubione komentarze</h3>
-      <Search comments />
+      <SearchBar comments />
       {favoriteComments.map((favoriteComment, index) => (
         <div key={index} style={{ margin: 20 }}>
           <p>{favoriteComment.email}</p>
