@@ -35,6 +35,10 @@
     transition: all .4s ease-in-out;
   }
 
+  input{
+    outline-width: 0;
+  }
+
   ul{
     list-style: none;
   }
