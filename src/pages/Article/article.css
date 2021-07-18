@@ -19,12 +19,15 @@
 }
 
 .article__header{
-    margin: 20px 0;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .article__comments-option{
     display:flex;
-    margin-bottom:20px;
+    margin-bottom:40px;
+    justify-content: center;
 }
 
 .article__select{
@@ -50,14 +53,15 @@ display:flex;
 align-items: center;
 justify-content: center;
 margin-top:20px;
+cursor:pointer;
 }
 .article__like-label{
-
+    color: rgb(14, 111, 221)
 }
 .article__like-icon{
     width:20px;
     margin-left:5px;
-    cursor:pointer;
+    
 }
 
 @media(max-width:600px){

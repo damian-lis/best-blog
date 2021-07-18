@@ -14,6 +14,7 @@ import SearchBar from '../../components/SearchBar';
 import SneakPeekImg from '../../assets/sneakPeek.svg';
 import './article.css';
 import Heart from '../../components/Heart';
+import Comment from '../../components/Comment';
 
 const Article = ({ match }) => {
   const id = Number(match.params.id);
@@ -51,7 +52,7 @@ const Article = ({ match }) => {
     );
   };
 
-  const toggleFavoriteComment = (commentIsLiked, articleComment) => {
+  const handleCommentLike = (commentIsLiked, articleComment) => {
     dispatch(
       commentIsLiked
         ? removeFavoriteComment({ comment: articleComment })
@@ -106,15 +107,18 @@ const Article = ({ match }) => {
       <p>{post.body}</p>
       <p>{post.body}</p>
       <p>{post.body}</p>
-
       <div className='article__like-container' onClick={toggleFavoritePost}>
-        <span className='article__like-label'>Zareaguj na post</span>
+        <span className='article__like-label'>
+          {postIsLiked ? 'Lubisz ten post!' : 'Zareaguj'}
+        </span>
         <div className='article__like-icon'>
           <Heart toggle={postIsLiked} small />
         </div>
       </div>
 
-      <h3 className='article__header'>Komentarze</h3>
+      <h3 className='article__header'>
+        Komentarze ({modifiedComments.length})
+      </h3>
 
       <div className='article__comments-option'>
         <SearchBar comments small />
@@ -127,19 +131,13 @@ const Article = ({ match }) => {
           <option value='liked'>Polubione komentarze</option>
         </select>
       </div>
-      {modifiedComments.map((comment, index) => {
-        console.log(comment);
-        return (
-          <div
-            onClick={() => toggleFavoriteComment(comment.like, comment)}
-            key={index}
-          >
-            <p>{comment.email}</p>
-            <p>{comment.body}</p>
-            <p>{comment.like && 'Lubisz to!'}</p>
-          </div>
-        );
-      })}
+      {modifiedComments.map((comment, index) => (
+        <Comment
+          handleCommentLike={handleCommentLike}
+          key={index}
+          comment={comment}
+        />
+      ))}
     </div>
   );
 };
