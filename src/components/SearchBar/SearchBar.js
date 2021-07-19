@@ -31,8 +31,8 @@ const SearchBar = ({
     comments && dispatch(searchComments(e.target.value));
   };
 
-  const handleDeleteIconOnClick = (e) => {
-    dispatch(searchPosts(''));
+  const handleDeleteIconOnClick = () => {
+    dispatch(posts ? searchPosts('') : searchComments(''));
   };
 
   const handleSearchIconOnClick = () => {
