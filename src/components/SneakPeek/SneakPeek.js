@@ -4,12 +4,15 @@ import './sneakPeek.css';
 import SneakPeekImg from '../../assets/sneakPeek.svg';
 import Heart from '../Heart';
 import ChatBubble from '../ChatBubble';
+import TrashIcon from '../../assets/trashIcon.svg';
 
 const SneakPeek = ({
   post,
-  comments,
-  favoritePosts,
-  favoriteComments,
+  favorites,
+  comments = [],
+  favoritePosts = [],
+  favoriteComments = [],
+  handleRemove,
   ...restProps
 }) => {
   const commentsMatching = comments.filter(
@@ -25,32 +28,49 @@ const SneakPeek = ({
   );
 
   return (
-    <Link
-      to={`article/${post.id}`}
-      style={{ margin: 10, width: '100%', maxWidth: 335 }}
+    <div
+      {...restProps}
+      className={`sneak-peek ${favorites ? 'sneak-peek--favorite' : ''}`}
     >
-      <div {...restProps} className='sneak-peek'>
-        {postLiked && (
-          <div className='sneak-peek__post-liked'>
-            <Heart />
-          </div>
-        )}
-        <img className='sneak-peek__img' src={SneakPeekImg} />
-        <h3 className='sneak-peek__title'>{post.title}</h3>
-        {commentsMatching && (
-          <div className='sneak-peek__stats'>
+      {postLiked && (
+        <div className='sneak-peek__post-liked'>
+          <Heart />
+        </div>
+      )}
+      <img className='sneak-peek__img' src={SneakPeekImg} />
+
+      <h3 className='sneak-peek__title'>{post.title}</h3>
+
+      <div className='sneak-peek__stats'>
+        <Link className='sneak-peek__link' to={`article/${post.id}`}>
+          Zobacz post
+        </Link>
+        {!favorites && commentsMatching && (
+          <>
             <div className='sneak-peek__stat'>
-              Comments:
-              <ChatBubble number={commentsMatching.length} />
+              <span className='sneak-peek__label'>Komentarze</span>
+              <div className='sneak-peek__icon-container'>
+                <ChatBubble number={commentsMatching.length} />
+              </div>
             </div>
             <div className='sneak-peek__stat'>
-              Liked:
-              <Heart number={commentsLiked.length} />
+              <span className='sneak-peek__label'>Polubione</span>
+              <div className='sneak-peek__icon-container'>
+                <Heart number={commentsLiked.length} />
+              </div>
+            </div>
+          </>
+        )}
+        {favorites && (
+          <div onClick={() => handleRemove(post)} className='sneak-peek__stat'>
+            <span className='sneak-peek__label'>Usuń</span>
+            <div className='sneak-peek__icon-container'>
+              <img className='sneak-peek__icon' src={TrashIcon} />
             </div>
           </div>
         )}
       </div>
-    </Link>
+    </div>
   );
 };
 
