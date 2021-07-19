@@ -1,7 +1,13 @@
 import React from 'react';
 import './quantityChanger.css';
 
-const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
+const QuantityChanger = ({
+  rangeSize,
+  maxSize,
+  quantity,
+  setQuantity,
+  counter,
+}) => {
   let range = rangeSize;
 
   const handleQuantity = (action) => {
@@ -36,7 +42,7 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
   return (
     <div className='quantity-changer'>
       <h3 className='quantity-changer__info'>
-        Aktualnie {quantity}/{maxSize}
+        Wyświetlasz {quantity} z {maxSize}
       </h3>
       <div className='quantity-changer__btn-container'>
         <button
@@ -46,7 +52,7 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
           disabled={quantity === maxSize}
           onClick={() => handleQuantity('add')}
         >
-          Wyświetl więcej!
+          Dodaj {range}
         </button>
         <button
           className={`quantity-changer__btn ${
@@ -55,7 +61,7 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
           disabled={quantity === 0}
           onClick={() => handleQuantity('subtract')}
         >
-          Wyświetl mniej!
+          Usuń {range}
         </button>
       </div>
     </div>

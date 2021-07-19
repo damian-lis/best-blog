@@ -35,6 +35,9 @@ const Home = () => {
     dispatch(getComments());
   }, [dispatch]);
 
+  const countQuantity =
+    postsQuantity > filteredPosts.length ? filteredPosts.length : postsQuantity;
+
   return (
     <>
       <Container home>
@@ -50,8 +53,8 @@ const Home = () => {
       </Container>
       <QuantityChanger
         rangeSize={4}
-        maxSize={posts.length}
-        quantity={postsQuantity}
+        maxSize={filteredPosts.length}
+        quantity={countQuantity}
         setQuantity={setPostsQuantity}
       />
     </>
