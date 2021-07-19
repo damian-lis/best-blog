@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './comment.css';
-import Heart from '../Heart';
+import DynamicIcon from '../DynamicIcon';
 import PostIcon from '../../assets/postIcon.svg';
 import TrashIcon from '../../assets/trashIcon.svg';
+import GrayHeartIcon from '../../assets/grayHeartIcon.svg';
+import HeartIcon from '../../assets/heartIcon.svg';
 
 const Comment = ({
   favorite,
@@ -18,34 +20,40 @@ const Comment = ({
       <p className='comment__body'>{comment.body}</p>
       {!favorite ? (
         <div
-          className='comment__options-container'
+          className='comment__options'
           onClick={() => handleCommentLike(comment.like, comment)}
         >
-          <span className='comment__like-label'>
-            {comment.like ? 'Lubisz!' : 'Zareaguj'}
-          </span>
-          <div className='comment__like-icon'>
-            <Heart toggle={comment.like} />
+          <div className='comment__option'>
+            <span className='comment__option-label'>
+              {comment.like ? 'Lubisz!' : 'Zareaguj'}
+            </span>
+            <div className='comment__option-icon'>
+              <DynamicIcon
+                toggle={comment.like}
+                srcTrue={HeartIcon}
+                srcFalse={GrayHeartIcon}
+              />
+            </div>
           </div>
         </div>
       ) : (
-        <div className='comment__options-container'>
+        <div className='comment__options'>
           <Link to={`article/${comment.postId}`}>
-            <div className='comment__post-container'>
-              <span className='comment__post-label'>Post</span>
-              <div className='comment__post-icon-container'>
-                <img className='comment__post-icon' src={PostIcon} />
+            <div className='comment__option'>
+              <span className='comment__option-label'>Post</span>
+              <div className='comment__option-icon'>
+                <DynamicIcon src={PostIcon} />
               </div>
             </div>
           </Link>
 
           <div
             onClick={() => handleRemove(comment)}
-            className='comment__trash-container'
+            className='comment__option'
           >
-            <span className='comment__trash-label'>Usuń</span>
-            <div className='comment__trash-icon-container'>
-              <img className='comment__trash-icon' src={TrashIcon} />
+            <span className='comment__option-label'>Usuń</span>
+            <div className='comment__option-icon'>
+              <DynamicIcon src={TrashIcon} />
             </div>
           </div>
         </div>

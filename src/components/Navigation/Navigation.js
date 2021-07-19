@@ -3,30 +3,28 @@ import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
 import SearchBar from '../SearchBar';
-import Heart from '../Heart';
+import DynamicIcon from '../DynamicIcon';
 import AppLogo from '../../assets/appLogo.svg';
 import AppLogoMobile from '../../assets/appLogoMobile.svg';
+import HeartIcon from '../../assets/heartIcon.svg';
 import './navigation.css';
 
 const Navigation = () => {
-  const [isSearchActive, setIsSearchActive] = useState(false);
-
   const history = useHistory();
+  history.listen((location) => setCurrentPagePath(location.pathname));
+
+  const [isSearchActive, setIsSearchActive] = useState(false);
   const [currentPagePath, setCurrentPagePath] = useState(
     history.location.pathname
   );
-  const isMobile = useWindowWidth() < 600;
-
-  history.listen((location) => setCurrentPagePath(location.pathname));
-
-  const isTurnOffSearch =
-    currentPagePath === '/favorites' || currentPagePath.includes('article');
-
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector(
     (state) => state.favoriteCommentsState
   );
 
+  const isMobile = useWindowWidth() < 600;
+  const isSearchBarTurnOff =
+    currentPagePath === '/favorites' || currentPagePath.includes('article');
   const favoritesNumber = favoritePosts.length + favoriteComments.length;
 
   return (
@@ -44,7 +42,7 @@ const Navigation = () => {
             />
           </Link>
         </div>
-        {!isTurnOffSearch && (
+        {!isSearchBarTurnOff && (
           <SearchBar
             navigation
             posts
@@ -57,14 +55,14 @@ const Navigation = () => {
             className={`navigation__item ${
               isSearchActive ? 'navigation__item--dynamic' : ''
             }`}
-            key={0}
+            key={'favorites'}
           >
             <Link to='/favorites'>
               <div className='navigation__item-wrapper'>
                 {!isMobile && (
                   <span className='navigation__item-label'> Favorites</span>
                 )}
-                <Heart number={favoritesNumber} />
+                <DynamicIcon src={HeartIcon} number={favoritesNumber} />
               </div>
             </Link>
           </li>

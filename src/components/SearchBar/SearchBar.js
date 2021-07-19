@@ -7,35 +7,32 @@ import SearchIcon from '../../assets/searchIcon.svg';
 import DeleteIcon from '../../assets/deleteIcon.svg';
 
 const SearchBar = ({
-  navigation,
   posts,
+  navigation,
+  small,
   comments,
   setSearchActive,
   searchActive,
 }) => {
   const [isSearch, setIsSearch] = useState(false);
-
   const {
     searchPosts: searchPostsValue,
     searchComments: searchCommentsValue,
   } = useSelector((state) => state.searchState);
 
   const dispatch = useDispatch();
-
-  const inputValue = posts ? searchPostsValue : searchCommentsValue;
-
   const isMobile = useWindowWidth() < 600;
 
-  const handleInputOnChange = (e) => {
+  const handleInputChange = (e) => {
     posts && dispatch(searchPosts(e.target.value));
     comments && dispatch(searchComments(e.target.value));
   };
 
-  const handleDeleteIconOnClick = () => {
+  const handleDeleteIconClick = () => {
     dispatch(posts ? searchPosts('') : searchComments(''));
   };
 
-  const handleSearchIconOnClick = () => {
+  const handleSearchIconClick = () => {
     if (!isMobile) return;
 
     setIsSearch(!isSearch);
@@ -51,28 +48,28 @@ const SearchBar = ({
   return (
     <div
       className={`search-bar ${
-        navigation && !searchActive && isMobile ? 'search-bar--mobile' : ''
+        navigation & !searchActive && isMobile ? 'search-bar--mobile' : ''
       }
-        ${!navigation ? 'search-bar--small' : ''}`}
+        ${small ? 'search-bar--small' : ''}`}
     >
       <input
         className='search-bar__input'
-        value={inputValue}
-        onChange={handleInputOnChange}
+        value={posts ? searchPostsValue : searchCommentsValue}
+        onChange={handleInputChange}
         placeholder={posts ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}
       />
       <img
         className='search-bar__search-icon'
         src={SearchIcon}
-        onClick={handleSearchIconOnClick}
+        onClick={handleSearchIconClick}
       />
-      {inputValue && (
+      {searchPostsValue || searchCommentsValue ? (
         <img
           className='search-bar__delete-icon'
           src={DeleteIcon}
-          onClick={handleDeleteIconOnClick}
+          onClick={handleDeleteIconClick}
         />
-      )}
+      ) : null}
     </div>
   );
 };

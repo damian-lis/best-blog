@@ -24,13 +24,13 @@
     text-align: center;
 }
 
-.article__comments-option{
+.article__comments-options{
     display:flex;
     margin-bottom:40px;
     justify-content: center;
 }
 
-.article__select{
+.article__comments-select{
     border:0;
     -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
     box-shadow: 1px 1px 5px 1px #d4d4d4;
@@ -43,37 +43,40 @@
     cursor:pointer;
 }
 
-.article__select:focus{
+.article__comments-select:focus{
     -webkit-box-shadow: 1px 1px 5px 1px #8a8a8a; 
     box-shadow: 1px 1px 5px 1px #8a8a8a;
 }
 
-.article__like-container{
+.article__react-container{
 display:flex;
 align-items: center;
 justify-content: center;
 margin-top:20px;
 cursor:pointer;
 }
-.article__like-label{
+.article__react-label{
     color: rgb(14, 111, 221)
 }
-.article__like-icon{
+.article__react-icon-container{
     width:20px;
     margin-left:5px;
-    
 }
 
+.article__comments-container{
+    padding:20px 0;
+}
+
+
 @media(max-width:600px){
-    .article__comments-option{
+    .article__comments-options{
         display:flex;
         flex-direction: column;
        align-items: center;
         margin-bottom:20px;
     }
 
-    .article__select{
-    
+    .article__comments-select{
       margin-left: 0;
       margin-top:10px;
     }

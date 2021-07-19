@@ -10,8 +10,8 @@ import Container from '../../components/Container';
 import './favorites.css';
 
 const Favorites = () => {
-  let { favoritePosts } = useSelector((state) => state.favoritePostsState);
-  let { favoriteComments } = useSelector(
+  const { favoritePosts } = useSelector((state) => state.favoritePostsState);
+  const { favoriteComments } = useSelector(
     (state) => state.favoriteCommentsState
   );
   const { searchPosts, searchComments } = useSelector(
@@ -28,11 +28,11 @@ const Favorites = () => {
     dispatch(removeFavoriteComment({ comment }));
   };
 
-  favoritePosts = favoritePosts.filter((post) =>
+  const filteredFavoritePosts = favoritePosts.filter((post) =>
     post.title.toLowerCase().includes(searchPosts)
   );
 
-  favoriteComments = favoriteComments.filter((comment) =>
+  const filteredFavoriteComments = favoriteComments.filter((comment) =>
     comment.email.toLowerCase().includes(searchComments)
   );
 
@@ -45,7 +45,7 @@ const Favorites = () => {
         <SearchBar posts />
       </div>
       <Container>
-        {favoritePosts.map((post) => (
+        {filteredFavoritePosts.map((post) => (
           <SneakPeek
             favorites
             key={post.id}
@@ -60,7 +60,7 @@ const Favorites = () => {
       <div className='favorites__search-bar-container'>
         <SearchBar comments />
       </div>
-      {favoriteComments.map((favoriteComment, index) => (
+      {filteredFavoriteComments.map((favoriteComment, index) => (
         <Comment
           key={index}
           comment={favoriteComment}
