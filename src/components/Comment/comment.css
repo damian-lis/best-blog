@@ -26,11 +26,11 @@
     color: rgb(61, 61, 61);
 }
 
-.comment__like-container{
+.comment__options-container{
     display:flex;
 align-items: center;
 margin-top:20px;
-cursor:pointer
+height:30px;
 }
 
 .comment__like-label{
@@ -40,5 +40,36 @@ cursor:pointer
 .comment__like-icon{
     width:20px;
     margin-left:5px;
+}
+
+.comment__post-container, .comment__trash-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.comment__trash-container{
+    margin-left:20px;
+}
+
+.comment__post-icon, .comment__trash-icon{
+    width:25px;
+}
+
+.comment__trash-icon-container, .comment__post-icon-container{
+    margin-left:5px;
+}
+
+.comment__trash-label, .comment__post-label{
+    color: rgb(14, 111, 221)
+}
+
+.comment__post-container:hover .comment__post-label{
+    text-decoration: underline;
+}
+
+.comment__trash-container:hover .comment__trash-label{
+    text-decoration: underline;
 }
 
