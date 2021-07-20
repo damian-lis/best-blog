@@ -28,7 +28,7 @@ const SneakPeek = ({
     <div {...restProps} className='sneak-peek'>
       {isPostLiked && (
         <div className='sneak-peek__icon sneak-peek__icon--attached'>
-          <DynamicIcon src={HeartIcon} />
+          <DynamicIcon src={HeartIcon} small label='Polubiony!' />
         </div>
       )}
       <img className='sneak-peek__img' src={SneakPeekImg} />
@@ -40,31 +40,26 @@ const SneakPeek = ({
         {!favorites && postComments && (
           <>
             <div className='sneak-peek__stat'>
-              <span className='sneak-peek__label'>Komentarze</span>
-              <div className='sneak-peek__icon'>
-                <DynamicIcon
-                  src={ChatBubbleIcon}
-                  number={postComments.length}
-                />
-              </div>
+              <DynamicIcon
+                src={ChatBubbleIcon}
+                medium
+                number={postComments.length}
+                label='Komentarze'
+              />
             </div>
             <div className='sneak-peek__stat'>
-              <span className='sneak-peek__label'>Polubione</span>
-              <div className='sneak-peek__icon'>
-                <DynamicIcon
-                  src={HeartIcon}
-                  number={postCommentsLiked.length}
-                />
-              </div>
+              <DynamicIcon
+                src={HeartIcon}
+                medium
+                number={postCommentsLiked.length}
+                label='Polubione'
+              />
             </div>
           </>
         )}
         {favorites && (
           <div onClick={() => handleRemove(post)} className='sneak-peek__stat'>
-            <span className='sneak-peek__label'>Usuń</span>
-            <div className='sneak-peek__icon'>
-              <DynamicIcon src={TrashIcon} />
-            </div>
+            <DynamicIcon link label='Usuń' medium src={TrashIcon} />
           </div>
         )}
       </div>

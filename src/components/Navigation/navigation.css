@@ -34,7 +34,7 @@
     .navigation__item{
         overflow: hidden;
         transition:.5s;
-        width:40px;
+        width:60px;
     }
 
     .navigation__logo{

@@ -121,14 +121,14 @@ const Article = ({ match }) => {
       <p>{post.body}</p>
       <p>{post.body}</p>
       <div className='article__react-container' onClick={handleTogglePostLike}>
-        <span className='article__react-label'>
-          {postIsLiked ? 'Lubisz ten post!' : 'Zareaguj'}
-        </span>
         <div className='article__react-icon-container'>
           <DynamicIcon
             toggle={postIsLiked}
             srcTrue={HeartIcon}
             srcFalse={GrayHeartIcon}
+            small
+            link
+            label={postIsLiked ? 'Lubisz!' : 'Zareaguj'}
           />
         </div>
       </div>

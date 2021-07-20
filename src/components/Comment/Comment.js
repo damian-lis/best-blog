@@ -24,26 +24,21 @@ const Comment = ({
           onClick={() => handleCommentLike(comment.like, comment)}
         >
           <div className='comment__option'>
-            <span className='comment__option-label'>
-              {comment.like ? 'Lubisz!' : 'Zareaguj'}
-            </span>
-            <div className='comment__option-icon'>
-              <DynamicIcon
-                toggle={comment.like}
-                srcTrue={HeartIcon}
-                srcFalse={GrayHeartIcon}
-              />
-            </div>
+            <DynamicIcon
+              link
+              small
+              toggle={comment.like}
+              srcTrue={HeartIcon}
+              srcFalse={GrayHeartIcon}
+              label={comment.like ? 'Lubisz!' : 'Zareaguj'}
+            />
           </div>
         </div>
       ) : (
         <div className='comment__options'>
           <Link to={`article/${comment.postId}`}>
             <div className='comment__option'>
-              <span className='comment__option-label'>Post</span>
-              <div className='comment__option-icon'>
-                <DynamicIcon src={PostIcon} />
-              </div>
+              <DynamicIcon link medium label='Post' src={PostIcon} />
             </div>
           </Link>
 
@@ -51,10 +46,7 @@ const Comment = ({
             onClick={() => handleRemove(comment)}
             className='comment__option'
           >
-            <span className='comment__option-label'>Usuń</span>
-            <div className='comment__option-icon'>
-              <DynamicIcon src={TrashIcon} />
-            </div>
+            <DynamicIcon link medium label='Usuń' src={TrashIcon} />
           </div>
         </div>
       )}

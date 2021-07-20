@@ -58,10 +58,7 @@ cursor:pointer;
 .article__react-label{
     color: rgb(14, 111, 221)
 }
-.article__react-icon-container{
-    width:20px;
-    margin-left:5px;
-}
+
 
 .article__comments-container{
     padding:20px 0;

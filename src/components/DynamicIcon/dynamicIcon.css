@@ -1,7 +1,39 @@
 .dynamic-icon{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:5px;
+}
+
+.dynamic-icon--link{
+    color: rgb(14, 111, 221);
+    cursor: pointer;
+}
+
+.dynamic-icon--link:hover{
+    text-decoration: underline;
+}
+
+.dynamic-icon__img-container{
     position:relative;
     width:100%;
     height:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:10px;
+}
+
+
+
+.dynamic-icon__img-container--small{
+    width:20px;
+    margin-left:5px;
+}
+
+.dynamic-icon__img-container--medium{
+    width:28px;
+    margin-left:6px;
 }
 
 .dynamic-icon__img{
@@ -12,9 +44,9 @@
 .dynamic-icon__number{
     position:absolute;
     left:50%;
-    top:45%;
+    top:47%;
     transform: translate(-50%, -50%);
     font-weight: 700;
     color:#fff;
-    font-size:16px;
+    font-size:15px;
 }

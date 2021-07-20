@@ -63,12 +63,12 @@ const Navigation = () => {
             key={'favorites'}
           >
             <Link to='/favorites'>
-              <div className='navigation__item-wrapper'>
-                {!isMobile && (
-                  <span className='navigation__item-label'> Favorites</span>
-                )}
-                <DynamicIcon src={HeartIcon} number={favoritesNumber} />
-              </div>
+              <DynamicIcon
+                src={HeartIcon}
+                number={favoritesNumber}
+                label={!isMobile ? 'Favorites' : ''}
+                link
+              />
             </Link>
           </li>
         </ul>
