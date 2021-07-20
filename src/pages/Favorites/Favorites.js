@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { removeFavoritePost } from '../../actions/posts.actions';
@@ -7,9 +7,12 @@ import SearchBar from '../../components/SearchBar';
 import Comment from '../../components/Comment';
 import SneakPeek from '../../components/SneakPeek';
 import Container from '../../components/Container';
+import QuantityChanger from '../../components/QuantityChanger';
 import './favorites.css';
 
 const Favorites = () => {
+  const [commentsQuantity, setCommentsQuantity] = useState(5);
+  const [postsQuantity, setPostsQuantity] = useState(5);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector(
     (state) => state.favoriteCommentsState
@@ -36,6 +39,22 @@ const Favorites = () => {
     comment.email.toLowerCase().includes(searchComments)
   );
 
+  const reducedFavoritePosts = filteredFavoritePosts.slice(0, postsQuantity);
+  const reducedFavoriteComments = filteredFavoriteComments.slice(
+    0,
+    commentsQuantity
+  );
+
+  const countPostsQuantity =
+    postsQuantity > filteredFavoritePosts.length
+      ? filteredFavoritePosts.length
+      : postsQuantity;
+
+  const countCommentsQuantity =
+    commentsQuantity > filteredFavoriteComments.length
+      ? filteredFavoriteComments.length
+      : commentsQuantity;
+
   return (
     <div>
       <h3 className='favorites__header'>
@@ -45,7 +64,7 @@ const Favorites = () => {
         <SearchBar posts />
       </div>
       <Container>
-        {filteredFavoritePosts.map((post) => (
+        {reducedFavoritePosts.map((post) => (
           <SneakPeek
             favorites
             key={post.id}
@@ -54,13 +73,19 @@ const Favorites = () => {
           />
         ))}
       </Container>
+      <QuantityChanger
+        rangeSize={1}
+        maxSize={filteredFavoritePosts.length}
+        quantity={countPostsQuantity}
+        setQuantity={setPostsQuantity}
+      />
       <h3 className='favorites__header'>
         Ulubione komentarze ({favoriteComments.length})
       </h3>
       <div className='favorites__search-bar-container'>
         <SearchBar comments />
       </div>
-      {filteredFavoriteComments.map((favoriteComment, index) => (
+      {reducedFavoriteComments.map((favoriteComment, index) => (
         <Comment
           key={index}
           comment={favoriteComment}
@@ -68,6 +93,12 @@ const Favorites = () => {
           favorite
         />
       ))}
+      <QuantityChanger
+        rangeSize={1}
+        maxSize={filteredFavoriteComments.length}
+        quantity={countCommentsQuantity}
+        setQuantity={setCommentsQuantity}
+      />
     </div>
   );
 };

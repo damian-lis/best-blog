@@ -17,8 +17,10 @@ import DynamicIcon from '../../components/DynamicIcon';
 import Comment from '../../components/Comment';
 import GrayHeartIcon from '../../assets/grayHeartIcon.svg';
 import HeartIcon from '../../assets/heartIcon.svg';
+import QuantityChanger from '../../components/QuantityChanger';
 
 const Article = ({ match }) => {
+  const [commentsQuantity, setCommentsQuantity] = useState(3);
   const [selectedOption, setSelectedOption] = useState('all');
   const { post, loading: postLoading, error: postError } = useSelector(
     (state) => state.postState
@@ -71,6 +73,13 @@ const Article = ({ match }) => {
       (modifiedComment) => !modifiedComment.like
     );
   }
+
+  const reducedComments = modifiedComments.slice(0, commentsQuantity);
+
+  const countQuantity =
+    commentsQuantity > modifiedComments.length
+      ? modifiedComments.length
+      : commentsQuantity;
 
   const handleTogglePostLike = () => {
     dispatch(
@@ -141,7 +150,7 @@ const Article = ({ match }) => {
         </select>
       </div>
       <div className='article__comments-container'>
-        {modifiedComments.map((comment, index) => (
+        {reducedComments.map((comment, index) => (
           <Comment
             handleCommentLike={handleToggleCommentLike}
             key={index}
@@ -149,6 +158,12 @@ const Article = ({ match }) => {
           />
         ))}
       </div>
+      <QuantityChanger
+        rangeSize={1}
+        maxSize={modifiedComments.length}
+        quantity={countQuantity}
+        setQuantity={setCommentsQuantity}
+      />
     </div>
   );
 };
