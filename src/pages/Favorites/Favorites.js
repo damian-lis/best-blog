@@ -32,11 +32,11 @@ const Favorites = () => {
   };
 
   const filteredFavoritePosts = favoritePosts.filter((post) =>
-    post.title.toLowerCase().includes(searchPosts)
+    post.title.toLowerCase().includes(searchPosts.toLowerCase())
   );
 
   const filteredFavoriteComments = favoriteComments.filter((comment) =>
-    comment.email.toLowerCase().includes(searchComments)
+    comment.email.toLowerCase().includes(searchComments.toLowerCase())
   );
 
   const reducedFavoritePosts = filteredFavoritePosts.slice(0, postsQuantity);

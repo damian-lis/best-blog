@@ -25,7 +25,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const filteredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(searchPosts)
+    post.title.toLowerCase().includes(searchPosts.toLowerCase())
   );
 
   const reducedPosts = filteredPosts.slice(0, postsQuantity);

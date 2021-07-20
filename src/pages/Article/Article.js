@@ -40,7 +40,7 @@ const Article = ({ match }) => {
   const dispatch = useDispatch();
 
   const filteredComments = articleComments.filter((comment) =>
-    comment.email.toLowerCase().includes(searchComments)
+    comment.email.toLowerCase().includes(searchComments.toLowerCase())
   );
 
   const postIsLiked = favoritePosts.some(
