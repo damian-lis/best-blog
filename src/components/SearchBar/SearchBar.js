@@ -48,17 +48,20 @@ const SearchBar = ({
   return (
     <div
       className={`search-bar
+      ${navigation ? 'search-bar--nav' : ''}
        ${isMobile && navigation ? 'search-bar--mobile-nav' : ''}
         ${small ? 'search-bar--small' : ''}
         ${isSearch ? 'search-bar--mobile-active' : ''}
         `}
     >
       <input
-        className={`search-bar__input  ${
-          isMobile && navigation && !isSearch
-            ? 'search-bar__input--mobile-nav'
-            : ''
-        }`}
+        className={`search-bar__input 
+        ${navigation ? 'search-bar__input--nav' : ''}
+         ${
+           isMobile && navigation && !isSearch
+             ? 'search-bar__input--mobile-nav'
+             : ''
+         }`}
         value={posts ? searchPostsValue : searchCommentsValue}
         onChange={handleInputChange}
         placeholder={posts ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}
