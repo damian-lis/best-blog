@@ -56,49 +56,62 @@ const Favorites = () => {
       : commentsQuantity;
 
   return (
-    <div>
-      <h3 className='favorites__header'>
-        Ulubione posty ({favoritePosts.length})
-      </h3>
-      <div className='favorites__search-bar-container'>
-        <SearchBar posts />
-      </div>
-      <Container>
-        {reducedFavoritePosts.map((post) => (
-          <SneakPeek
-            favorites
-            key={post.id}
-            post={post}
-            handleRemove={handleRemoveFavoritePost}
+    <div className='favorites'>
+      {favoritePosts.length ? (
+        <div>
+          <h3 className='favorites__header'>
+            Ulubione posty ({favoritePosts.length})
+          </h3>
+          <div className='favorites__search-bar-container'>
+            <SearchBar posts />
+          </div>
+          <Container>
+            {reducedFavoritePosts.map((post) => (
+              <SneakPeek
+                favorites
+                key={post.id}
+                post={post}
+                handleRemove={handleRemoveFavoritePost}
+              />
+            ))}
+          </Container>
+          <QuantityChanger
+            rangeSize={1}
+            maxSize={filteredFavoritePosts.length}
+            quantity={countPostsQuantity}
+            setQuantity={setPostsQuantity}
           />
-        ))}
-      </Container>
-      <QuantityChanger
-        rangeSize={1}
-        maxSize={filteredFavoritePosts.length}
-        quantity={countPostsQuantity}
-        setQuantity={setPostsQuantity}
-      />
-      <h3 className='favorites__header'>
-        Ulubione komentarze ({favoriteComments.length})
-      </h3>
-      <div className='favorites__search-bar-container'>
-        <SearchBar comments />
-      </div>
-      {reducedFavoriteComments.map((favoriteComment, index) => (
-        <Comment
-          key={index}
-          comment={favoriteComment}
-          handleRemove={handleRemoveFavoriteComment}
-          favorite
-        />
-      ))}
-      <QuantityChanger
-        rangeSize={1}
-        maxSize={filteredFavoriteComments.length}
-        quantity={countCommentsQuantity}
-        setQuantity={setCommentsQuantity}
-      />
+        </div>
+      ) : (
+        <h3 className='favorites__header'>Nie masz ulubionych postów</h3>
+      )}
+      <div className='favorites__line'></div>
+      {favoriteComments.length ? (
+        <div>
+          <h3 className='favorites__header'>
+            Ulubione komentarze ({favoriteComments.length})
+          </h3>
+          <div className='favorites__search-bar-container'>
+            <SearchBar comments />
+          </div>
+          {reducedFavoriteComments.map((favoriteComment, index) => (
+            <Comment
+              key={index}
+              comment={favoriteComment}
+              handleRemove={handleRemoveFavoriteComment}
+              favorite
+            />
+          ))}
+          <QuantityChanger
+            rangeSize={1}
+            maxSize={filteredFavoriteComments.length}
+            quantity={countCommentsQuantity}
+            setQuantity={setCommentsQuantity}
+          />
+        </div>
+      ) : (
+        <h3 className='favorites__header'>Nie masz ulubionych komentarzy</h3>
+      )}
     </div>
   );
 };
