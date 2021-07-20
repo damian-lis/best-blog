@@ -6,7 +6,7 @@
     padding:10px;
     border-radius: 5px;
     -webkit-box-shadow: 1px 1px 5px 1px #dadada; 
-    box-shadow: 1px 1px 5px 1px #cccccc;
+    box-shadow: 1px 1px 5px 1px #dadada; 
     display:flex;
     flex-direction: column;
     position:relative;
@@ -67,7 +67,7 @@
     background-color: white;
     border-radius:5px;
     -webkit-box-shadow: 1px 1px 5px 1px #dadada; 
-    box-shadow: 1px 1px 5px 1px #cccccc;
+    box-shadow: 1px 1px 5px 1px #dadada; 
     padding:5px;
 }
 
