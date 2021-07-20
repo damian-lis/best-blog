@@ -6,16 +6,15 @@ import { getComments } from '../../actions/comments.actions';
 import Container from '../../components/Container';
 import SneakPeek from '../../components/SneakPeek';
 import QuantityChanger from '../../components/QuantityChanger';
+import Loader from '../../components/Loader';
 
 const Home = () => {
   const [postsQuantity, setPostsQuantity] = useState(8);
 
-  let { posts, loading, error } = useSelector((state) => state.postsState);
-  const {
-    comments,
-    loading: commentsLoading,
-    error: commentsError,
-  } = useSelector((state) => state.commentsState);
+  let { posts, loading: postsLoading, error: postsError } = useSelector(
+    (state) => state.postsState
+  );
+  const { comments } = useSelector((state) => state.commentsState);
   const { searchPosts } = useSelector((state) => state.searchState);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector(
@@ -38,7 +37,16 @@ const Home = () => {
   const countQuantity =
     postsQuantity > filteredPosts.length ? filteredPosts.length : postsQuantity;
 
-  return (
+  return postsLoading ? (
+    <Loader />
+  ) : postsError ? (
+    <>
+      <p style={{ textAlign: 'center', lineHeight: 2 }}>
+        Coś poszło nie tak z ładowaniem postów... <br />
+        Załaduj stronę jeszcze raz!
+      </p>
+    </>
+  ) : (
     <>
       <Container home>
         {reducedPosts.map((post) => (

@@ -18,6 +18,7 @@ import Comment from '../../components/Comment';
 import GrayHeartIcon from '../../assets/grayHeartIcon.svg';
 import HeartIcon from '../../assets/heartIcon.svg';
 import QuantityChanger from '../../components/QuantityChanger';
+import Loader from '../../components/Loader';
 
 const Article = ({ match }) => {
   const [commentsQuantity, setCommentsQuantity] = useState(3);
@@ -28,7 +29,7 @@ const Article = ({ match }) => {
   let {
     articleComments,
     loading: commentsLoading,
-    error: errorLoading,
+    error: commentsError,
   } = useSelector((state) => state.articleCommentsState);
   const { searchComments } = useSelector((state) => state.searchState);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
@@ -104,8 +105,15 @@ const Article = ({ match }) => {
     dispatch(getArticleComments({ id }));
   }, [dispatch]);
 
-  return postLoading || commentsLoading ? (
-    <p>Loading</p>
+  return postLoading ? (
+    <Loader />
+  ) : postError ? (
+    <>
+      <p style={{ textAlign: 'center', lineHeight: 2 }}>
+        Coś poszło nie tak z ładowaniem posta... <br />
+        Załaduj stronę jeszcze raz!
+      </p>
+    </>
   ) : (
     <div className='article'>
       <div className='article__img-container'>
@@ -132,38 +140,49 @@ const Article = ({ match }) => {
           />
         </div>
       </div>
-
       <h3 className='article__header'>
         Komentarze ({modifiedComments.length})
       </h3>
-
-      <div className='article__comments-options'>
-        <SearchBar comments small />
-        <select
-          className='article__comments-select'
-          value={selectedOption}
-          onChange={handleSelectChange}
-        >
-          <option value='all'>Wszystkie komentarze</option>
-          <option value='liked'>Polubione komentarze</option>
-          <option value='unliked'>Niepolubione komentarze</option>
-        </select>
-      </div>
-      <div className='article__comments-container'>
-        {reducedComments.map((comment, index) => (
-          <Comment
-            handleCommentLike={handleToggleCommentLike}
-            key={index}
-            comment={comment}
+      {commentsLoading ? (
+        <Loader />
+      ) : commentsError ? (
+        <>
+          <p style={{ textAlign: 'center', lineHeight: 2 }}>
+            Coś poszło nie tak z ładowaniem komentarzy... <br />
+            Załaduj stronę jeszcze raz!
+          </p>
+        </>
+      ) : (
+        <div>
+          <div className='article__comments-options'>
+            <SearchBar comments small />
+            <select
+              className='article__comments-select'
+              value={selectedOption}
+              onChange={handleSelectChange}
+            >
+              <option value='all'>Wszystkie komentarze</option>
+              <option value='liked'>Polubione komentarze</option>
+              <option value='unliked'>Niepolubione komentarze</option>
+            </select>
+          </div>
+          <div className='article__comments-container'>
+            {reducedComments.map((comment, index) => (
+              <Comment
+                handleCommentLike={handleToggleCommentLike}
+                key={index}
+                comment={comment}
+              />
+            ))}
+          </div>
+          <QuantityChanger
+            rangeSize={1}
+            maxSize={modifiedComments.length}
+            quantity={countQuantity}
+            setQuantity={setCommentsQuantity}
           />
-        ))}
-      </div>
-      <QuantityChanger
-        rangeSize={1}
-        maxSize={modifiedComments.length}
-        quantity={countQuantity}
-        setQuantity={setCommentsQuantity}
-      />
+        </div>
+      )}
     </div>
   );
 };
