@@ -1,6 +1,7 @@
 .navigation{
     -webkit-box-shadow: 1px 1px 5px 1px #dadada; 
     box-shadow: 1px 1px 5px 1px #cccccc;
+    background-color: rgb(14, 111, 221);;
 }
 
 .navigation__wrapper{
