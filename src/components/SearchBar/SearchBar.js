@@ -33,7 +33,7 @@ const SearchBar = ({
   };
 
   const handleSearchIconClick = () => {
-    if (!isMobile) return;
+    if (!isMobile || !navigation) return;
 
     setIsSearch(!isSearch);
     if (setSearchActive) {
@@ -47,19 +47,26 @@ const SearchBar = ({
 
   return (
     <div
-      className={`search-bar ${
-        navigation & !searchActive && isMobile ? 'search-bar--mobile' : ''
-      }
-        ${small ? 'search-bar--small' : ''}`}
+      className={`search-bar
+       ${isMobile && navigation ? 'search-bar--mobile-nav' : ''}
+        ${small ? 'search-bar--small' : ''}
+        ${isSearch ? 'search-bar--mobile-active' : ''}
+        `}
     >
       <input
-        className='search-bar__input'
+        className={`search-bar__input  ${
+          isMobile && navigation && !isSearch
+            ? 'search-bar__input--mobile-nav'
+            : ''
+        }`}
         value={posts ? searchPostsValue : searchCommentsValue}
         onChange={handleInputChange}
         placeholder={posts ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}
       />
       <img
-        className='search-bar__search-icon'
+        className={`search-bar__search-icon
+        ${navigation ? 'search-bar__search-icon--mobile-nav' : ''}
+        ${isSearch ? 'search-bar__search-icon--mobile-active' : ''}`}
         src={SearchIcon}
         onClick={handleSearchIconClick}
       />

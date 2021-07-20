@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
@@ -11,7 +11,6 @@ import './navigation.css';
 
 const Navigation = () => {
   const history = useHistory();
-  history.listen((location) => setCurrentPagePath(location.pathname));
 
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [currentPagePath, setCurrentPagePath] = useState(
@@ -26,6 +25,12 @@ const Navigation = () => {
   const isSearchBarTurnOff =
     currentPagePath === '/favorites' || currentPagePath.includes('article');
   const favoritesNumber = favoritePosts.length + favoriteComments.length;
+
+  history.listen((location) => setCurrentPagePath(location.pathname));
+
+  useEffect(() => {
+    setIsSearchActive(false);
+  }, [currentPagePath]);
 
   return (
     <nav className='navigation'>
