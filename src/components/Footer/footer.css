@@ -1,0 +1,16 @@
+.footer{
+    background-color: rgb(14, 111, 221);;
+    -webkit-box-shadow: 5px 5px 5px 5px #dadada; 
+    box-shadow: 5px 5px 5px 5px #cccccc;
+}
+
+.footer__wrapper{
+    max-width:1300px;
+    display:flex;
+    height:65px;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin: 0 auto;
+    padding:0 20px;
+}

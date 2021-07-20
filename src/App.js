@@ -4,6 +4,7 @@ import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Article from './pages/Article';
 import Favorites from './pages/Favorites';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route component={() => 404} />
           </Switch>
         </div>
+        <Footer />
       </Router>
     </div>
   );
