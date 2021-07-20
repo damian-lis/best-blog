@@ -11,10 +11,15 @@ const DynamicIcon = ({
   small,
   medium,
   link,
+  white,
 }) => {
   return (
-    <div className={`dynamic-icon ${link ? 'dynamic-icon--link' : ''}`}>
-      {label && <span className='dynamic-icon__label'>{label}</span>}
+    <div
+      className={`dynamic-icon ${link ? 'dynamic-icon--link' : ''}
+    ${white ? 'dynamic-icon__link--white' : ''}
+    `}
+    >
+      {label && <span className={'dynamic-icon__label'}>{label}</span>}
       <div
         className={`dynamic-icon__img-container ${
           small ? 'dynamic-icon__img-container--small' : ''

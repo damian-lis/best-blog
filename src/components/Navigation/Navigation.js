@@ -68,6 +68,7 @@ const Navigation = () => {
                 number={favoritesNumber}
                 label={!isMobile ? 'Favorites' : ''}
                 link
+                white
               />
             </Link>
           </li>
