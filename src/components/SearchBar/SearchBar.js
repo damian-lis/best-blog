@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
-import { searchPosts, searchComments } from '/src/actions/search.actions';
-import { searchIcon, deleteIcon } from '/src/assets';
+import { searchPosts, searchComments } from 'actions/search.actions';
+import { searchIcon, deleteIcon } from 'assets';
 import styles from './searchBar.module.css';
 
 const SearchBar = ({ posts, navigation, small, comments, setSearchActive, searchActive }) => {
   const [isSearch, setIsSearch] = useState(false);
-  const { searchPosts: searchPostsValue, searchComments: searchCommentsValue } = useSelector(
-    (state) => state.searchState
-  );
+  const [inputValue, setInputValue] = useState('');
 
   const dispatch = useDispatch();
   const isMobile = useWindowWidth() < 600;
 
   const handleInputChange = (e) => {
+    setInputValue(e.target.value);
     posts && dispatch(searchPosts(e.target.value));
     comments && dispatch(searchComments(e.target.value));
   };
 
   const handleDeleteIconClick = () => {
+    setInputValue('');
     dispatch(posts ? searchPosts('') : searchComments(''));
   };
 
@@ -34,7 +34,7 @@ const SearchBar = ({ posts, navigation, small, comments, setSearchActive, search
 
   useEffect(() => {
     dispatch(searchPosts(''));
-  }, [isSearch]);
+  }, [isSearch, dispatch]);
 
   return (
     <div
@@ -48,7 +48,7 @@ const SearchBar = ({ posts, navigation, small, comments, setSearchActive, search
         className={`${styles.searchBar__input}
         ${navigation ? styles['searchBar__input--nav'] : ''}
          ${isMobile && navigation && !isSearch ? styles['searchBar__input--mobileNav'] : ''}`}
-        value={posts ? searchPostsValue : searchCommentsValue}
+        value={inputValue}
         onChange={handleInputChange}
         placeholder={posts ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}
       />
@@ -58,14 +58,16 @@ const SearchBar = ({ posts, navigation, small, comments, setSearchActive, search
         ${isSearch ? styles['searchBar__searchIcon--mobileActive'] : ''}`}
         src={searchIcon}
         onClick={handleSearchIconClick}
+        alt="searchIcon"
       />
-      {searchPostsValue || searchCommentsValue ? (
+      {inputValue && (
         <img
           className={styles.searchBar__deleteIcon}
           src={deleteIcon}
           onClick={handleDeleteIconClick}
+          alt="deleteIcon"
         />
-      ) : null}
+      )}
     </div>
   );
 };
