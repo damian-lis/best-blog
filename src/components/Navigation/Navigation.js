@@ -10,18 +10,13 @@ const Navigation = () => {
   const history = useHistory();
 
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [currentPagePath, setCurrentPagePath] = useState(
-    history.location.pathname
-  );
+  const [currentPagePath, setCurrentPagePath] = useState(history.location.pathname);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
-  const { favoriteComments } = useSelector(
-    (state) => state.favoriteCommentsState
-  );
+  const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
 
   const isMobile = useWindowWidth() < 600;
 
-  const isSearchBarHide =
-    currentPagePath === '/favorites' || currentPagePath.includes('article');
+  const isSearchBarHide = currentPagePath === '/favorites' || currentPagePath.includes('article');
 
   const favoritesNumber = favoritePosts.length + favoriteComments.length;
 
@@ -37,16 +32,9 @@ const Navigation = () => {
         <div
           className={`${styles.navigation__item} ${
             isSearchActive ? styles['navigation__item--dynamic'] : ''
-          }`}
-        >
-          <Link to='/'>
-            <DynamicIcon
-              src={appLogo}
-              label={!isMobile ? 'BestBlog' : ''}
-              link
-              white
-              reverse
-            />
+          }`}>
+          <Link to="/">
+            <DynamicIcon src={appLogo} label={!isMobile ? 'BestBlog' : ''} link white reverse />
           </Link>
         </div>
         {!isSearchBarHide && (
@@ -62,9 +50,8 @@ const Navigation = () => {
             className={`${styles.navigation__item} ${
               isSearchActive ? styles['navigation__item--dynamic'] : ''
             }`}
-            key={'favorites'}
-          >
-            <Link to='/favorites'>
+            key={'favorites'}>
+            <Link to="/favorites">
               <DynamicIcon
                 src={heartIcon}
                 number={favoritesNumber}

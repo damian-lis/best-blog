@@ -4,13 +4,7 @@ import { DynamicIcon } from '../../components';
 import { postIcon, trashIcon, grayHeartIcon, heartIcon } from '../../assets';
 import styles from './comment.module.css';
 
-const Comment = ({
-  favoritePage,
-  comment,
-  removeLike,
-  addLike,
-  ...restProps
-}) => {
+const Comment = ({ favoritePage, comment, removeLike, addLike, ...restProps }) => {
   const handleToggleLike = (commentIsLiked, comment) => {
     commentIsLiked ? removeLike(comment) : addLike(comment);
   };
@@ -23,16 +17,15 @@ const Comment = ({
         {favoritePage && (
           <Link to={`article/${comment.postId}`}>
             <div className={styles.comment__option}>
-              <DynamicIcon link medium label='Post' src={postIcon} />
+              <DynamicIcon link medium label="Post" src={postIcon} />
             </div>
           </Link>
         )}
         <div
           onClick={() => handleToggleLike(comment.like, comment)}
-          className={styles.comment__option}
-        >
+          className={styles.comment__option}>
           {favoritePage ? (
-            <DynamicIcon link medium label='Usuń' src={trashIcon} />
+            <DynamicIcon link medium label="Usuń" src={trashIcon} />
           ) : (
             <DynamicIcon
               link

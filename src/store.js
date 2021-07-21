@@ -1,15 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {
-  postsReducer,
-  postReducer,
-  favoritePostsReducer,
-} from './reducers/posts.reducers';
+import { postsReducer, postReducer, favoritePostsReducer } from './reducers/posts.reducers';
 import {
   commentsReducer,
   articleCommentsReducer,
-  favoriteCommentsReducer,
+  favoriteCommentsReducer
 } from './reducers/comments.reducers';
 import { searchReducer } from './reducers/search.reducers';
 
@@ -20,7 +16,7 @@ const reducer = combineReducers({
   articleCommentsState: articleCommentsReducer,
   favoritePostsState: favoritePostsReducer,
   favoriteCommentsState: favoriteCommentsReducer,
-  searchState: searchReducer,
+  searchState: searchReducer
 });
 
 const favoritePosts = localStorage.getItem('favoritePosts')
@@ -38,7 +34,7 @@ const initialState = {
   articleCommentsState: { articleComments: [], loading: false, error: null },
   favoritePostsState: { favoritePosts },
   favoriteCommentsState: { favoriteComments },
-  searchState: { searchPosts: '', searchComments: '' },
+  searchState: { searchPosts: '', searchComments: '' }
 };
 
 const middleware = [thunk];

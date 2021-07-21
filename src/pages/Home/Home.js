@@ -13,9 +13,7 @@ const Home = () => {
   const { comments } = useSelector((state) => state.commentsState);
   const { searchPosts } = useSelector((state) => state.searchState);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
-  const { favoriteComments } = useSelector(
-    (state) => state.favoriteCommentsState
-  );
+  const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
 
   const dispatch = useDispatch();
   const filteredPosts = filterElements(posts, 'title', searchPosts);

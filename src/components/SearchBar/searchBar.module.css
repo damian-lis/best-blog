@@ -58,8 +58,8 @@
 
 @media(max-width:600px){
     .searchBar{
-    margin: auto; 
-    height:35px;    
+        margin: auto; 
+        height:35px;    
     }
 
     .searchBar--mobileNav{
@@ -88,10 +88,11 @@
         transition:.5s;
     }
 
-  .searchBar__searchIcon--mobileActive{
-    width:18px;
-    left:5px;
-}
+    .searchBar__searchIcon--mobileActive{
+        width:18px;
+        left:5px;
+    }
+    
     .searchBar--mobileActive{
         -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
         box-shadow: 1px 1px 5px 1px #d4d4d4;

@@ -4,40 +4,26 @@ import { getPost } from '../../actions/posts.actions';
 import {
   getArticleComments,
   addFavoriteComment,
-  removeFavoriteComment,
+  removeFavoriteComment
 } from '../../actions/comments.actions';
 import { Loader, Post, ErrorInfo, Headline, Container } from '../../components';
 import { Comments } from '../../containers';
 import { setElementsLike, filterElements } from '../../helpers';
 
 const Article = ({ match }) => {
-  const { post, loading: postLoading, error: postError } = useSelector(
-    (state) => state.postState
+  const { post, loading: postLoading, error: postError } = useSelector((state) => state.postState);
+  const { articleComments, loading: commentsLoading, error: commentsError } = useSelector(
+    (state) => state.articleCommentsState
   );
-  const {
-    articleComments,
-    loading: commentsLoading,
-    error: commentsError,
-  } = useSelector((state) => state.articleCommentsState);
   const { searchComments } = useSelector((state) => state.searchState);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
-  const { favoriteComments } = useSelector(
-    (state) => state.favoriteCommentsState
-  );
+  const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
   const dispatch = useDispatch();
   const id = Number(match.params.id);
 
-  const filteredComments = filterElements(
-    articleComments,
-    'email',
-    searchComments
-  );
+  const filteredComments = filterElements(articleComments, 'email', searchComments);
 
-  const commentsWithLikes = setElementsLike(
-    post,
-    filteredComments,
-    favoriteComments
-  );
+  const commentsWithLikes = setElementsLike(post, filteredComments, favoriteComments);
 
   const handleRemoveFavoriteComment = (comment) => {
     dispatch(removeFavoriteComment({ comment }));

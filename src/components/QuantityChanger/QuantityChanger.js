@@ -44,8 +44,7 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
             isAddDisabled ? styles['quantityChanger__btn--disabled'] : ''
           }`}
           disabled={quantity === maxSize}
-          onClick={() => handleQuantity('add')}
-        >
+          onClick={() => handleQuantity('add')}>
           Pokaz ({range > maxSize - quantity ? maxSize - quantity : range})
         </button>
         <button
@@ -53,8 +52,7 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
             isSubtractDisabled ? styles['quantityChanger__btn--disabled'] : ''
           }`}
           disabled={quantity === 0}
-          onClick={() => handleQuantity('subtract')}
-        >
+          onClick={() => handleQuantity('subtract')}>
           Schowaj ({range > quantity ? quantity : range})
         </button>
       </div>

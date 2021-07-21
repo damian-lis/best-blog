@@ -5,19 +5,11 @@ import { searchPosts, searchComments } from '../../actions/search.actions';
 import { searchIcon, deleteIcon } from '../../assets';
 import styles from './searchBar.module.css';
 
-const SearchBar = ({
-  posts,
-  navigation,
-  small,
-  comments,
-  setSearchActive,
-  searchActive,
-}) => {
+const SearchBar = ({ posts, navigation, small, comments, setSearchActive, searchActive }) => {
   const [isSearch, setIsSearch] = useState(false);
-  const {
-    searchPosts: searchPostsValue,
-    searchComments: searchCommentsValue,
-  } = useSelector((state) => state.searchState);
+  const { searchPosts: searchPostsValue, searchComments: searchCommentsValue } = useSelector(
+    (state) => state.searchState
+  );
 
   const dispatch = useDispatch();
   const isMobile = useWindowWidth() < 600;
@@ -51,16 +43,11 @@ const SearchBar = ({
        ${isMobile && navigation ? styles['searchBar--mobileNav'] : ''}
         ${small ? styles['searchBar--small'] : ''}
         ${isSearch ? styles['searchBar--mobileActive'] : ''}
-        `}
-    >
+        `}>
       <input
         className={`${styles.searchBar__input}
         ${navigation ? styles['searchBar__input--nav'] : ''}
-         ${
-           isMobile && navigation && !isSearch
-             ? styles['searchBar__input--mobileNav']
-             : ''
-         }`}
+         ${isMobile && navigation && !isSearch ? styles['searchBar__input--mobileNav'] : ''}`}
         value={posts ? searchPostsValue : searchCommentsValue}
         onChange={handleInputChange}
         placeholder={posts ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}

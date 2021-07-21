@@ -1,12 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { DynamicIcon } from '../../components';
-import {
-  trashIcon,
-  heartIcon,
-  chatBubbleIcon,
-  postSneakPeekImg,
-} from '../../assets';
+import { trashIcon, heartIcon, chatBubbleIcon, postSneakPeekImg } from '../../assets';
 import styles from './postSneakPeek.module.css';
 
 const PostSneakPeek = ({
@@ -19,19 +14,14 @@ const PostSneakPeek = ({
   ...restProps
 }) => {
   const postComments = comments.filter((comment) => comment.postId === post.id);
-  const postCommentsLiked = favoriteComments.filter(
-    (comment) => comment.postId === post.id
-  );
-  const isPostLiked = favoritePosts.some(
-    (favoritePost) => favoritePost.id === post.id
-  );
+  const postCommentsLiked = favoriteComments.filter((comment) => comment.postId === post.id);
+  const isPostLiked = favoritePosts.some((favoritePost) => favoritePost.id === post.id);
 
   return (
     <div {...restProps} className={styles.postSneakPeek}>
       {isPostLiked && (
         <div
-          className={`${styles.postSneakPeek__iconContainer} ${styles['postSneakPeek__iconContainer--attached']}`}
-        >
+          className={`${styles.postSneakPeek__iconContainer} ${styles['postSneakPeek__iconContainer--attached']}`}>
           <DynamicIcon src={heartIcon} small />
         </div>
       )}
@@ -50,7 +40,7 @@ const PostSneakPeek = ({
                 src={chatBubbleIcon}
                 medium
                 number={postComments.length}
-                label='Komentarze'
+                label="Komentarze"
               />
             </div>
             <div className={styles.postSneakPeek__iconContainer}>
@@ -58,17 +48,14 @@ const PostSneakPeek = ({
                 src={heartIcon}
                 medium
                 number={postCommentsLiked.length}
-                label='Polubione'
+                label="Polubione"
               />
             </div>
           </>
         )}
         {favoritesPage && (
-          <div
-            onClick={() => removePost(post)}
-            className={styles.postSneakPeek__iconContainer}
-          >
-            <DynamicIcon link label='Usuń' medium src={trashIcon} />
+          <div onClick={() => removePost(post)} className={styles.postSneakPeek__iconContainer}>
+            <DynamicIcon link label="Usuń" medium src={trashIcon} />
           </div>
         )}
       </div>

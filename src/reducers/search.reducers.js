@@ -5,13 +5,13 @@ export const searchReducer = (state = '', action) => {
     case SEARCH_POSTS:
       return {
         ...state,
-        searchPosts: action.payload,
+        searchPosts: action.payload
       };
 
     case SEARCH_COMMENTS:
       return {
         ...state,
-        searchComments: action.payload,
+        searchComments: action.payload
       };
 
     default:

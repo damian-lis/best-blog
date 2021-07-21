@@ -12,31 +12,22 @@ const DynamicIcon = ({
   medium,
   link,
   white,
-  reverse,
+  reverse
 }) => {
   return (
     <div
-      className={`${styles.dynamicIcon} ${
-        link ? styles['dynamicIcon--link'] : ''
-      }
+      className={`${styles.dynamicIcon} ${link ? styles['dynamicIcon--link'] : ''}
     ${white ? styles['dynamicIcon--linkWhite'] : ''}
     ${reverse ? styles['dynamicIcon--reverse'] : ''}
-    `}
-    >
+    `}>
       {label && <span>{label}</span>}
       <div
         className={`${styles.dynamicIcon__imgContainer} ${
           small ? styles['dynamicIcon__imgContainer--small'] : ''
         }
-        ${medium ? styles['dynamicIcon__imgContainer--medium'] : ''}`}
-      >
-        <img
-          className={styles.dynamicIcon__img}
-          src={src ? src : toggle ? srcTrue : srcFalse}
-        />
-        {number !== undefined ? (
-          <span className={styles.dynamicIcon__number}>{number}</span>
-        ) : null}
+        ${medium ? styles['dynamicIcon__imgContainer--medium'] : ''}`}>
+        <img className={styles.dynamicIcon__img} src={src ? src : toggle ? srcTrue : srcFalse} />
+        {number !== undefined ? <span className={styles.dynamicIcon__number}>{number}</span> : null}
       </div>
     </div>
   );

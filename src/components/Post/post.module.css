@@ -19,13 +19,13 @@
 }
 
 .post__headline{
-margin-top:40px;
-margin-bottom:20px;
-margin-left:20px
+    margin-top:40px;
+    margin-bottom:20px;
+    margin-left:20px
 }
 
 .post__paragraph{
-line-height:2
+    line-height:2
 }
 
 .post__iconContainer{

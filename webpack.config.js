@@ -11,14 +11,14 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'],
-          plugins: ['@babel/transform-runtime'],
-        },
+          plugins: ['@babel/transform-runtime']
+        }
       },
       {
         test: /\.(jpg|png|svg)$/,
         use: {
-          loader: 'url-loader',
-        },
+          loader: 'url-loader'
+        }
       },
       {
         test: /\.css$/,
@@ -28,28 +28,28 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              modules: true,
-            },
-          },
+              modules: true
+            }
+          }
         ],
-        include: /\.module\.css$/,
+        include: /\.module\.css$/
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-        exclude: /\.module\.css$/,
-      },
-    ],
+        exclude: /\.module\.css$/
+      }
+    ]
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
 
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    port: 3000,
+    port: 3000
   },
 
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [new MiniCssExtractPlugin()]
 };

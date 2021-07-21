@@ -8,7 +8,7 @@ const PostSneakPeeks = ({
   favoritePosts,
   favoriteComments,
   favoritesPage,
-  removePost,
+  removePost
 }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
 

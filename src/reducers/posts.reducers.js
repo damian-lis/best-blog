@@ -6,7 +6,7 @@ import {
   GET_POST_SUCCESS,
   GET_POST_FAIL,
   ADD_FAVORITE_POST,
-  REMOVE_FAVORITE_POST,
+  REMOVE_FAVORITE_POST
 } from '../constants/posts.constants';
 
 export const postsReducer = (state = {}, action) => {
@@ -14,13 +14,13 @@ export const postsReducer = (state = {}, action) => {
     case GET_POSTS_REQUEST:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case GET_POSTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        posts: action.payload,
+        posts: action.payload
       };
     case GET_POSTS_FAIL:
       return { ...state, loading: false, error: action.payload };
@@ -34,13 +34,13 @@ export const postReducer = (state = {}, action) => {
     case GET_POST_REQUEST:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case GET_POST_SUCCESS:
       return {
         ...state,
         loading: false,
-        post: action.payload,
+        post: action.payload
       };
     case GET_POST_FAIL:
       return { ...state, loading: false, error: action.payload };
@@ -58,16 +58,12 @@ export const favoritePostsReducer = (state = [], action) => {
 
       return {
         ...state,
-        favoritePosts: !postExist
-          ? [...state.favoritePosts, action.payload]
-          : state.favoritePosts,
+        favoritePosts: !postExist ? [...state.favoritePosts, action.payload] : state.favoritePosts
       };
     case REMOVE_FAVORITE_POST:
       return {
         ...state,
-        favoritePosts: state.favoritePosts.filter(
-          (post) => post.id !== action.payload.id
-        ),
+        favoritePosts: state.favoritePosts.filter((post) => post.id !== action.payload.id)
       };
 
     default:

@@ -6,7 +6,7 @@ import {
   GET_ARTICLE_COMMENTS_SUCCESS,
   GET_ARTICLE_COMMENTS_FAIL,
   ADD_FAVORITE_COMMENT,
-  REMOVE_FAVORITE_COMMENT,
+  REMOVE_FAVORITE_COMMENT
 } from '../constants/comments.constants';
 
 export const commentsReducer = (state = [], action) => {
@@ -14,13 +14,13 @@ export const commentsReducer = (state = [], action) => {
     case GET_COMMENTS_REQUEST:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case GET_COMMENTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        comments: action.payload,
+        comments: action.payload
       };
     case GET_COMMENTS_FAIL:
       return { ...state, loading: false, error: action.payload };
@@ -34,13 +34,13 @@ export const articleCommentsReducer = (state = [], action) => {
     case GET_ARTICLE_COMMENTS_REQUEST:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case GET_ARTICLE_COMMENTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        articleComments: action.payload,
+        articleComments: action.payload
       };
     case GET_ARTICLE_COMMENTS_FAIL:
       return { ...state, loading: false, error: action.payload };
@@ -60,14 +60,14 @@ export const favoriteCommentsReducer = (state = [], action) => {
         ...state,
         favoriteComments: !commentExist
           ? [...state.favoriteComments, action.payload]
-          : state.favoriteComments,
+          : state.favoriteComments
       };
     case REMOVE_FAVORITE_COMMENT:
       return {
         ...state,
         favoriteComments: state.favoriteComments.filter(
           (comment) => comment.id !== action.payload.id
-        ),
+        )
       };
 
     default:

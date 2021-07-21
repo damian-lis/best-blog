@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  SearchBar,
-  Comment,
-  QuantityChanger,
-  Container,
-  Select,
-} from '../../components';
+import { SearchBar, Comment, QuantityChanger, Container, Select } from '../../components';
 
 const Comments = ({
   addToFavorite,
@@ -13,7 +7,7 @@ const Comments = ({
   data,
   initialQuantity,
   favoritePage,
-  selectOption,
+  selectOption
 }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
   const [selectedComments, setSelectedComments] = useState('all');
@@ -21,7 +15,7 @@ const Comments = ({
   const selectOptions = [
     { value: 'all', label: 'Wszystkie komentarze' },
     { value: 'liked', label: 'Polubione komentarze' },
-    { value: 'unliked', label: 'Niepolubione komentarze' },
+    { value: 'unliked', label: 'Niepolubione komentarze' }
   ];
 
   let comments = data;

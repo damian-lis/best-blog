@@ -8,12 +8,8 @@ import { filterElements } from '../../helpers';
 
 const Favorites = () => {
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
-  const { favoriteComments } = useSelector(
-    (state) => state.favoriteCommentsState
-  );
-  const { searchPosts, searchComments } = useSelector(
-    (state) => state.searchState
-  );
+  const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
+  const { searchPosts, searchComments } = useSelector((state) => state.searchState);
 
   const dispatch = useDispatch();
 
@@ -25,17 +21,9 @@ const Favorites = () => {
     dispatch(removeFavoriteComment({ comment }));
   };
 
-  const filteredFavoritePosts = filterElements(
-    favoritePosts,
-    'title',
-    searchPosts
-  );
+  const filteredFavoritePosts = filterElements(favoritePosts, 'title', searchPosts);
 
-  const filteredFavoriteComments = filterElements(
-    favoriteComments,
-    'email',
-    searchComments
-  );
+  const filteredFavoriteComments = filterElements(favoriteComments, 'email', searchComments);
 
   return (
     <Container base>

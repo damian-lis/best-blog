@@ -5,14 +5,14 @@ import { Home, Article, Favorites } from './pages';
 
 const App = () => {
   return (
-    <div className='app'>
+    <div className="app">
       <Router>
         <Navigation />
-        <div className='app__wrapper'>
+        <div className="app__wrapper">
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/favorites' component={Favorites} />
-            <Route exact path='/article/:id' component={Article} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/favorites" component={Favorites} />
+            <Route exact path="/article/:id" component={Article} />
             <Route component={() => 404} />
           </Switch>
         </div>

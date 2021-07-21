@@ -7,11 +7,7 @@ const Select = ({ setSelect, selectOptions, ...restProps }) => {
   };
 
   return (
-    <select
-      onChange={handleSelectChange}
-      className={styles.select}
-      {...restProps}
-    >
+    <select onChange={handleSelectChange} className={styles.select} {...restProps}>
       {selectOptions.map((selectOption) => (
         <option value={selectOption.value}>{selectOption.label}</option>
       ))}
