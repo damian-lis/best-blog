@@ -18,6 +18,12 @@ const Comments = ({
   const [quantity, setQuantity] = useState(initialQuantity);
   const [selectedComments, setSelectedComments] = useState('all');
 
+  const selectOptions = [
+    { value: 'all', label: 'Wszystkie komentarze' },
+    { value: 'liked', label: 'Polubione komentarze' },
+    { value: 'unliked', label: 'Niepolubione komentarze' },
+  ];
+
   let comments = data;
 
   if (selectOption)
@@ -37,7 +43,11 @@ const Comments = ({
       <Container wrap style={{ marginBottom: 50 }}>
         <SearchBar comments small />
         {selectOption && (
-          <Select value={selectedComments} setSelect={setSelectedComments} />
+          <Select
+            value={selectedComments}
+            setSelect={setSelectedComments}
+            selectOptions={selectOptions}
+          />
         )}
       </Container>
       <Container column>
