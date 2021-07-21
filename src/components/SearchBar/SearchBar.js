@@ -43,7 +43,7 @@ const SearchBar = ({
 
   useEffect(() => {
     dispatch(searchPosts(''));
-  }, []);
+  }, [isSearch]);
 
   return (
     <div
