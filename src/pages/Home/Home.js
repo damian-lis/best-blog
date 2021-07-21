@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../actions/posts.actions';
 import { getComments } from '../../actions/comments.actions';
-
-import Container from '../../components/Container';
-import SneakPeek from '../../components/SneakPeek';
-import QuantityChanger from '../../components/QuantityChanger';
 import Loader from '../../components/Loader';
+import PostSneakPeeks from '../../containers/PostSneakPeeks';
+import ErrorInfo from '../../components/ErrorInfo';
+import Headline from '../../components/Headline';
+import filterElements from '../../helpers/filterElements';
+import Container from '../../components/Container';
 
 const Home = () => {
-  const [postsQuantity, setPostsQuantity] = useState(8);
-
-  let { posts, loading: postsLoading, error: postsError } = useSelector(
+  const { posts, loading: postsLoading, error: postsError } = useSelector(
     (state) => state.postsState
   );
   const { comments } = useSelector((state) => state.commentsState);
@@ -22,50 +21,28 @@ const Home = () => {
   );
 
   const dispatch = useDispatch();
-
-  const filteredPosts = posts.filter((post) =>
-    post.title.toLowerCase().includes(searchPosts.toLowerCase())
-  );
-
-  const reducedPosts = filteredPosts.slice(0, postsQuantity);
+  const filteredPosts = filterElements(posts, 'title', searchPosts);
 
   useEffect(() => {
     dispatch(getPosts());
     dispatch(getComments());
   }, [dispatch]);
 
-  const countQuantity =
-    postsQuantity > filteredPosts.length ? filteredPosts.length : postsQuantity;
-
   return postsLoading ? (
     <Loader />
   ) : postsError ? (
-    <>
-      <p style={{ textAlign: 'center', lineHeight: 2 }}>
-        Coś poszło nie tak z ładowaniem postów... <br />
-        Załaduj stronę jeszcze raz!
-      </p>
-    </>
+    <ErrorInfo />
   ) : (
-    <>
-      <Container home>
-        {reducedPosts.map((post) => (
-          <SneakPeek
-            key={post.id}
-            post={post}
-            comments={comments}
-            favoriteComments={favoriteComments}
-            favoritePosts={favoritePosts}
-          />
-        ))}
-      </Container>
-      <QuantityChanger
-        rangeSize={4}
-        maxSize={filteredPosts.length}
-        quantity={countQuantity}
-        setQuantity={setPostsQuantity}
+    <Container base>
+      <Headline> Najlepsze artykuły!</Headline>
+      <PostSneakPeeks
+        posts={filteredPosts}
+        initialQuantity={8}
+        comments={comments}
+        favoriteComments={favoriteComments}
+        favoritePosts={favoritePosts}
       />
-    </>
+    </Container>
   );
 };
 

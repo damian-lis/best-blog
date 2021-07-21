@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './sneakPeek.css';
+import './postSneakPeek.css';
 import SneakPeekImg from '../../assets/sneakPeek.svg';
 import DynamicIcon from '../DynamicIcon';
 import TrashIcon from '../../assets/trashIcon.svg';
 import HeartIcon from '../../assets/heartIcon.svg';
 import ChatBubbleIcon from '../../assets/chatBubbleIcon.svg';
 
-const SneakPeek = ({
+const PostSneakPeek = ({
   post,
-  favorites,
+  favoritesPage,
   comments = [],
   favoritePosts = [],
   favoriteComments = [],
-  handleRemove,
+  removePost,
   ...restProps
 }) => {
   const postComments = comments.filter((comment) => comment.postId === post.id);
@@ -25,21 +25,23 @@ const SneakPeek = ({
   );
 
   return (
-    <div {...restProps} className='sneak-peek'>
+    <div {...restProps} className='post-sneak-peek'>
       {isPostLiked && (
-        <div className='sneak-peek__icon sneak-peek__icon--attached'>
-          <DynamicIcon src={HeartIcon} small label='Polubiony!' />
+        <div className='post-sneak-peek__icon-container post-sneak-peek__icon-container--attached'>
+          <DynamicIcon src={HeartIcon} small />
         </div>
       )}
-      <img className='sneak-peek__img' src={SneakPeekImg} />
-      <h3 className='sneak-peek__title'>{post.title}</h3>
-      <div className='sneak-peek__stats'>
-        <Link className='sneak-peek__link' to={`article/${post.id}`}>
+      <div className='post-sneak-peek__img-container'>
+        <img className='post-sneak-peek__img' src={SneakPeekImg} />
+      </div>
+      <h3 className='post-sneak-peek__title'>{post.title}</h3>
+      <div className='post-sneak-peek__stats'>
+        <Link className='post-sneak-peek__link' to={`article/${post.id}`}>
           Zobacz post
         </Link>
-        {!favorites && postComments && (
+        {!favoritesPage && postComments.length && (
           <>
-            <div className='sneak-peek__stat'>
+            <div className='post-sneak-peek__icon-container'>
               <DynamicIcon
                 src={ChatBubbleIcon}
                 medium
@@ -47,7 +49,7 @@ const SneakPeek = ({
                 label='Komentarze'
               />
             </div>
-            <div className='sneak-peek__stat'>
+            <div className='post-sneak-peek__icon-container'>
               <DynamicIcon
                 src={HeartIcon}
                 medium
@@ -57,8 +59,11 @@ const SneakPeek = ({
             </div>
           </>
         )}
-        {favorites && (
-          <div onClick={() => handleRemove(post)} className='sneak-peek__stat'>
+        {favoritesPage && (
+          <div
+            onClick={() => removePost(post)}
+            className='post-sneak-peek__icon-container'
+          >
             <DynamicIcon link label='Usuń' medium src={TrashIcon} />
           </div>
         )}
@@ -67,4 +72,4 @@ const SneakPeek = ({
   );
 };
 
-export default SneakPeek;
+export default PostSneakPeek;

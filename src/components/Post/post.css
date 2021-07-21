@@ -1,0 +1,27 @@
+.post{}
+
+.post__img-container{
+    margin-bottom:20px;
+}
+
+.post__img{
+    display:block;
+    margin: 0 auto;
+    max-width:400px;
+    width:100%;
+}
+
+.post__title{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.post__icon-container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:20px;
+    cursor:pointer;
+}
+
+    

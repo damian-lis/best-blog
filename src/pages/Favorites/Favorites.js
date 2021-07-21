@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { removeFavoritePost } from '../../actions/posts.actions';
 import { removeFavoriteComment } from '../../actions/comments.actions';
 import SearchBar from '../../components/SearchBar';
-import Comment from '../../components/Comment';
-import SneakPeek from '../../components/SneakPeek';
+import Comments from '../../containers/Comments';
+import PostSneakPeeks from '../../containers/PostSneakPeeks';
+import Headline from '../../components/Headline';
+import filterElements from '../../helpers/filterElements';
 import Container from '../../components/Container';
-import QuantityChanger from '../../components/QuantityChanger';
-import './favorites.css';
+import Line from '../../components/Line';
 
 const Favorites = () => {
-  const [commentsQuantity, setCommentsQuantity] = useState(5);
-  const [postsQuantity, setPostsQuantity] = useState(5);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector(
     (state) => state.favoriteCommentsState
@@ -31,88 +29,53 @@ const Favorites = () => {
     dispatch(removeFavoriteComment({ comment }));
   };
 
-  const filteredFavoritePosts = favoritePosts.filter((post) =>
-    post.title.toLowerCase().includes(searchPosts.toLowerCase())
+  const filteredFavoritePosts = filterElements(
+    favoritePosts,
+    'title',
+    searchPosts
   );
 
-  const filteredFavoriteComments = favoriteComments.filter((comment) =>
-    comment.email.toLowerCase().includes(searchComments.toLowerCase())
+  const filteredFavoriteComments = filterElements(
+    favoriteComments,
+    'email',
+    searchComments
   );
-
-  const reducedFavoritePosts = filteredFavoritePosts.slice(0, postsQuantity);
-  const reducedFavoriteComments = filteredFavoriteComments.slice(
-    0,
-    commentsQuantity
-  );
-
-  const countPostsQuantity =
-    postsQuantity > filteredFavoritePosts.length
-      ? filteredFavoritePosts.length
-      : postsQuantity;
-
-  const countCommentsQuantity =
-    commentsQuantity > filteredFavoriteComments.length
-      ? filteredFavoriteComments.length
-      : commentsQuantity;
 
   return (
-    <div className='favorites'>
+    <Container base>
       {favoritePosts.length ? (
-        <div>
-          <h3 className='favorites__header'>
-            Ulubione posty ({favoritePosts.length})
-          </h3>
-          <div className='favorites__search-bar-container'>
+        <Container base>
+          <Headline>Ulubione posty ({favoritePosts.length})</Headline>
+          <Container style={{ marginBottom: 40 }}>
             <SearchBar posts />
-          </div>
-          <Container>
-            {reducedFavoritePosts.map((post) => (
-              <SneakPeek
-                favorites
-                key={post.id}
-                post={post}
-                handleRemove={handleRemoveFavoritePost}
-              />
-            ))}
           </Container>
-          <QuantityChanger
-            rangeSize={1}
-            maxSize={filteredFavoritePosts.length}
-            quantity={countPostsQuantity}
-            setQuantity={setPostsQuantity}
+          <PostSneakPeeks
+            favoritesPage
+            initialQuantity={5}
+            posts={filteredFavoritePosts}
+            removePost={handleRemoveFavoritePost}
           />
-        </div>
+        </Container>
       ) : (
-        <h3 className='favorites__header'>Nie masz ulubionych postów</h3>
+        <Headline>Nie masz ulubionych postów</Headline>
       )}
-      <div className='favorites__line'></div>
+
+      <Line />
+
       {favoriteComments.length ? (
-        <div>
-          <h3 className='favorites__header'>
-            Ulubione komentarze ({favoriteComments.length})
-          </h3>
-          <div className='favorites__search-bar-container'>
-            <SearchBar comments />
-          </div>
-          {reducedFavoriteComments.map((favoriteComment, index) => (
-            <Comment
-              key={index}
-              comment={favoriteComment}
-              handleRemove={handleRemoveFavoriteComment}
-              favorite
-            />
-          ))}
-          <QuantityChanger
-            rangeSize={1}
-            maxSize={filteredFavoriteComments.length}
-            quantity={countCommentsQuantity}
-            setQuantity={setCommentsQuantity}
+        <Container base>
+          <Headline> Ulubione komentarze ({favoriteComments.length})</Headline>
+          <Comments
+            favoritePage
+            data={filteredFavoriteComments}
+            initialQuantity={5}
+            removeFromFavorite={handleRemoveFavoriteComment}
           />
-        </div>
+        </Container>
       ) : (
-        <h3 className='favorites__header'>Nie masz ulubionych komentarzy</h3>
+        <Headline>Nie masz ulubionych komentarzy</Headline>
       )}
-    </div>
+    </Container>
   );
 };
 

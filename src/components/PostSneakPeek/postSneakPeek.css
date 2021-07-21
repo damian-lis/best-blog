@@ -1,4 +1,4 @@
-.sneak-peek{
+.post-sneak-peek{
     margin: 15px;
     width: 100%;
     max-width: 260px;
@@ -13,13 +13,13 @@
     min-height:100%;
 }
 
-.sneak-peek__title{
+.post-sneak-peek__title{
     text-align: center;
     font-size:2.1em;
     margin-bottom:20px;
 }
 
-.sneak-peek__link{
+.post-sneak-peek__link{
     text-align: center;
     margin-bottom:13px;
     font-size:1.5em;
@@ -30,15 +30,15 @@
     
 }
 
-.sneak-peek__link:hover{
+.post-sneak-peek__link:hover{
    text-decoration: underline; 
 }
 
-.sneak-peek__img{
+.post-sneak-peek__img{
     width:100%;
 }
 
-.sneak-peek__stats{
+.post-sneak-peek__stats{
    margin-top:auto;
    display:flex;
    justify-content: center;
@@ -46,19 +46,24 @@
    flex-wrap: wrap;
 }
 
-.sneak-peek__stat{
+.post-sneak-peek__stat{
     display:flex;
     justify-content: center;
     align-items: center;
     font-size:1.5em;
 }
 
-.sneak-peek__stat:last-of-type{
+.post-sneak-peek__stat:last-of-type{
     margin-left:10px;
 }
+.post-sneak-peek__icon-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size:1.5em;
+}
 
-
-.sneak-peek__icon--attached{
+.post-sneak-peek__icon-container--attached{
     width:auto;
     position:absolute;
     right:-5px;

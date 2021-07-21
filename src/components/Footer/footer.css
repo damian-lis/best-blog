@@ -4,7 +4,7 @@
     box-shadow: 5px 5px 5px 5px #cccccc;
 }
 
-.footer__wrapper{
+.footer__content{
     max-width:1300px;
     display:flex;
     height:65px;

@@ -46,7 +46,7 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
           disabled={quantity === maxSize}
           onClick={() => handleQuantity('add')}
         >
-          Dodaj {range > maxSize - quantity ? maxSize - quantity : range}
+          Pokaz ({range > maxSize - quantity ? maxSize - quantity : range})
         </button>
         <button
           className={`quantity-changer__btn ${
@@ -55,7 +55,7 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
           disabled={quantity === 0}
           onClick={() => handleQuantity('subtract')}
         >
-          Usuń {range > quantity ? quantity : range}
+          Schowaj ({range > quantity ? quantity : range})
         </button>
       </div>
     </div>

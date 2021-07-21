@@ -2,7 +2,10 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    margin-left:5px;
+}
+
+.dynamic-icon--reverse{
+    flex-direction: row-reverse;
 }
 
 .dynamic-icon--link{
@@ -10,9 +13,10 @@
     cursor: pointer;
 }
 
-.dynamic-icon__link--white{
+.dynamic-icon--link-white{
     color: rgb(255, 255, 255);
 }
+
 
 .dynamic-icon--link:hover{
     text-decoration: underline;
@@ -25,19 +29,16 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    margin-left:10px;
+    margin:0 5px;
 }
-
 
 
 .dynamic-icon__img-container--small{
     width:20px;
-    margin-left:5px;
 }
 
 .dynamic-icon__img-container--medium{
     width:28px;
-    margin-left:6px;
 }
 
 .dynamic-icon__img{

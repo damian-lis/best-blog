@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
 import SearchBar from '../SearchBar';
 import DynamicIcon from '../DynamicIcon';
-import AppLogo from '../../assets/appLogo.svg';
-import AppLogoMobile from '../../assets/appLogoMobile.svg';
+import AppLogo from '../../assets/appLogo2.svg';
 import HeartIcon from '../../assets/heartIcon.svg';
 import './navigation.css';
 
@@ -22,8 +21,10 @@ const Navigation = () => {
   );
 
   const isMobile = useWindowWidth() < 600;
-  const isSearchBarTurnOff =
+
+  const isSearchBarHide =
     currentPagePath === '/favorites' || currentPagePath.includes('article');
+
   const favoritesNumber = favoritePosts.length + favoriteComments.length;
 
   history.listen((location) => setCurrentPagePath(location.pathname));
@@ -34,20 +35,23 @@ const Navigation = () => {
 
   return (
     <nav className='navigation'>
-      <div className='navigation__wrapper'>
+      <div className='navigation__content'>
         <div
           className={`navigation__item ${
             isSearchActive ? 'navigation__item--dynamic' : ''
           }`}
         >
           <Link to='/'>
-            <img
-              className='navigation__logo'
-              src={isMobile ? AppLogoMobile : AppLogo}
+            <DynamicIcon
+              src={AppLogo}
+              label={!isMobile ? 'BestBlog' : ''}
+              link
+              white
+              reverse
             />
           </Link>
         </div>
-        {!isSearchBarTurnOff && (
+        {!isSearchBarHide && (
           <SearchBar
             navigation
             posts

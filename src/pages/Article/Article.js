@@ -1,32 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import {
-  getPost,
-  addFavoritePost,
-  removeFavoritePost,
-} from '../../actions/posts.actions';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPost } from '../../actions/posts.actions';
 import {
   getArticleComments,
   addFavoriteComment,
   removeFavoriteComment,
 } from '../../actions/comments.actions';
-import { useDispatch, useSelector } from 'react-redux';
-import SearchBar from '../../components/SearchBar';
-import SneakPeekImg from '../../assets/sneakPeek.svg';
-import './article.css';
-import DynamicIcon from '../../components/DynamicIcon';
-import Comment from '../../components/Comment';
-import GrayHeartIcon from '../../assets/grayHeartIcon.svg';
-import HeartIcon from '../../assets/heartIcon.svg';
-import QuantityChanger from '../../components/QuantityChanger';
 import Loader from '../../components/Loader';
+import Post from '../../components/Post';
+import Comments from '../../containers/Comments';
+import ErrorInfo from '../../components/ErrorInfo';
+import Headline from '../../components/Headline';
+import Container from '../../components/Container';
+import setElementsLike from '../../helpers/setElementsLike';
+import filterElements from '../../helpers/filterElements';
 
 const Article = ({ match }) => {
-  const [commentsQuantity, setCommentsQuantity] = useState(3);
-  const [selectedOption, setSelectedOption] = useState('all');
   const { post, loading: postLoading, error: postError } = useSelector(
     (state) => state.postState
   );
-  let {
+  const {
     articleComments,
     loading: commentsLoading,
     error: commentsError,
@@ -36,68 +29,27 @@ const Article = ({ match }) => {
   const { favoriteComments } = useSelector(
     (state) => state.favoriteCommentsState
   );
-
-  const id = Number(match.params.id);
   const dispatch = useDispatch();
+  const id = Number(match.params.id);
 
-  const filteredComments = articleComments.filter((comment) =>
-    comment.email.toLowerCase().includes(searchComments.toLowerCase())
+  const filteredComments = filterElements(
+    articleComments,
+    'email',
+    searchComments
   );
 
-  const postIsLiked = favoritePosts.some(
-    (favoritePost) => favoritePost.id === post.id
+  const commentsWithLikes = setElementsLike(
+    post,
+    filteredComments,
+    favoriteComments
   );
 
-  let modifiedComments = filteredComments.map((comment) => {
-    const isCommentLiked = favoriteComments.some(
-      (favoriteComment) =>
-        favoriteComment.postId === post.id && favoriteComment.id === comment.id
-    );
-
-    if (isCommentLiked) {
-      comment.like = true;
-    } else {
-      comment.like = false;
-    }
-
-    return comment;
-  });
-
-  if (selectedOption === 'liked') {
-    modifiedComments = modifiedComments.filter(
-      (modifiedComment) => modifiedComment.like
-    );
-  }
-
-  if (selectedOption === 'unliked') {
-    modifiedComments = modifiedComments.filter(
-      (modifiedComment) => !modifiedComment.like
-    );
-  }
-
-  const reducedComments = modifiedComments.slice(0, commentsQuantity);
-
-  const countQuantity =
-    commentsQuantity > modifiedComments.length
-      ? modifiedComments.length
-      : commentsQuantity;
-
-  const handleTogglePostLike = () => {
-    dispatch(
-      postIsLiked ? removeFavoritePost({ post }) : addFavoritePost({ post })
-    );
+  const handleRemoveFavoriteComment = (comment) => {
+    dispatch(removeFavoriteComment({ comment }));
   };
 
-  const handleToggleCommentLike = (commentIsLiked, comment) => {
-    dispatch(
-      commentIsLiked
-        ? removeFavoriteComment({ comment })
-        : addFavoriteComment({ comment })
-    );
-  };
-
-  const handleSelectChange = (e) => {
-    setSelectedOption(e.target.value);
+  const handleAddFavoriteComment = (comment) => {
+    dispatch(addFavoriteComment({ comment }));
   };
 
   useEffect(() => {
@@ -108,82 +60,25 @@ const Article = ({ match }) => {
   return postLoading ? (
     <Loader />
   ) : postError ? (
-    <>
-      <p style={{ textAlign: 'center', lineHeight: 2 }}>
-        Coś poszło nie tak z ładowaniem posta... <br />
-        Załaduj stronę jeszcze raz!
-      </p>
-    </>
+    <ErrorInfo />
   ) : (
-    <div className='article'>
-      <div className='article__img-container'>
-        <img src={SneakPeekImg} className='article__img' />
-      </div>
-      <h2 className='article__title'>{post.title}</h2>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <div className='article__react-container' onClick={handleTogglePostLike}>
-        <div className='article__react-icon-container'>
-          <DynamicIcon
-            toggle={postIsLiked}
-            srcTrue={HeartIcon}
-            srcFalse={GrayHeartIcon}
-            small
-            link
-            label={postIsLiked ? 'Lubisz!' : 'Zareaguj'}
-          />
-        </div>
-      </div>
-      <h3 className='article__header'>
-        Komentarze ({modifiedComments.length})
-      </h3>
+    <Container base>
+      <Post post={post} favoritePosts={favoritePosts} />
+      <Headline> Komentarze ({commentsWithLikes.length})</Headline>
       {commentsLoading ? (
         <Loader />
       ) : commentsError ? (
-        <>
-          <p style={{ textAlign: 'center', lineHeight: 2 }}>
-            Coś poszło nie tak z ładowaniem komentarzy... <br />
-            Załaduj stronę jeszcze raz!
-          </p>
-        </>
+        <ErrorInfo />
       ) : (
-        <div>
-          <div className='article__comments-options'>
-            <SearchBar comments small />
-            <select
-              className='article__comments-select'
-              value={selectedOption}
-              onChange={handleSelectChange}
-            >
-              <option value='all'>Wszystkie komentarze</option>
-              <option value='liked'>Polubione komentarze</option>
-              <option value='unliked'>Niepolubione komentarze</option>
-            </select>
-          </div>
-          <div className='article__comments-container'>
-            {reducedComments.map((comment, index) => (
-              <Comment
-                handleCommentLike={handleToggleCommentLike}
-                key={index}
-                comment={comment}
-              />
-            ))}
-          </div>
-          <QuantityChanger
-            rangeSize={1}
-            maxSize={modifiedComments.length}
-            quantity={countQuantity}
-            setQuantity={setCommentsQuantity}
-          />
-        </div>
+        <Comments
+          selectOption
+          data={commentsWithLikes}
+          initialQuantity={5}
+          removeFromFavorite={handleRemoveFavoriteComment}
+          addToFavorite={handleAddFavoriteComment}
+        />
       )}
-    </div>
+    </Container>
   );
 };
 

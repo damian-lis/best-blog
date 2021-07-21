@@ -4,7 +4,7 @@
     background-color: rgb(14, 111, 221);;
 }
 
-.navigation__wrapper{
+.navigation__content{
     max-width:1300px;
     display:flex;
     height:65px;
@@ -21,25 +21,11 @@
     align-items: center;
 }
 
-.navigation__item-wrapper{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.navigation__item-label{
-    margin-right: 5px;
-}
-
 @media(max-width:600px){
     .navigation__item{
         overflow: hidden;
         transition:.5s;
         width:60px;
-    }
-
-    .navigation__logo{
-        width:100%
     }
 
     .navigation__item--dynamic {

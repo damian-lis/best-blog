@@ -12,11 +12,13 @@ const DynamicIcon = ({
   medium,
   link,
   white,
+  reverse,
 }) => {
   return (
     <div
       className={`dynamic-icon ${link ? 'dynamic-icon--link' : ''}
-    ${white ? 'dynamic-icon__link--white' : ''}
+    ${white ? 'dynamic-icon--link-white' : ''}
+    ${reverse ? 'dynamic-icon--reverse' : ''}
     `}
     >
       {label && <span className={'dynamic-icon__label'}>{label}</span>}

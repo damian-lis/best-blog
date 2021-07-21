@@ -1,0 +1,7 @@
+.line{
+    height:1px;
+    width:90%;
+    margin: 20px auto;
+    background-color:rgb(206, 206, 206);
+    border-radius: 10px;
+}

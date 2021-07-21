@@ -3,9 +3,9 @@ import './loader.css';
 
 const Loader = () => {
   return (
-    <div className='lds-ripple'>
-      <div></div>
-      <div></div>
+    <div className='loader'>
+      <div className='loader__inner'></div>
+      <div className='loader__inner--delay'></div>
     </div>
   );
 };

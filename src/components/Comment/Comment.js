@@ -1,29 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './comment.css';
 import DynamicIcon from '../DynamicIcon';
 import PostIcon from '../../assets/postIcon.svg';
 import TrashIcon from '../../assets/trashIcon.svg';
 import GrayHeartIcon from '../../assets/grayHeartIcon.svg';
 import HeartIcon from '../../assets/heartIcon.svg';
+import './comment.css';
 
 const Comment = ({
-  favorite,
+  favoritePage,
   comment,
-  handleCommentLike,
-  handleRemove,
+  removeLike,
+  addLike,
   ...restProps
 }) => {
+  const handleToggleLike = (commentIsLiked, comment) => {
+    commentIsLiked ? removeLike(comment) : addLike(comment);
+  };
+
   return (
     <div className='comment' {...restProps}>
       <p className='comment__email'>{comment.email}</p>
       <p className='comment__body'>{comment.body}</p>
-      {!favorite ? (
+      <div className='comment__options'>
+        {favoritePage && (
+          <Link to={`article/${comment.postId}`}>
+            <div className='comment__option'>
+              <DynamicIcon link medium label='Post' src={PostIcon} />
+            </div>
+          </Link>
+        )}
         <div
-          className='comment__options'
-          onClick={() => handleCommentLike(comment.like, comment)}
+          onClick={() => handleToggleLike(comment.like, comment)}
+          className='comment__option'
         >
-          <div className='comment__option'>
+          {favoritePage ? (
+            <DynamicIcon link medium label='Usuń' src={TrashIcon} />
+          ) : (
             <DynamicIcon
               link
               small
@@ -32,24 +45,9 @@ const Comment = ({
               srcFalse={GrayHeartIcon}
               label={comment.like ? 'Lubisz!' : 'Zareaguj'}
             />
-          </div>
+          )}
         </div>
-      ) : (
-        <div className='comment__options'>
-          <Link to={`article/${comment.postId}`}>
-            <div className='comment__option'>
-              <DynamicIcon link medium label='Post' src={PostIcon} />
-            </div>
-          </Link>
-
-          <div
-            onClick={() => handleRemove(comment)}
-            className='comment__option'
-          >
-            <DynamicIcon link medium label='Usuń' src={TrashIcon} />
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 };
