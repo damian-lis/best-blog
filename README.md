@@ -6,7 +6,7 @@ Live version is available [here](https://youthful-pasteur-4ea549.netlify.app/).
 
 <br/>
 
-![](public/images/intro.gif)
+![](images/intro.gif)
 
 <br/>
 
@@ -43,12 +43,12 @@ npm install
 yarn install
 ```
 
-After that, create a dist folder:
+After that, create a webpack bundle:
 
 ```
-npm build
+npm run bundle
 # or
-yarn build
+yarn run bundle
 ```
 
 After that, run the webpack server:
