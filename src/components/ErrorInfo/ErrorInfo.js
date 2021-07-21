@@ -1,9 +1,9 @@
 import React from 'react';
-import './errorInfo.css';
+import styles from './errorInfo.module.css';
 
 const ErrorInfo = () => {
   return (
-    <p className='error-info'>
+    <p className={styles.errorInfo}>
       Wystąpił jakiś błąd <br />
       Załaduj stronę jeszcze raz!
     </p>

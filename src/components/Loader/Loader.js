@@ -1,11 +1,13 @@
 import React from 'react';
-import './loader.css';
+import styles from './loader.module.css';
 
 const Loader = () => {
   return (
-    <div className='loader'>
-      <div className='loader__inner'></div>
-      <div className='loader__inner--delay'></div>
+    <div className={styles.loader}>
+      <div className={styles.loader__inner}></div>
+      <div
+        className={`${styles.loader__inner} ${styles['loader__inner--delay']}`}
+      ></div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 .post{}
 
-.post__img-container{
+.post__imgContainer{
     margin-bottom:20px;
 }
 
@@ -16,7 +16,7 @@
     margin-bottom: 40px;
 }
 
-.post__icon-container{
+.post__iconContainer{
     display:flex;
     align-items: center;
     justify-content: center;

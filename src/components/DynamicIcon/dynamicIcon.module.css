@@ -1,28 +1,28 @@
-.dynamic-icon{
+.dynamicIcon{
     display:flex;
     justify-content: center;
     align-items: center;
 }
 
-.dynamic-icon--reverse{
+.dynamicIcon--reverse{
     flex-direction: row-reverse;
 }
 
-.dynamic-icon--link{
+.dynamicIcon--link{
     color: rgb(14, 111, 221);
     cursor: pointer;
 }
 
-.dynamic-icon--link-white{
+.dynamicIcon--linkWhite{
     color: rgb(255, 255, 255);
 }
 
 
-.dynamic-icon--link:hover{
+.dynamicIcon--link:hover{
     text-decoration: underline;
 }
 
-.dynamic-icon__img-container{
+.dynamicIcon__imgContainer{
     position:relative;
     width:100%;
     height:100%;
@@ -33,20 +33,20 @@
 }
 
 
-.dynamic-icon__img-container--small{
+.dynamicIcon__imgContainer--small{
     width:20px;
 }
 
-.dynamic-icon__img-container--medium{
+.dynamicIcon__imgContainer--medium{
     width:28px;
 }
 
-.dynamic-icon__img{
+.dynamicIcon__img{
     width:100%;
     height:100%;
 }
 
-.dynamic-icon__number{
+.dynamicIcon__number{
     position:absolute;
     left:50%;
     top:47%;

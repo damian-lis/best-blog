@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
 import { searchPosts, searchComments } from '../../actions/search.actions';
-import './searchBar.css';
+import styles from './searchBar.module.css';
 import SearchIcon from '../../assets/searchIcon.svg';
 import DeleteIcon from '../../assets/deleteIcon.svg';
 
@@ -47,19 +47,19 @@ const SearchBar = ({
 
   return (
     <div
-      className={`search-bar
-      ${navigation ? 'search-bar--nav' : ''}
-       ${isMobile && navigation ? 'search-bar--mobile-nav' : ''}
-        ${small ? 'search-bar--small' : ''}
-        ${isSearch ? 'search-bar--mobile-active' : ''}
+      className={`${styles.searchBar}
+      ${navigation ? styles['searchBar--nav'] : ''}
+       ${isMobile && navigation ? styles['searchBar--mobileNav'] : ''}
+        ${small ? styles['searchBar--small'] : ''}
+        ${isSearch ? styles['searchBar--mobileActive'] : ''}
         `}
     >
       <input
-        className={`search-bar__input 
-        ${navigation ? 'search-bar__input--nav' : ''}
+        className={`${styles.searchBar__input}
+        ${navigation ? styles['searchBar__input--nav'] : ''}
          ${
            isMobile && navigation && !isSearch
-             ? 'search-bar__input--mobile-nav'
+             ? styles['searchBar__input--mobileNav']
              : ''
          }`}
         value={posts ? searchPostsValue : searchCommentsValue}
@@ -67,15 +67,15 @@ const SearchBar = ({
         placeholder={posts ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}
       />
       <img
-        className={`search-bar__search-icon
-        ${navigation ? 'search-bar__search-icon--mobile-nav' : ''}
-        ${isSearch ? 'search-bar__search-icon--mobile-active' : ''}`}
+        className={`${styles.searchBar__searchIcon}
+        ${navigation ? styles['searchBar__searchIcon--mobileNav'] : ''}
+        ${isSearch ? styles['searchBar__searchIcon--mobileActive'] : ''}`}
         src={SearchIcon}
         onClick={handleSearchIconClick}
       />
       {searchPostsValue || searchCommentsValue ? (
         <img
-          className='search-bar__delete-icon'
+          className={styles.searchBar__deleteIcon}
           src={DeleteIcon}
           onClick={handleDeleteIconClick}
         />

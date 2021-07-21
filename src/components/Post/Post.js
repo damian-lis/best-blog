@@ -8,7 +8,7 @@ import {
   addFavoritePost,
   removeFavoritePost,
 } from '../../actions/posts.actions';
-import './post.css';
+import styles from './post.module.css';
 
 const Post = ({ post, favoritePosts }) => {
   const postIsLiked = favoritePosts.some(
@@ -23,11 +23,11 @@ const Post = ({ post, favoritePosts }) => {
     );
   };
   return (
-    <div className='post'>
-      <div className='post__img-container'>
-        <img src={SneakPeekImg} className='post__img' />
+    <div className={styles.post}>
+      <div className={styles.post__imgContainer}>
+        <img src={SneakPeekImg} className={styles.post__img} />
       </div>
-      <h2 className='post__title'>{post.title}</h2>
+      <h2 className={styles.post__title}>{post.title}</h2>
       <p>{post.body}</p>
       <p>{post.body}</p>
       <p>{post.body}</p>
@@ -36,7 +36,10 @@ const Post = ({ post, favoritePosts }) => {
       <p>{post.body}</p>
       <p>{post.body}</p>
       <p>{post.body}</p>
-      <div className='post__icon-container' onClick={handleTogglePostLike}>
+      <div
+        className={styles.post__iconContainer}
+        onClick={handleTogglePostLike}
+      >
         <DynamicIcon
           toggle={postIsLiked}
           srcTrue={HeartIcon}

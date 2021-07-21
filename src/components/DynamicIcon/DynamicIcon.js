@@ -1,5 +1,5 @@
 import React from 'react';
-import './dynamicIcon.css';
+import styles from './dynamicIcon.module.css';
 
 const DynamicIcon = ({
   number,
@@ -16,24 +16,26 @@ const DynamicIcon = ({
 }) => {
   return (
     <div
-      className={`dynamic-icon ${link ? 'dynamic-icon--link' : ''}
-    ${white ? 'dynamic-icon--link-white' : ''}
-    ${reverse ? 'dynamic-icon--reverse' : ''}
+      className={`${styles.dynamicIcon} ${
+        link ? styles['dynamicIcon--link'] : ''
+      }
+    ${white ? styles['dynamicIcon--linkWhite'] : ''}
+    ${reverse ? styles['dynamicIcon--reverse'] : ''}
     `}
     >
-      {label && <span className={'dynamic-icon__label'}>{label}</span>}
+      {label && <span>{label}</span>}
       <div
-        className={`dynamic-icon__img-container ${
-          small ? 'dynamic-icon__img-container--small' : ''
+        className={`${styles.dynamicIcon__imgContainer} ${
+          small ? styles['dynamicIcon__imgContainer--small'] : ''
         }
-        ${medium ? 'dynamic-icon__img-container--medium' : ''}`}
+        ${medium ? styles['dynamicIcon__imgContainer--medium'] : ''}`}
       >
         <img
-          className='dynamic-icon__img'
+          className={styles.dynamicIcon__img}
           src={src ? src : toggle ? srcTrue : srcFalse}
         />
         {number !== undefined ? (
-          <span className='dynamic-icon__number'>{number}</span>
+          <span className={styles.dynamicIcon__number}>{number}</span>
         ) : null}
       </div>
     </div>

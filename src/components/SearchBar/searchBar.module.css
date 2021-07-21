@@ -1,4 +1,4 @@
-.search-bar{
+.searchBar{
    position:relative;
    height:33px;
    width:100%;
@@ -9,16 +9,16 @@
     transition: .5s;
 }
 
-.search-bar--nav{
+.searchBar--nav{
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
-.search-bar--small{
+.searchBar--small{
     max-width: 250px; 
 }
 
-.search-bar__input{
+.searchBar__input{
     height:100%;
     width:100%;
     padding-left:25px;
@@ -26,18 +26,18 @@
     border-radius:5px;   
 }
 
-.search-bar__input:focus{
+.searchBar__input:focus{
     -webkit-box-shadow: 1px 1px 5px 1px #b4b4b4; 
     box-shadow: 1px 1px 5px 1px #b4b4b4; 
 }
 
-.search-bar__input--nav:focus{
+.searchBar__input--nav:focus{
     -webkit-box-shadow: 1px 1px 5px 1px rgb(140, 193, 253);
     box-shadow: 1px 1px 5px 1px  rgb(140, 193, 253);
    
 }
 
-.search-bar__search-icon{
+.searchBar__searchIcon{
     position: absolute;
     left:5px;
     top:50%;
@@ -46,7 +46,7 @@
     cursor:pointer;
 }
 
-.search-bar__delete-icon{
+.searchBar__deleteIcon{
     position: absolute;
     right:5px;
     top:50%;
@@ -57,43 +57,43 @@
 
 
 @media(max-width:600px){
-    .search-bar{
+    .searchBar{
     margin: auto; 
     height:35px;    
     }
 
-    .search-bar--mobile-nav{
+    .searchBar--mobileNav{
         width:20px;
         -webkit-box-shadow: none;
         box-shadow: none;
     }
 
-    .search-bar__input{
+    .searchBar__input{
         padding-left:28px; 
     }
 
-    .search-bar__input--mobile-nav{
+    .searchBar__input--mobileNav{
         visibility:hidden;
        
     }
 
-    .search-bar__input--mobile-nav:focus{
+    .searchBar__input--mobileNav:focus{
         -webkit-box-shadow: 1px 1px 5px 1px #8a8a8a; 
         box-shadow: 1px 1px 5px 1px #8a8a8a;
     }
 
-    .search-bar__search-icon--mobile-nav{
+    .searchBar__search-icon--mobileNav{
         width:30px;
         left:0;
         transition:.5s;
     }
 
-    .search-bar__search-icon--mobile-active{
+    .searchBar__searchIcon--mobileActive{
         width:18px;
         left:5px;
     }
 
-    .search-bar--mobile-active{
+    .searchBar--mobileActive{
         -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
         box-shadow: 1px 1px 5px 1px #d4d4d4;
         width:100%;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './quantityChanger.css';
+import styles from './quantityChanger.module.css';
 
 const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
   let range = rangeSize;
@@ -34,14 +34,14 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
   const isSubtractDisabled = quantity === 0;
 
   return (
-    <div className='quantity-changer'>
-      <h3 className='quantity-changer__info'>
+    <div className={styles.quantityChanger}>
+      <h3 className={styles.quantityChanger__info}>
         Wyświetlasz {quantity} z {maxSize}
       </h3>
-      <div className='quantity-changer__btn-container'>
+      <div className={styles.quantityChanger__btnContainer}>
         <button
-          className={`quantity-changer__btn ${
-            isAddDisabled ? 'quantity-changer__btn--disabled' : ''
+          className={`${styles.quantityChanger__btn} ${
+            isAddDisabled ? styles['quantityChanger__btn--disabled'] : ''
           }`}
           disabled={quantity === maxSize}
           onClick={() => handleQuantity('add')}
@@ -49,8 +49,8 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
           Pokaz ({range > maxSize - quantity ? maxSize - quantity : range})
         </button>
         <button
-          className={`quantity-changer__btn ${
-            isSubtractDisabled ? 'quantity-changer__btn--disabled' : ''
+          className={`${styles.quantityChanger__btn} ${
+            isSubtractDisabled ? styles['quantityChanger__btn--disabled'] : ''
           }`}
           disabled={quantity === 0}
           onClick={() => handleQuantity('subtract')}

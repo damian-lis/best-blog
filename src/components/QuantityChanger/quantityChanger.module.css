@@ -1,15 +1,15 @@
-.quantity-changer{
+.quantityChanger{
     margin: 30px auto;
     width:100%;
     max-width:300px;
 }
 
-.quantity-changer__info{
+.quantityChanger__info{
     text-align: center;
     margin-bottom:15px;
 }
 
-.quantity-changer__btn-container{
+.quantityChanger__btnContainer{
     display:flex;
     justify-content: space-evenly;
     align-items:center;
@@ -17,7 +17,7 @@
     width:100%;
 }
 
-.quantity-changer__btn{
+.quantityChanger__btn{
     margin: auto 10px;
     margin-bottom:15px;
     width:130px;
@@ -31,7 +31,7 @@
     color: #fff;
 }
 
-.quantity-changer__btn--disabled{
+.quantityChanger__btn--disabled{
     background-color: rgb(189, 189, 189);
     color:#e9e9e9;
     cursor:not-allowed;

@@ -1,13 +1,13 @@
 import React from 'react';
-import './container.css';
+import styles from './container.module.css';
 
 const Container = ({ children, wrap, column, base, ...restProps }) => {
   return (
     <div
       {...restProps}
-      className={`container ${wrap ? 'container--wrap' : ''}
-    ${column ? 'container--column' : ''}
-    ${base ? 'container--base' : ''}
+      className={`${styles.container} ${wrap ? styles[`container--wrap`] : ''}
+    ${column ? styles[`container--column`] : ''}
+    ${base ? styles[`container--base`] : ''}
     `}
     >
       {children}

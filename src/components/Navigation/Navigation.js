@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar';
 import DynamicIcon from '../DynamicIcon';
 import AppLogo from '../../assets/appLogo2.svg';
 import HeartIcon from '../../assets/heartIcon.svg';
-import './navigation.css';
+import styles from './navigation.module.css';
 
 const Navigation = () => {
   const history = useHistory();
@@ -34,11 +34,11 @@ const Navigation = () => {
   }, [currentPagePath]);
 
   return (
-    <nav className='navigation'>
-      <div className='navigation__content'>
+    <nav className={styles.navigation}>
+      <div className={styles.navigation__content}>
         <div
-          className={`navigation__item ${
-            isSearchActive ? 'navigation__item--dynamic' : ''
+          className={`${styles.navigation__item} ${
+            isSearchActive ? styles['navigation__item--dynamic'] : ''
           }`}
         >
           <Link to='/'>
@@ -59,10 +59,10 @@ const Navigation = () => {
             searchActive={isSearchActive}
           />
         )}
-        <ul className='navigation__list'>
+        <ul className={styles.navigation__list}>
           <li
-            className={`navigation__item ${
-              isSearchActive ? 'navigation__item--dynamic' : ''
+            className={`${styles.navigation__item} ${
+              isSearchActive ? styles['navigation__item--dynamic'] : ''
             }`}
             key={'favorites'}
           >
