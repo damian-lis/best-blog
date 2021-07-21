@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --mode development --config ./webpack.config.js",
-    "build": "webpack"
+    "bundle": "webpack",
+    "start": "webpack serve --mode development --config ./webpack.config.js"
   },
   "repository": {
     "type": "git",
