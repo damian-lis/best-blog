@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import SearchBar from '../../components/SearchBar';
-import Comment from '../../components/Comment';
-import QuantityChanger from '../../components/QuantityChanger';
-import Container from '../../components/Container';
-import './comments.css';
-import Select from '../../components/Select';
+import {
+  SearchBar,
+  Comment,
+  QuantityChanger,
+  Container,
+  Select,
+} from '../../components';
 
 const Comments = ({
   addToFavorite,

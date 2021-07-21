@@ -2,13 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavoritePost } from '../../actions/posts.actions';
 import { removeFavoriteComment } from '../../actions/comments.actions';
-import SearchBar from '../../components/SearchBar';
-import Comments from '../../containers/Comments';
-import PostSneakPeeks from '../../containers/PostSneakPeeks';
-import Headline from '../../components/Headline';
-import filterElements from '../../helpers/filterElements';
-import Container from '../../components/Container';
-import Line from '../../components/Line';
+import { SearchBar, Headline, Container, Line } from '../../components';
+import { Comments, PostSneakPeeks } from '../../containers';
+import { filterElements } from '../../helpers';
 
 const Favorites = () => {
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);

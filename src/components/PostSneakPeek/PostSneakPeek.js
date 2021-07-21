@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { DynamicIcon } from '../../components';
+import {
+  trashIcon,
+  heartIcon,
+  chatBubbleIcon,
+  postSneakPeekImg,
+} from '../../assets';
 import styles from './postSneakPeek.module.css';
-import SneakPeekImg from '../../assets/sneakPeek.svg';
-import DynamicIcon from '../DynamicIcon';
-import TrashIcon from '../../assets/trashIcon.svg';
-import HeartIcon from '../../assets/heartIcon.svg';
-import ChatBubbleIcon from '../../assets/chatBubbleIcon.svg';
 
 const PostSneakPeek = ({
   post,
@@ -30,11 +32,11 @@ const PostSneakPeek = ({
         <div
           className={`${styles.postSneakPeek__iconContainer} ${styles['postSneakPeek__iconContainer--attached']}`}
         >
-          <DynamicIcon src={HeartIcon} small />
+          <DynamicIcon src={heartIcon} small />
         </div>
       )}
       <div className={styles.postSneakPeek__imgContainer}>
-        <img className={styles.postSneakPeek__img} src={SneakPeekImg} />
+        <img className={styles.postSneakPeek__img} src={postSneakPeekImg} />
       </div>
       <h3 className={styles.postSneakPeek__title}>{post.title}</h3>
       <div className={styles.postSneakPeek__stats}>
@@ -45,7 +47,7 @@ const PostSneakPeek = ({
           <>
             <div className={styles.postSneakPeek__iconContainer}>
               <DynamicIcon
-                src={ChatBubbleIcon}
+                src={chatBubbleIcon}
                 medium
                 number={postComments.length}
                 label='Komentarze'
@@ -53,7 +55,7 @@ const PostSneakPeek = ({
             </div>
             <div className={styles.postSneakPeek__iconContainer}>
               <DynamicIcon
-                src={HeartIcon}
+                src={heartIcon}
                 medium
                 number={postCommentsLiked.length}
                 label='Polubione'
@@ -66,7 +68,7 @@ const PostSneakPeek = ({
             onClick={() => removePost(post)}
             className={styles.postSneakPeek__iconContainer}
           >
-            <DynamicIcon link label='Usuń' medium src={TrashIcon} />
+            <DynamicIcon link label='Usuń' medium src={trashIcon} />
           </div>
         )}
       </div>

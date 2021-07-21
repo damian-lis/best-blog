@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
 import { searchPosts, searchComments } from '../../actions/search.actions';
+import { searchIcon, deleteIcon } from '../../assets';
 import styles from './searchBar.module.css';
-import SearchIcon from '../../assets/searchIcon.svg';
-import DeleteIcon from '../../assets/deleteIcon.svg';
 
 const SearchBar = ({
   posts,
@@ -70,13 +69,13 @@ const SearchBar = ({
         className={`${styles.searchBar__searchIcon}
         ${navigation ? styles['searchBar__searchIcon--mobileNav'] : ''}
         ${isSearch ? styles['searchBar__searchIcon--mobileActive'] : ''}`}
-        src={SearchIcon}
+        src={searchIcon}
         onClick={handleSearchIconClick}
       />
       {searchPostsValue || searchCommentsValue ? (
         <img
           className={styles.searchBar__deleteIcon}
-          src={DeleteIcon}
+          src={deleteIcon}
           onClick={handleDeleteIconClick}
         />
       ) : null}

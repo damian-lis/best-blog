@@ -6,14 +6,9 @@ import {
   addFavoriteComment,
   removeFavoriteComment,
 } from '../../actions/comments.actions';
-import Loader from '../../components/Loader';
-import Post from '../../components/Post';
-import Comments from '../../containers/Comments';
-import ErrorInfo from '../../components/ErrorInfo';
-import Headline from '../../components/Headline';
-import Container from '../../components/Container';
-import setElementsLike from '../../helpers/setElementsLike';
-import filterElements from '../../helpers/filterElements';
+import { Loader, Post, ErrorInfo, Headline, Container } from '../../components';
+import { Comments } from '../../containers';
+import { setElementsLike, filterElements } from '../../helpers';
 
 const Article = ({ match }) => {
   const { post, loading: postLoading, error: postError } = useSelector(

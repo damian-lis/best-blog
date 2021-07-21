@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
-import SearchBar from '../SearchBar';
-import DynamicIcon from '../DynamicIcon';
-import AppLogo from '../../assets/appLogo2.svg';
-import HeartIcon from '../../assets/heartIcon.svg';
+import { SearchBar, DynamicIcon } from '../../components';
+import { appLogo, heartIcon } from '../../assets';
 import styles from './navigation.module.css';
 
 const Navigation = () => {
@@ -43,7 +41,7 @@ const Navigation = () => {
         >
           <Link to='/'>
             <DynamicIcon
-              src={AppLogo}
+              src={appLogo}
               label={!isMobile ? 'BestBlog' : ''}
               link
               white
@@ -68,7 +66,7 @@ const Navigation = () => {
           >
             <Link to='/favorites'>
               <DynamicIcon
-                src={HeartIcon}
+                src={heartIcon}
                 number={favoritesNumber}
                 label={!isMobile ? 'Favorites' : ''}
                 link

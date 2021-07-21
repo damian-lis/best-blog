@@ -1,10 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import DynamicIcon from '../DynamicIcon';
-import PostIcon from '../../assets/postIcon.svg';
-import TrashIcon from '../../assets/trashIcon.svg';
-import GrayHeartIcon from '../../assets/grayHeartIcon.svg';
-import HeartIcon from '../../assets/heartIcon.svg';
+import { DynamicIcon } from '../../components';
+import { postIcon, trashIcon, grayHeartIcon, heartIcon } from '../../assets';
 import styles from './comment.module.css';
 
 const Comment = ({
@@ -26,7 +23,7 @@ const Comment = ({
         {favoritePage && (
           <Link to={`article/${comment.postId}`}>
             <div className={styles.comment__option}>
-              <DynamicIcon link medium label='Post' src={PostIcon} />
+              <DynamicIcon link medium label='Post' src={postIcon} />
             </div>
           </Link>
         )}
@@ -35,14 +32,14 @@ const Comment = ({
           className={styles.comment__option}
         >
           {favoritePage ? (
-            <DynamicIcon link medium label='Usuń' src={TrashIcon} />
+            <DynamicIcon link medium label='Usuń' src={trashIcon} />
           ) : (
             <DynamicIcon
               link
               small
               toggle={comment.like}
-              srcTrue={HeartIcon}
-              srcFalse={GrayHeartIcon}
+              srcTrue={heartIcon}
+              srcFalse={grayHeartIcon}
               label={comment.like ? 'Lubisz!' : 'Zareaguj'}
             />
           )}

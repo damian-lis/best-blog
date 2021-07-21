@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Container from '../../components/Container';
-import PostSneakPeek from '../../components/PostSneakPeek';
-import QuantityChanger from '../../components/QuantityChanger';
+import { Container, PostSneakPeek, QuantityChanger } from '../../components';
 
 const PostSneakPeeks = ({
   initialQuantity,

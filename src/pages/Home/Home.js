@@ -2,12 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../actions/posts.actions';
 import { getComments } from '../../actions/comments.actions';
-import Loader from '../../components/Loader';
-import PostSneakPeeks from '../../containers/PostSneakPeeks';
-import ErrorInfo from '../../components/ErrorInfo';
-import Headline from '../../components/Headline';
-import filterElements from '../../helpers/filterElements';
-import Container from '../../components/Container';
+import { Loader, Container, ErrorInfo, Headline } from '../../components';
+import { PostSneakPeeks } from '../../containers';
+import { filterElements } from '../../helpers';
 
 const Home = () => {
   const { posts, loading: postsLoading, error: postsError } = useSelector(

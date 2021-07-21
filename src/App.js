@@ -1,10 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import Home from './pages/Home';
-import Article from './pages/Article';
-import Favorites from './pages/Favorites';
-import Footer from './components/Footer';
+import { Navigation, Footer } from './components';
+import { Home, Article, Favorites } from './pages';
 
 const App = () => {
   return (
