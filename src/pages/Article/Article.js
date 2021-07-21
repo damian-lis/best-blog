@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPost } from '../../actions/posts.actions';
+import { getPost } from '/src/actions/posts.actions';
 import {
   getArticleComments,
   addFavoriteComment,
   removeFavoriteComment
-} from '../../actions/comments.actions';
-import { Loader, Post, ErrorInfo, Headline, Container } from '../../components';
-import { Comments } from '../../containers';
-import { setElementsLike, filterElements } from '../../helpers';
+} from '/src/actions/comments.actions';
+import { Loader, Post, ErrorInfo, Headline, Container } from '/src/components';
+import { Comments } from '/src/containers';
+import { setElementsLike, filterElements } from '/src/helpers';
 
 const Article = ({ match }) => {
   const { post, loading: postLoading, error: postError } = useSelector((state) => state.postState);

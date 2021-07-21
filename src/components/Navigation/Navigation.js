@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
-import { SearchBar, DynamicIcon } from '../../components';
-import { appLogo, heartIcon } from '../../assets';
+import { SearchBar, DynamicIcon } from '/src/components';
+import { appLogo, heartIcon } from '/src/assets';
 import styles from './navigation.module.css';
 
 const Navigation = () => {

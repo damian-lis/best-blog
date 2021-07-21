@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addFavoritePost, removeFavoritePost } from '../../actions/posts.actions';
-import { DynamicIcon } from '../../components';
-import { grayHeartIcon, postSneakPeekImg, heartIcon } from '../../assets';
-import { createContent } from '../../helpers';
+import { addFavoritePost, removeFavoritePost } from '/src/actions/posts.actions';
+import { DynamicIcon } from '/src/components';
+import { grayHeartIcon, postSneakPeekImg, heartIcon } from '/src/assets';
+import { createContent } from '/src/helpers';
 import styles from './post.module.css';
 
 const Post = ({ post, favoritePosts }) => {

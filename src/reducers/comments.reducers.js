@@ -7,7 +7,7 @@ import {
   GET_ARTICLE_COMMENTS_FAIL,
   ADD_FAVORITE_COMMENT,
   REMOVE_FAVORITE_COMMENT
-} from '../constants/comments.constants';
+} from '/src/constants/comments.constants';
 
 export const commentsReducer = (state = [], action) => {
   switch (action.type) {

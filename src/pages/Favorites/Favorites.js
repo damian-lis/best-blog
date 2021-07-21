@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFavoritePost } from '../../actions/posts.actions';
-import { removeFavoriteComment } from '../../actions/comments.actions';
-import { SearchBar, Headline, Container, Line } from '../../components';
-import { Comments, PostSneakPeeks } from '../../containers';
-import { filterElements } from '../../helpers';
+import { removeFavoritePost } from '/src/actions/posts.actions';
+import { removeFavoriteComment } from '/src/actions/comments.actions';
+import { SearchBar, Headline, Container, Line } from '/src/components';
+import { Comments, PostSneakPeeks } from '/src/containers';
+import { filterElements } from '/src/helpers';
 
 const Favorites = () => {
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);

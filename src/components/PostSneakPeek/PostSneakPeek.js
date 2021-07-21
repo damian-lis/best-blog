@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DynamicIcon } from '../../components';
-import { trashIcon, heartIcon, chatBubbleIcon, postSneakPeekImg } from '../../assets';
+import { DynamicIcon } from '/src/components';
+import { trashIcon, heartIcon, chatBubbleIcon, postSneakPeekImg } from '/src/assets';
 import styles from './postSneakPeek.module.css';
 
 const PostSneakPeek = ({

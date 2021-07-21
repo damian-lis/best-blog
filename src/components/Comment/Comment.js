@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { DynamicIcon } from '../../components';
-import { postIcon, trashIcon, grayHeartIcon, heartIcon } from '../../assets';
+import { DynamicIcon } from '/src/components';
+import { postIcon, trashIcon, grayHeartIcon, heartIcon } from '/src/assets';
 import styles from './comment.module.css';
 
 const Comment = ({ favoritePage, comment, removeLike, addLike, ...restProps }) => {

@@ -7,7 +7,7 @@ import {
   GET_POST_FAIL,
   ADD_FAVORITE_POST,
   REMOVE_FAVORITE_POST
-} from '../constants/posts.constants';
+} from '/src/constants/posts.constants';
 
 export const postsReducer = (state = {}, action) => {
   switch (action.type) {

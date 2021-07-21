@@ -1,4 +1,4 @@
-import { SEARCH_POSTS, SEARCH_COMMENTS } from '../constants/search.constants';
+import { SEARCH_POSTS, SEARCH_COMMENTS } from '/src/constants/search.constants';
 
 export const searchReducer = (state = '', action) => {
   switch (action.type) {

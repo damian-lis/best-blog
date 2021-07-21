@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
-import { searchPosts, searchComments } from '../../actions/search.actions';
-import { searchIcon, deleteIcon } from '../../assets';
+import { searchPosts, searchComments } from '/src/actions/search.actions';
+import { searchIcon, deleteIcon } from '/src/assets';
 import styles from './searchBar.module.css';
 
 const SearchBar = ({ posts, navigation, small, comments, setSearchActive, searchActive }) => {

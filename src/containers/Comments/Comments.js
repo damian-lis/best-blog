@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SearchBar, Comment, QuantityChanger, Container, Select } from '../../components';
+import { SearchBar, Comment, QuantityChanger, Container, Select } from '/src/components';
 
 const Comments = ({
   addToFavorite,
