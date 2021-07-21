@@ -55,7 +55,7 @@ const Navigation = () => {
               <DynamicIcon
                 src={heartIcon}
                 number={favoritesNumber}
-                label={!isMobile ? 'Favorites' : ''}
+                label={!isMobile ? 'Ulubione' : ''}
                 link
                 white
               />
