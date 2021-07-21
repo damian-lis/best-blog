@@ -8,12 +8,15 @@ import {
   addFavoritePost,
   removeFavoritePost,
 } from '../../actions/posts.actions';
+import createContent from '../../helpers/createContent';
 import styles from './post.module.css';
 
 const Post = ({ post, favoritePosts }) => {
   const postIsLiked = favoritePosts.some(
     (favoritePost) => favoritePost.id === post.id
   );
+
+  const postContent = createContent(post.body);
 
   const dispatch = useDispatch();
 
@@ -28,14 +31,15 @@ const Post = ({ post, favoritePosts }) => {
         <img src={SneakPeekImg} className={styles.post__img} />
       </div>
       <h2 className={styles.post__title}>{post.title}</h2>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
-      <p>{post.body}</p>
+      {postContent.map((postFragment) => (
+        <>
+          <h3 className={styles.post__headline}>{postFragment.headline}</h3>
+          {postFragment.paragraphs.map((paragraph) => (
+            <p className={styles.post__paragraph}>{paragraph}</p>
+          ))}
+        </>
+      ))}
+
       <div
         className={styles.post__iconContainer}
         onClick={handleTogglePostLike}
