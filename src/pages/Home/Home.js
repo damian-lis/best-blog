@@ -7,9 +7,11 @@ import { PostSneakPeeks } from '/src/containers';
 import { filterElements } from '/src/helpers';
 
 const Home = () => {
-  const { posts, loading: postsLoading, error: postsError } = useSelector(
-    (state) => state.postsState
-  );
+  const {
+    posts,
+    loading: postsLoading,
+    error: postsError
+  } = useSelector((state) => state.postsState);
   const { comments } = useSelector((state) => state.commentsState);
   const { searchPosts } = useSelector((state) => state.searchState);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
@@ -29,7 +31,7 @@ const Home = () => {
     <ErrorInfo />
   ) : (
     <Container base>
-      <Headline> Najlepsze artykuły!</Headline>
+      <Headline xl> Najlepsze artykuły!</Headline>
       <PostSneakPeeks
         posts={filteredPosts}
         initialQuantity={8}
