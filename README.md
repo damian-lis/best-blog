@@ -80,3 +80,11 @@ On this page, we have the option of adding a post and comments to favorites, and
 <br>
 
 The last available page in the project is the favorites page, which allows to manage liked posts and comments.
+
+<br/>
+
+### Curiosity❗
+
+When you come back to the blog, your likes and comments will still be there!
+
+So try it! 😁
