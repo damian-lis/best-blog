@@ -66,7 +66,7 @@ const SearchBar = ({
         className={`${styles.searchBar__searchIcon}
         ${navigation ? styles['searchBar__searchIcon--mobileNav'] : ''}
         ${isSearch ? styles['searchBar__searchIcon--mobileActive'] : ''}`}
-        src={isMobile && !isSearch ? searchIconWhite : searchIcon}
+        src={navigation ? (isMobile && !isSearch ? searchIconWhite : searchIcon) : searchIcon}
         onClick={handleSearchIconClick}
         alt="searchIcon"
       />
