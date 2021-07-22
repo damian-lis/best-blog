@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Navigation, Footer } from './components';
+import { Footer } from './components';
+import { Navigation } from './containers';
 import { Home, Article, Favorites } from './pages';
 
 const App = () => {

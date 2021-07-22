@@ -31,7 +31,7 @@ const Home = () => {
     <ErrorInfo />
   ) : (
     <Container base>
-      <Headline xl> Najlepsze artykuły!</Headline>
+      <Headline big> Najlepsze artykuły!</Headline>
       <PostSneakPeeks
         posts={filteredPosts}
         initialQuantity={8}

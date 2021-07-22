@@ -7,7 +7,7 @@
 .navigation__content{
     max-width:1300px;
     display:flex;
-    height:65px;
+    height:60px;
     justify-content: space-between;
     align-items: center;
     color: var(--main-text-color);
@@ -25,7 +25,7 @@
     .navigation__item{
         overflow: hidden;
         transition:.5s;
-        width:60px;
+        width:53px;
     }
 
     .navigation__item--dynamic {

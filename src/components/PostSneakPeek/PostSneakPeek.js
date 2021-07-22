@@ -22,11 +22,11 @@ const PostSneakPeek = ({
       {isPostLiked && (
         <div
           className={`${styles.postSneakPeek__iconContainer} ${styles['postSneakPeek__iconContainer--attached']}`}>
-          <DynamicIcon src={heartIcon} small />
+          <DynamicIcon imgSmall src={heartIcon} />
         </div>
       )}
       <div className={styles.postSneakPeek__imgContainer}>
-        <img className={styles.postSneakPeek__img} src={postSneakPeekImg} />
+        <img className={styles.postSneakPeek__img} alt="postSneakPeekImg" src={postSneakPeekImg} />
       </div>
       <h3 className={styles.postSneakPeek__title}>{post.title}</h3>
       <div className={styles.postSneakPeek__stats}>
@@ -37,16 +37,16 @@ const PostSneakPeek = ({
           <>
             <div className={styles.postSneakPeek__iconContainer}>
               <DynamicIcon
+                imgMedium
                 src={chatBubbleIcon}
-                medium
                 number={postComments.length}
                 label="Komentarze"
               />
             </div>
             <div className={styles.postSneakPeek__iconContainer}>
               <DynamicIcon
+                imgMedium
                 src={heartIcon}
-                medium
                 number={postCommentsLiked.length}
                 label="Polubione"
               />
@@ -55,7 +55,7 @@ const PostSneakPeek = ({
         )}
         {favoritesPage && (
           <div onClick={() => removePost(post)} className={styles.postSneakPeek__iconContainer}>
-            <DynamicIcon link label="Usuń" medium src={trashIcon} />
+            <DynamicIcon link imgMedium label="Usuń" src={trashIcon} />
           </div>
         )}
       </div>

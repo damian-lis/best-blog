@@ -17,7 +17,7 @@ const Comment = ({ favoritePage, comment, removeLike, addLike, ...restProps }) =
         {favoritePage && (
           <Link to={`article/${comment.postId}`}>
             <div className={styles.comment__option}>
-              <DynamicIcon link medium label="Post" src={postIcon} />
+              <DynamicIcon link imgMedium label="Post" src={postIcon} />
             </div>
           </Link>
         )}
@@ -25,11 +25,11 @@ const Comment = ({ favoritePage, comment, removeLike, addLike, ...restProps }) =
           onClick={() => handleToggleLike(comment.like, comment)}
           className={styles.comment__option}>
           {favoritePage ? (
-            <DynamicIcon link medium label="Usuń" src={trashIcon} />
+            <DynamicIcon link imgMedium label="Usuń" src={trashIcon} />
           ) : (
             <DynamicIcon
               link
-              small
+              imgSmall
               toggle={comment.like}
               srcTrue={heartIcon}
               srcFalse={grayHeartIcon}

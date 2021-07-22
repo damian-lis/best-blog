@@ -20,13 +20,15 @@
 
 .comment__body{
     color: rgb(61, 61, 61);
+    font-size:15px;
+    line-height: 1.5;
 }
 
 .comment__options{
     display:flex;
     align-items: center;
     margin-top:20px;
-    height:30px;
+    height:20px;
 }
 
 .comment__option{

@@ -6,7 +6,6 @@ import Footer from './Footer';
 import Headline from './Headline';
 import Line from './Line';
 import Loader from './Loader';
-import Navigation from './Navigation';
 import Post from './Post';
 import PostSneakPeek from './PostSneakPeek';
 import QuantityChanger from './QuantityChanger';
@@ -22,10 +21,9 @@ export {
   Headline,
   Line,
   Loader,
-  Navigation,
   Post,
   PostSneakPeek,
   QuantityChanger,
   SearchBar,
-  Select,
+  Select
 };

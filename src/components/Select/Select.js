@@ -8,8 +8,10 @@ const Select = ({ setSelect, selectOptions, ...restProps }) => {
 
   return (
     <select onChange={handleSelectChange} className={styles.select} {...restProps}>
-      {selectOptions.map((selectOption) => (
-        <option value={selectOption.value}>{selectOption.label}</option>
+      {selectOptions.map((selectOption, index) => (
+        <option key={index} value={selectOption.value}>
+          {selectOption.label}
+        </option>
       ))}
     </select>
   );

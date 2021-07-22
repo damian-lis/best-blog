@@ -26,7 +26,7 @@
     color: rgb(14, 111, 221);
     display:block;
     width:100%;
-    font-size:1.5em;
+    font-size:15px;
     
 }
 
@@ -50,7 +50,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    font-size:1.5em;
+    font-size:15px;
 }
 
 .postSneakPeek__iconContainer--attached{

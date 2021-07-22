@@ -21,6 +21,14 @@
     text-decoration: underline;
 }
 
+.dynamicIcon__label{
+    font-size:15px;
+}
+
+.dynamicIcon__label--medium{
+    font-size:18px;
+}
+
 .dynamicIcon__imgContainer{
     position:relative;
     width:100%;
@@ -33,7 +41,7 @@
 
 
 .dynamicIcon__imgContainer--small{
-    width:20px;
+    width:18px;
 }
 
 .dynamicIcon__imgContainer--medium{
