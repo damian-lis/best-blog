@@ -6,7 +6,7 @@ import {
   addFavoriteComment,
   removeFavoriteComment
 } from '/src/actions/comments.actions';
-import { Loader, Post, ErrorInfo, Headline, Container } from '/src/components';
+import { Loader, Post, ErrorInfo, Headline, Container, Line } from '/src/components';
 import { Comments } from '/src/containers';
 import { setElementsLike, filterElements } from '/src/helpers';
 
@@ -48,6 +48,7 @@ const Article = ({ match }) => {
     <Container base>
       <Post post={post} favoritePosts={favoritePosts} />
       <Headline> Komentarze ({commentsWithLikes.length})</Headline>
+      <Line />
       {commentsLoading ? (
         <Loader />
       ) : commentsError ? (
