@@ -8,8 +8,7 @@ const Comments = ({
   data = [],
   initialQuantity = 1,
   favoritePage,
-  selectOption,
-  ...restProps
+  selectOption
 }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
   const [selectedComments, setSelectedComments] = useState('all');
@@ -35,7 +34,7 @@ const Comments = ({
   const reducedComments = comments.slice(0, quantity);
 
   return (
-    <Container {...restProps} base>
+    <Container base>
       <Container wrap style={{ marginBottom: 50 }}>
         <SearchBar comments small />
         {selectOption && (

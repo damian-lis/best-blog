@@ -6,7 +6,7 @@ import { SearchBar, Headline, Container, Line } from '/src/components';
 import { Comments, PostSneakPeeks } from '/src/containers';
 import { filterElements } from '/src/helpers';
 
-const Favorites = ({ ...restProps }) => {
+const Favorites = () => {
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
   const { searchPosts, searchComments } = useSelector((state) => state.searchState);
@@ -26,7 +26,7 @@ const Favorites = ({ ...restProps }) => {
   const filteredFavoriteComments = filterElements(favoriteComments, 'email', searchComments);
 
   return (
-    <Container {...restProps} base>
+    <Container base>
       {favoritePosts.length ? (
         <Container base>
           <Headline>Ulubione posty ({favoritePosts.length})</Headline>

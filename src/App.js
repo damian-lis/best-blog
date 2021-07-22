@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Footer, Container, Navigation } from './components';
 import { Home, Article, Favorites } from './pages';
 
-const App = ({ ...restProps }) => {
+const App = () => {
   return (
-    <Container main {...restProps}>
+    <Container main>
       <Router>
         <Navigation />
         <Container mainWrapper>
