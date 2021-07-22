@@ -11,6 +11,7 @@ import PostSneakPeek from './PostSneakPeek';
 import QuantityChanger from './QuantityChanger';
 import SearchBar from './SearchBar';
 import Select from './Select';
+import Navigation from './Navigation';
 
 export {
   Comment,
@@ -25,5 +26,6 @@ export {
   PostSneakPeek,
   QuantityChanger,
   SearchBar,
-  Select
+  Select,
+  Navigation
 };
