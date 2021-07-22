@@ -10,11 +10,13 @@ import { Loader, Post, ErrorInfo, Headline, Container } from '/src/components';
 import { Comments } from '/src/containers';
 import { setElementsLike, filterElements } from '/src/helpers';
 
-const Article = ({ match }) => {
+const Article = ({ match, ...restProps }) => {
   const { post, loading: postLoading, error: postError } = useSelector((state) => state.postState);
-  const { articleComments, loading: commentsLoading, error: commentsError } = useSelector(
-    (state) => state.articleCommentsState
-  );
+  const {
+    articleComments,
+    loading: commentsLoading,
+    error: commentsError
+  } = useSelector((state) => state.articleCommentsState);
   const { searchComments } = useSelector((state) => state.searchState);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
@@ -43,7 +45,7 @@ const Article = ({ match }) => {
   ) : postError ? (
     <ErrorInfo />
   ) : (
-    <Container base>
+    <Container {...restProps} base>
       <Post post={post} favoritePosts={favoritePosts} />
       <Headline> Komentarze ({commentsWithLikes.length})</Headline>
       {commentsLoading ? (

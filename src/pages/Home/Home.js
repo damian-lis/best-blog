@@ -6,7 +6,7 @@ import { Loader, Container, ErrorInfo, Headline } from '/src/components';
 import { PostSneakPeeks } from '/src/containers';
 import { filterElements } from '/src/helpers';
 
-const Home = () => {
+const Home = ({ ...restProps }) => {
   const {
     posts,
     loading: postsLoading,
@@ -30,7 +30,7 @@ const Home = () => {
   ) : postsError ? (
     <ErrorInfo />
   ) : (
-    <Container base>
+    <Container {...restProps} base>
       <Headline big> Najlepsze artykuły!</Headline>
       <PostSneakPeeks
         posts={filteredPosts}

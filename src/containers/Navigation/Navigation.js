@@ -6,7 +6,7 @@ import { SearchBar, DynamicIcon } from '/src/components';
 import { appLogo, heartIcon } from '/src/assets';
 import styles from './navigation.module.css';
 
-const Navigation = () => {
+const Navigation = ({ ...restProps }) => {
   const history = useHistory();
 
   const [isSearchActive, setIsSearchActive] = useState(false);
@@ -27,7 +27,7 @@ const Navigation = () => {
   }, [currentPagePath]);
 
   return (
-    <nav className={styles.navigation}>
+    <nav {...restProps} className={styles.navigation}>
       <div className={styles.navigation__content}>
         <div
           className={`${styles.navigation__item} ${
@@ -35,12 +35,12 @@ const Navigation = () => {
           }`}>
           <Link to="/">
             <DynamicIcon
-              labelMedium
-              src={appLogo}
-              label={!isMobile ? 'BestBlog' : ''}
               link
               white
               reverse
+              labelMedium
+              src={appLogo}
+              label={!isMobile ? 'BestBlog' : ''}
             />
           </Link>
         </div>
@@ -61,11 +61,11 @@ const Navigation = () => {
             <Link to="/favorites">
               <DynamicIcon
                 labelMedium
+                link
+                white
                 src={heartIcon}
                 number={favoritesNumber}
                 label={!isMobile ? 'Ulubione' : ''}
-                link
-                white
               />
             </Link>
           </li>

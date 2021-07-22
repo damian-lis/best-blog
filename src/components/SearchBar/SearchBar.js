@@ -5,7 +5,15 @@ import { searchPosts, searchComments } from '/src/actions/search.actions';
 import { searchIcon, deleteIcon } from '/src/assets';
 import styles from './searchBar.module.css';
 
-const SearchBar = ({ posts, navigation, small, comments, setSearchActive, searchActive }) => {
+const SearchBar = ({
+  posts,
+  navigation,
+  small,
+  comments,
+  setSearchActive,
+  searchActive,
+  ...restProps
+}) => {
   const [isSearch, setIsSearch] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
@@ -38,6 +46,7 @@ const SearchBar = ({ posts, navigation, small, comments, setSearchActive, search
 
   return (
     <div
+      {...restProps}
       className={`${styles.searchBar}
       ${navigation ? styles['searchBar--nav'] : ''}
        ${isMobile && navigation ? styles['searchBar--mobileNav'] : ''}

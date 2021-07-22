@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './loader.module.css';
 
-const Loader = () => {
+const Loader = ({ ...restProps }) => {
   return (
-    <div className={styles.loader}>
+    <div {...restProps} className={styles.loader}>
       <div className={styles.loader__inner}></div>
       <div className={`${styles.loader__inner} ${styles['loader__inner--delay']}`}></div>
     </div>

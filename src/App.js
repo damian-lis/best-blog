@@ -4,9 +4,9 @@ import { Footer } from './components';
 import { Navigation } from './containers';
 import { Home, Article, Favorites } from './pages';
 
-const App = () => {
+const App = ({ ...restProps }) => {
   return (
-    <div className="app">
+    <div {...restProps} className="app">
       <Router>
         <Navigation />
         <div className="app__wrapper">

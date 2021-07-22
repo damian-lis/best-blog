@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './quantityChanger.module.css';
 
-const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
+const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity, ...restProps }) => {
   let range = rangeSize;
 
   const handleQuantity = (action) => {
@@ -34,7 +34,7 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity }) => {
   const isSubtractDisabled = quantity === 0;
 
   return (
-    <div className={styles.quantityChanger}>
+    <div {...restProps} className={styles.quantityChanger}>
       <h3 className={styles.quantityChanger__info}>
         Wyświetlasz {quantity} z {maxSize}
       </h3>

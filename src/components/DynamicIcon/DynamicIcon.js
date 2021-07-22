@@ -13,10 +13,12 @@ const DynamicIcon = ({
   imgMedium,
   link,
   white,
-  reverse
+  reverse,
+  ...restProps
 }) => {
   return (
     <div
+      {...restProps}
       className={`${styles.dynamicIcon} ${link ? styles['dynamicIcon--link'] : ''}
     ${white ? styles['dynamicIcon--linkWhite'] : ''}
     ${reverse ? styles['dynamicIcon--reverse'] : ''}

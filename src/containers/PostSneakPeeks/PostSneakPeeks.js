@@ -8,7 +8,8 @@ const PostSneakPeeks = ({
   favoritePosts,
   favoriteComments,
   favoritesPage,
-  removePost
+  removePost,
+  ...restProps
 }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
 
@@ -16,7 +17,7 @@ const PostSneakPeeks = ({
   const countQuantity = quantity > posts.length ? posts.length : quantity;
 
   return (
-    <Container base>
+    <Container {...restProps} base>
       <Container wrap>
         {reducedPosts.map((post) => (
           <PostSneakPeek
