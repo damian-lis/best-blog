@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
 import PropTypes from 'prop-types';
 import { searchPosts, searchComments } from '/src/actions/search.actions';
-import { searchIcon, deleteIcon } from '/src/assets';
+import { searchIcon, searchIconWhite, deleteIcon } from '/src/assets';
 import styles from './searchBar.module.css';
 
 const SearchBar = ({
@@ -66,7 +66,7 @@ const SearchBar = ({
         className={`${styles.searchBar__searchIcon}
         ${navigation ? styles['searchBar__searchIcon--mobileNav'] : ''}
         ${isSearch ? styles['searchBar__searchIcon--mobileActive'] : ''}`}
-        src={searchIcon}
+        src={isMobile && !isSearch ? searchIconWhite : searchIcon}
         onClick={handleSearchIconClick}
         alt="searchIcon"
       />

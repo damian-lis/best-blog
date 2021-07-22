@@ -7,6 +7,7 @@ import grayHeartIcon from './grayHeartIcon.svg';
 import heartIcon from './heartIcon.svg';
 import postIcon from './postIcon.svg';
 import searchIcon from './searchIcon.svg';
+import searchIconWhite from './searchIconWhite.svg';
 import postSneakPeekImg from './postSneakPeekImg.svg';
 import trashIcon from './trashIcon.svg';
 
@@ -20,6 +21,7 @@ export {
   heartIcon,
   postIcon,
   searchIcon,
+  searchIconWhite,
   postSneakPeekImg,
-  trashIcon,
+  trashIcon
 };
