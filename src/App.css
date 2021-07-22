@@ -16,22 +16,6 @@
     line-height: 1;
   }
   
-  .app {
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height:100vh;
-  }
-
-  .app__wrapper{
-    width:100%;
-    max-width: 1200px;
-    height:100%;
-    margin: 0 auto;
-    padding: 20px;
-    padding-bottom:0;
-  }
-  
   a{
     text-decoration: none;
   }

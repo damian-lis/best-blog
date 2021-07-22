@@ -15,3 +15,19 @@
     display:block;
     justify-content: none;
 }
+
+.container--main{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height:100vh;
+}
+
+.container--mainWrapper{
+    width:100%;
+    max-width: 1200px;
+    height:100%;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom:0;
+}
