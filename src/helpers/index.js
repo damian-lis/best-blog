@@ -1,5 +1,5 @@
 import createContent from './createContent';
 import filterElements from './filterElements';
-import setElementsLike from './setElementsLike';
+import checkIsFavorite from './checkIsFavorite';
 
-export { createContent, filterElements, setElementsLike };
+export { createContent, filterElements, checkIsFavorite };

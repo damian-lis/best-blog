@@ -7,10 +7,11 @@ import { searchIcon, searchIconWhite, deleteIcon } from '/src/assets';
 import styles from './searchBar.module.css';
 
 const SearchBar = ({
-  posts,
-  navigation,
+  postsType,
+  commentsType,
+  isNavigation,
   small,
-  comments,
+
   setSearchActive = () => {},
   searchActive,
   ...restProps
@@ -23,17 +24,17 @@ const SearchBar = ({
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
-    posts && dispatch(searchPosts(e.target.value));
-    comments && dispatch(searchComments(e.target.value));
+    postsType && dispatch(searchPosts(e.target.value));
+    commentsType && dispatch(searchComments(e.target.value));
   };
 
   const handleDeleteIconClick = () => {
     setInputValue('');
-    dispatch(posts ? searchPosts('') : searchComments(''));
+    dispatch(postsType ? searchPosts('') : searchComments(''));
   };
 
   const handleSearchIconClick = () => {
-    if (!isMobile || !navigation) return;
+    if (!isMobile || !isNavigation) return;
 
     setIsSearch(!isSearch);
     if (setSearchActive) {
@@ -49,24 +50,24 @@ const SearchBar = ({
     <div
       {...restProps}
       className={`${styles.searchBar}
-      ${navigation ? styles['searchBar--nav'] : ''}
-       ${isMobile && navigation ? styles['searchBar--mobileNav'] : ''}
+      ${isNavigation ? styles['searchBar--nav'] : ''}
+       ${isMobile && isNavigation ? styles['searchBar--mobileNav'] : ''}
         ${small ? styles['searchBar--small'] : ''}
         ${isSearch ? styles['searchBar--mobileActive'] : ''}
         `}>
       <input
         className={`${styles.searchBar__input}
-        ${navigation ? styles['searchBar__input--nav'] : ''}
-         ${isMobile && navigation && !isSearch ? styles['searchBar__input--mobileNav'] : ''}`}
+        ${isNavigation ? styles['searchBar__input--nav'] : ''}
+         ${isMobile && isNavigation && !isSearch ? styles['searchBar__input--mobileNav'] : ''}`}
         value={inputValue}
         onChange={handleInputChange}
-        placeholder={posts ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}
+        placeholder={postsType ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}
       />
       <img
         className={`${styles.searchBar__searchIcon}
-        ${navigation ? styles['searchBar__searchIcon--mobileNav'] : ''}
+        ${isNavigation ? styles['searchBar__searchIcon--mobileNav'] : ''}
         ${isSearch ? styles['searchBar__searchIcon--mobileActive'] : ''}`}
-        src={navigation ? (isMobile && !isSearch ? searchIconWhite : searchIcon) : searchIcon}
+        src={isNavigation ? (isMobile && !isSearch ? searchIconWhite : searchIcon) : searchIcon}
         onClick={handleSearchIconClick}
         alt="searchIcon"
       />
@@ -83,10 +84,10 @@ const SearchBar = ({
 };
 
 SearchBar.propTypes = {
-  posts: PropTypes.bool,
-  navigation: PropTypes.bool,
+  postsType: PropTypes.bool,
+  isNavigation: PropTypes.bool,
   small: PropTypes.bool,
-  comments: PropTypes.bool,
+  commentsType: PropTypes.bool,
   setSearchActive: PropTypes.func,
   searchActive: PropTypes.bool
 };

@@ -7,11 +7,11 @@ import styles from './postSneakPeek.module.css';
 
 const PostSneakPeek = ({
   post = {},
-  favoritesPage,
+  isFavoritesPage,
   comments = [],
   favoritePosts = [],
   favoriteComments = [],
-  removePost = () => {},
+  removeFavoritePost = () => {},
   ...restProps
 }) => {
   const postComments = comments.filter((comment) => comment.postId === post.id);
@@ -34,7 +34,7 @@ const PostSneakPeek = ({
         <Link className={styles.postSneakPeek__link} to={`article/${post.id}`}>
           Zobacz post
         </Link>
-        {!favoritesPage && postComments.length && (
+        {!isFavoritesPage && postComments.length && (
           <>
             <div className={styles.postSneakPeek__iconContainer}>
               <DynamicIcon
@@ -54,9 +54,11 @@ const PostSneakPeek = ({
             </div>
           </>
         )}
-        {favoritesPage && (
-          <div onClick={() => removePost(post)} className={styles.postSneakPeek__iconContainer}>
-            <DynamicIcon link imgMedium label="Usuń" src={trashIcon} />
+        {isFavoritesPage && (
+          <div
+            onClick={() => removeFavoritePost(post)}
+            className={styles.postSneakPeek__iconContainer}>
+            <DynamicIcon asLink imgMedium label="Usuń" src={trashIcon} />
           </div>
         )}
       </div>
@@ -66,11 +68,11 @@ const PostSneakPeek = ({
 
 PostSneakPeek.propTypes = {
   post: PropTypes.object.isRequired,
-  favoritesPage: PropTypes.bool,
+  isFavoritesPage: PropTypes.bool,
   comments: PropTypes.array,
   favoritePosts: PropTypes.array,
   favoriteComments: PropTypes.array,
-  removePost: PropTypes.func
+  removeFavoritePost: PropTypes.func
 };
 
 export default PostSneakPeek;

@@ -2,9 +2,9 @@ import {
   GET_COMMENTS_REQUEST,
   GET_COMMENTS_SUCCESS,
   GET_COMMENTS_FAIL,
-  GET_ARTICLE_COMMENTS_REQUEST,
-  GET_ARTICLE_COMMENTS_SUCCESS,
-  GET_ARTICLE_COMMENTS_FAIL,
+  GET_POST_COMMENTS_REQUEST,
+  GET_POST_COMMENTS_SUCCESS,
+  GET_POST_COMMENTS_FAIL,
   ADD_FAVORITE_COMMENT,
   REMOVE_FAVORITE_COMMENT
 } from '/src/constants/comments.constants';
@@ -29,20 +29,20 @@ export const commentsReducer = (state = [], action) => {
   }
 };
 
-export const articleCommentsReducer = (state = [], action) => {
+export const postCommentsReducer = (state = [], action) => {
   switch (action.type) {
-    case GET_ARTICLE_COMMENTS_REQUEST:
+    case GET_POST_COMMENTS_REQUEST:
       return {
         ...state,
         loading: true
       };
-    case GET_ARTICLE_COMMENTS_SUCCESS:
+    case GET_POST_COMMENTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        articleComments: action.payload
+        postComments: action.payload
       };
-    case GET_ARTICLE_COMMENTS_FAIL:
+    case GET_POST_COMMENTS_FAIL:
       return { ...state, loading: false, error: action.payload };
     default:
       return state;

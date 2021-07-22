@@ -2,64 +2,65 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPost } from '/src/actions/posts.actions';
 import {
-  getArticleComments,
+  getPostComments,
   addFavoriteComment,
   removeFavoriteComment
 } from '/src/actions/comments.actions';
 import { Loader, Post, ErrorInfo, Headline, Container, Line } from '/src/components';
 import { Comments } from '/src/containers';
-import { setElementsLike, filterElements } from '/src/helpers';
+import { filterElements } from '/src/helpers';
 
 const Article = ({ match }) => {
-  const { post, loading: postLoading, error: postError } = useSelector((state) => state.postState);
   const {
-    articleComments,
-    loading: commentsLoading,
-    error: commentsError
-  } = useSelector((state) => state.articleCommentsState);
+    post,
+    loading: isPostLoading,
+    error: isPostError
+  } = useSelector((state) => state.postState);
+  const {
+    postComments,
+    loading: isPostCommentsLoading,
+    error: isPostCommentsError
+  } = useSelector((state) => state.postCommentsState);
   const { searchComments } = useSelector((state) => state.searchState);
-  const { favoritePosts } = useSelector((state) => state.favoritePostsState);
-  const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
+
   const dispatch = useDispatch();
   const id = Number(match.params.id);
 
-  const filteredComments = filterElements(articleComments, 'email', searchComments);
-
-  const commentsWithLikes = setElementsLike(post, filteredComments, favoriteComments);
+  const filteredComments = filterElements(postComments, 'email', searchComments);
 
   const handleRemoveFavoriteComment = (comment) => {
-    dispatch(removeFavoriteComment({ comment }));
+    dispatch(removeFavoriteComment(comment));
   };
 
   const handleAddFavoriteComment = (comment) => {
-    dispatch(addFavoriteComment({ comment }));
+    dispatch(addFavoriteComment(comment));
   };
 
   useEffect(() => {
-    dispatch(getPost({ id }));
-    dispatch(getArticleComments({ id }));
-  }, [dispatch]);
+    dispatch(getPost(id));
+    dispatch(getPostComments(id));
+  }, [dispatch, id]);
 
-  return postLoading ? (
+  return isPostLoading ? (
     <Loader />
-  ) : postError ? (
+  ) : isPostError ? (
     <ErrorInfo />
   ) : (
     <Container base>
-      <Post post={post} favoritePosts={favoritePosts} />
-      <Headline> Komentarze ({commentsWithLikes.length})</Headline>
+      <Post data={post} />
+      <Headline> Komentarze ({filteredComments.length})</Headline>
       <Line />
-      {commentsLoading ? (
+      {isPostCommentsLoading ? (
         <Loader />
-      ) : commentsError ? (
+      ) : isPostCommentsError ? (
         <ErrorInfo />
       ) : (
         <Comments
-          selectOption
-          data={commentsWithLikes}
+          withSelectOption
+          data={filteredComments}
           initialQuantity={5}
-          removeFromFavorite={handleRemoveFavoriteComment}
-          addToFavorite={handleAddFavoriteComment}
+          removeFavoriteComment={handleRemoveFavoriteComment}
+          addFavoriteComment={handleAddFavoriteComment}
         />
       )}
     </Container>

@@ -27,7 +27,7 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
-export const getPost = ({ id }) => async (dispatch) => {
+export const getPost = (id) => async (dispatch) => {
   dispatch({ type: GET_POST_REQUEST });
   const { data } = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
 
@@ -44,7 +44,7 @@ export const getPost = ({ id }) => async (dispatch) => {
   }
 };
 
-export const addFavoritePost = ({ post }) => (dispatch, getState) => {
+export const addFavoritePost = (post) => (dispatch, getState) => {
   dispatch({ type: ADD_FAVORITE_POST, payload: post });
   localStorage.setItem(
     'favoritePosts',
@@ -52,7 +52,7 @@ export const addFavoritePost = ({ post }) => (dispatch, getState) => {
   );
 };
 
-export const removeFavoritePost = ({ post }) => (dispatch, getState) => {
+export const removeFavoritePost = (post) => (dispatch, getState) => {
   dispatch({ type: REMOVE_FAVORITE_POST, payload: post });
   localStorage.setItem(
     'favoritePosts',

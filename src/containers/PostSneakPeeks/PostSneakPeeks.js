@@ -8,33 +8,33 @@ const PostSneakPeeks = ({
   comments = [],
   favoritePosts = [],
   favoriteComments = [],
-  favoritesPage,
-  removePost = () => {}
+  isFavoritesPage,
+  removeFavoritePost = () => {}
 }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
 
   const reducedPosts = posts.slice(0, quantity);
-  const countQuantity = quantity > posts.length ? posts.length : quantity;
+  const countedQuantity = quantity > posts.length ? posts.length : quantity;
 
   return (
     <Container base>
       <Container wrap>
         {reducedPosts.map((post) => (
           <PostSneakPeek
-            favoritesPage={favoritesPage}
+            isFavoritesPage={isFavoritesPage}
             key={post.id}
             post={post}
             comments={comments}
             favoriteComments={favoriteComments}
             favoritePosts={favoritePosts}
-            removePost={removePost}
+            removeFavoritePost={removeFavoritePost}
           />
         ))}
       </Container>
       <QuantityChanger
         rangeSize={4}
         maxSize={posts.length}
-        quantity={countQuantity}
+        quantity={countedQuantity}
         setQuantity={setQuantity}
       />
     </Container>
@@ -47,7 +47,7 @@ PostSneakPeeks.propTypes = {
   comments: PropTypes.array,
   favoritePosts: PropTypes.array,
   favoriteComments: PropTypes.array,
-  favoritesPage: PropTypes.bool,
+  isFavoritesPage: PropTypes.bool,
   removePost: PropTypes.func
 };
 

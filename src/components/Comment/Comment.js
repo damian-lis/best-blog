@@ -6,41 +6,40 @@ import { postIcon, trashIcon, grayHeartIcon, heartIcon } from '/src/assets';
 import styles from './comment.module.css';
 
 const Comment = ({
-  favoritePage,
-  comment = {},
-  removeLike = () => {},
-  addLike = () => {},
+  isFavoritesPage,
+  isFavoriteComment,
+  data = {},
+  removeFavoriteComment = () => {},
+  addFavoriteComment = () => {},
   ...restProps
 }) => {
-  const handleToggleLike = (commentIsLiked, comment) => {
-    commentIsLiked ? removeLike(comment) : addLike(comment);
+  const handleFavoriteComment = () => {
+    isFavoriteComment ? removeFavoriteComment(data) : addFavoriteComment(data);
   };
 
   return (
     <div className={styles.comment} {...restProps}>
-      <p className={styles.comment__email}>{comment.email}</p>
-      <p className={styles.comment__body}>{comment.body}</p>
+      <p className={styles.comment__email}>{data.email}</p>
+      <p className={styles.comment__body}>{data.body}</p>
       <div className={styles.comment__options}>
-        {favoritePage && (
-          <Link to={`article/${comment.postId}`}>
+        {isFavoritesPage && (
+          <Link to={`article/${data.postId}`}>
             <div className={styles.comment__option}>
-              <DynamicIcon link imgMedium label="Post" src={postIcon} />
+              <DynamicIcon asLink imgMedium label="Post" src={postIcon} />
             </div>
           </Link>
         )}
-        <div
-          onClick={() => handleToggleLike(comment.like, comment)}
-          className={styles.comment__option}>
-          {favoritePage ? (
-            <DynamicIcon link imgMedium label="Usuń" src={trashIcon} />
+        <div onClick={handleFavoriteComment} className={styles.comment__option}>
+          {isFavoritesPage ? (
+            <DynamicIcon asLink imgMedium label="Usuń" src={trashIcon} />
           ) : (
             <DynamicIcon
-              link
+              asLink
               imgSmall
-              toggle={comment.like}
-              srcTrue={heartIcon}
-              srcFalse={grayHeartIcon}
-              label={comment.like ? 'Lubisz!' : 'Zareaguj'}
+              toggleValue={isFavoriteComment}
+              toggleTrueSrc={heartIcon}
+              toggleFalseSrc={grayHeartIcon}
+              label={isFavoriteComment ? 'Lubisz!' : 'Zareaguj'}
             />
           )}
         </div>
@@ -50,10 +49,10 @@ const Comment = ({
 };
 
 Comment.propTypes = {
-  favoritePage: PropTypes.bool,
-  comment: PropTypes.object.isRequired,
-  removeLike: PropTypes.func.isRequired,
-  addLike: PropTypes.func
+  isFavoritePage: PropTypes.bool,
+  data: PropTypes.object.isRequired,
+  removeFavoriteComment: PropTypes.func,
+  addFavoriteComment: PropTypes.func
 };
 
 export default Comment;

@@ -35,7 +35,7 @@ const Navigation = ({ ...restProps }) => {
           }`}>
           <Link to="/">
             <DynamicIcon
-              link
+              asLink
               white
               reverse
               labelMedium
@@ -46,8 +46,8 @@ const Navigation = ({ ...restProps }) => {
         </div>
         {!isSearchBarHide && (
           <SearchBar
-            navigation
-            posts
+            isNavigation
+            postsType
             setSearchActive={setIsSearchActive}
             searchActive={isSearchActive}
           />
@@ -61,7 +61,7 @@ const Navigation = ({ ...restProps }) => {
             <Link to="/favorites">
               <DynamicIcon
                 labelMedium
-                link
+                asLink
                 white
                 src={heartIcon}
                 number={favoritesNumber}

@@ -9,8 +9,8 @@ import { filterElements } from '/src/helpers';
 const Home = () => {
   const {
     posts,
-    loading: postsLoading,
-    error: postsError
+    loading: isPostsLoading,
+    error: isPostsError
   } = useSelector((state) => state.postsState);
   const { comments } = useSelector((state) => state.commentsState);
   const { searchPosts } = useSelector((state) => state.searchState);
@@ -18,6 +18,7 @@ const Home = () => {
   const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
 
   const dispatch = useDispatch();
+
   const filteredPosts = filterElements(posts, 'title', searchPosts);
 
   useEffect(() => {
@@ -25,9 +26,9 @@ const Home = () => {
     dispatch(getComments());
   }, [dispatch]);
 
-  return postsLoading ? (
+  return isPostsLoading ? (
     <Loader />
-  ) : postsError ? (
+  ) : isPostsError ? (
     <ErrorInfo />
   ) : (
     <Container base>

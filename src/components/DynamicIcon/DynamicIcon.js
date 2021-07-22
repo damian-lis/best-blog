@@ -5,14 +5,14 @@ import styles from './dynamicIcon.module.css';
 const DynamicIcon = ({
   number,
   src,
-  srcTrue,
-  srcFalse,
-  toggle,
+  toggleTrueSrc,
+  toggleFalseSrc,
+  toggleValue,
   label,
   labelMedium,
   imgSmall,
   imgMedium,
-  link,
+  asLink,
   white,
   reverse,
   ...restProps
@@ -20,7 +20,7 @@ const DynamicIcon = ({
   return (
     <div
       {...restProps}
-      className={`${styles.dynamicIcon} ${link ? styles['dynamicIcon--link'] : ''}
+      className={`${styles.dynamicIcon} ${asLink ? styles['dynamicIcon--link'] : ''}
     ${white ? styles['dynamicIcon--linkWhite'] : ''}
     ${reverse ? styles['dynamicIcon--reverse'] : ''}
     `}>
@@ -40,7 +40,7 @@ const DynamicIcon = ({
         <img
           className={styles.dynamicIcon__img}
           alt="dynamicIcon"
-          src={src ? src : toggle ? srcTrue : srcFalse}
+          src={src ? src : toggleValue ? toggleTrueSrc : toggleFalseSrc}
         />
         {number !== undefined ? <span className={styles.dynamicIcon__number}>{number}</span> : null}
       </div>
@@ -51,14 +51,14 @@ const DynamicIcon = ({
 DynamicIcon.propTypes = {
   number: PropTypes.number,
   src: PropTypes.string,
-  srcTrue: PropTypes.string,
-  srcFalse: PropTypes.string,
-  toggle: PropTypes.bool,
+  toggleTrueSrc: PropTypes.string,
+  toggleFalseSrc: PropTypes.string,
+  toggleValue: PropTypes.bool,
   label: PropTypes.string,
   labelMedium: PropTypes.bool,
   imgSmall: PropTypes.bool,
   imgMedium: PropTypes.bool,
-  link: PropTypes.bool,
+  asLink: PropTypes.bool,
   white: PropTypes.bool,
   reverse: PropTypes.bool
 };

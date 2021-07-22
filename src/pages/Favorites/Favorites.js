@@ -14,11 +14,11 @@ const Favorites = () => {
   const dispatch = useDispatch();
 
   const handleRemoveFavoritePost = (post) => {
-    dispatch(removeFavoritePost({ post }));
+    dispatch(removeFavoritePost(post));
   };
 
   const handleRemoveFavoriteComment = (comment) => {
-    dispatch(removeFavoriteComment({ comment }));
+    dispatch(removeFavoriteComment(comment));
   };
 
   const filteredFavoritePosts = filterElements(favoritePosts, 'title', searchPosts);
@@ -31,13 +31,13 @@ const Favorites = () => {
         <Container base>
           <Headline>Ulubione posty ({favoritePosts.length})</Headline>
           <Container style={{ marginBottom: 40 }}>
-            <SearchBar posts />
+            <SearchBar postsType />
           </Container>
           <PostSneakPeeks
-            favoritesPage
+            isFavoritesPage
             initialQuantity={5}
             posts={filteredFavoritePosts}
-            removePost={handleRemoveFavoritePost}
+            removeFavoritePost={handleRemoveFavoritePost}
           />
         </Container>
       ) : (
@@ -50,10 +50,10 @@ const Favorites = () => {
         <Container base>
           <Headline> Ulubione komentarze ({favoriteComments.length})</Headline>
           <Comments
-            favoritePage
+            isFavoritesPage
             data={filteredFavoriteComments}
             initialQuantity={5}
-            removeFromFavorite={handleRemoveFavoriteComment}
+            removeFavoriteComment={handleRemoveFavoriteComment}
           />
         </Container>
       ) : (
