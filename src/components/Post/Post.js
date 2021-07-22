@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addFavoritePost, removeFavoritePost } from '/src/actions/posts.actions';
 import { DynamicIcon } from '/src/components';
 import { grayHeartIcon, postSneakPeekImg, heartIcon } from '/src/assets';
 import { createContent } from '/src/helpers';
 import styles from './post.module.css';
 
-const Post = ({ post, favoritePosts, ...restProps }) => {
+const Post = ({ post = {}, favoritePosts = [], ...restProps }) => {
   const postIsLiked = favoritePosts.some((favoritePost) => favoritePost.id === post.id);
 
   const postContent = createContent(post.body);
@@ -46,6 +47,11 @@ const Post = ({ post, favoritePosts, ...restProps }) => {
       </div>
     </div>
   );
+};
+
+Post.propTypes = {
+  post: PropTypes.object.isRequired,
+  favoritePosts: PropTypes.array.isRequired
 };
 
 export default Post;

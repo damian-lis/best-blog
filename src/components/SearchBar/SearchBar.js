@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
+import PropTypes from 'prop-types';
 import { searchPosts, searchComments } from '/src/actions/search.actions';
 import { searchIcon, deleteIcon } from '/src/assets';
 import styles from './searchBar.module.css';
@@ -10,7 +11,7 @@ const SearchBar = ({
   navigation,
   small,
   comments,
-  setSearchActive,
+  setSearchActive = () => {},
   searchActive,
   ...restProps
 }) => {
@@ -79,6 +80,15 @@ const SearchBar = ({
       )}
     </div>
   );
+};
+
+SearchBar.propTypes = {
+  posts: PropTypes.bool,
+  navigation: PropTypes.bool,
+  small: PropTypes.bool,
+  comments: PropTypes.bool,
+  setSearchActive: PropTypes.func,
+  searchActive: PropTypes.bool
 };
 
 export default SearchBar;

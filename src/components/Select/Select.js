@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './select.module.css';
 
-const Select = ({ setSelect, selectOptions, ...restProps }) => {
+const Select = ({ setSelect = () => {}, selectOptions = [], ...restProps }) => {
   const handleSelectChange = (e) => {
     setSelect(e.target.value);
   };
@@ -15,6 +16,11 @@ const Select = ({ setSelect, selectOptions, ...restProps }) => {
       ))}
     </select>
   );
+};
+
+Select.propTypes = {
+  setSelect: PropTypes.func.isRequired,
+  selectOptions: PropTypes.array.isRequired
 };
 
 export default Select;

@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { DynamicIcon } from '/src/components';
 import { trashIcon, heartIcon, chatBubbleIcon, postSneakPeekImg } from '/src/assets';
 import styles from './postSneakPeek.module.css';
 
 const PostSneakPeek = ({
-  post,
+  post = {},
   favoritesPage,
   comments = [],
   favoritePosts = [],
   favoriteComments = [],
-  removePost,
+  removePost = () => {},
   ...restProps
 }) => {
   const postComments = comments.filter((comment) => comment.postId === post.id);
@@ -61,6 +62,15 @@ const PostSneakPeek = ({
       </div>
     </div>
   );
+};
+
+PostSneakPeek.propTypes = {
+  post: PropTypes.object.isRequired,
+  favoritesPage: PropTypes.bool,
+  comments: PropTypes.array,
+  favoritePosts: PropTypes.array,
+  favoriteComments: PropTypes.array,
+  removePost: PropTypes.func
 };
 
 export default PostSneakPeek;

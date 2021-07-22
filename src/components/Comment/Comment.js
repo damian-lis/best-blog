@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { DynamicIcon } from '/src/components';
 import { postIcon, trashIcon, grayHeartIcon, heartIcon } from '/src/assets';
 import styles from './comment.module.css';
 
-const Comment = ({ favoritePage, comment, removeLike, addLike, ...restProps }) => {
+const Comment = ({
+  favoritePage,
+  comment = {},
+  removeLike = () => {},
+  addLike = () => {},
+  ...restProps
+}) => {
   const handleToggleLike = (commentIsLiked, comment) => {
     commentIsLiked ? removeLike(comment) : addLike(comment);
   };
@@ -40,6 +47,13 @@ const Comment = ({ favoritePage, comment, removeLike, addLike, ...restProps }) =
       </div>
     </div>
   );
+};
+
+Comment.propTypes = {
+  favoritePage: PropTypes.bool,
+  comment: PropTypes.object.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  addLike: PropTypes.func
 };
 
 export default Comment;

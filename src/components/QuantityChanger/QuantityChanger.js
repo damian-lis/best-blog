@@ -1,7 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './quantityChanger.module.css';
 
-const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity, ...restProps }) => {
+const QuantityChanger = ({
+  rangeSize = 0,
+  maxSize = 0,
+  quantity = 0,
+  setQuantity = () => {},
+  ...restProps
+}) => {
   let range = rangeSize;
 
   const handleQuantity = (action) => {
@@ -58,6 +65,13 @@ const QuantityChanger = ({ rangeSize, maxSize, quantity, setQuantity, ...restPro
       </div>
     </div>
   );
+};
+
+QuantityChanger.propTypes = {
+  rangeSize: PropTypes.number.isRequired,
+  maxSize: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  setQuantity: PropTypes.func.isRequired
 };
 
 export default QuantityChanger;

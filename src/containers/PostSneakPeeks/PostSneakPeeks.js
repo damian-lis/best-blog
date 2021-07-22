@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Container, PostSneakPeek, QuantityChanger } from '/src/components';
 
 const PostSneakPeeks = ({
-  initialQuantity,
-  posts,
-  comments,
-  favoritePosts,
-  favoriteComments,
+  initialQuantity = 1,
+  posts = [],
+  comments = [],
+  favoritePosts = [],
+  favoriteComments = [],
   favoritesPage,
-  removePost,
+  removePost = () => {},
   ...restProps
 }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
@@ -39,6 +40,16 @@ const PostSneakPeeks = ({
       />
     </Container>
   );
+};
+
+PostSneakPeeks.propTypes = {
+  initialQuantity: PropTypes.number.isRequired,
+  posts: PropTypes.array.isRequired,
+  comments: PropTypes.array,
+  favoritePosts: PropTypes.array,
+  favoriteComments: PropTypes.array,
+  favoritesPage: PropTypes.bool,
+  removePost: PropTypes.func
 };
 
 export default PostSneakPeeks;

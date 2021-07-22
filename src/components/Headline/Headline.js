@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './headline.module.css';
 
 const Headline = ({ children, big, ...restProps }) => {
@@ -7,6 +8,10 @@ const Headline = ({ children, big, ...restProps }) => {
       {children}
     </h3>
   );
+};
+
+Headline.propTypes = {
+  big: PropTypes.bool
 };
 
 export default Headline;

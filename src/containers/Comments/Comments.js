@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { SearchBar, Comment, QuantityChanger, Container, Select } from '/src/components';
 
 const Comments = ({
-  addToFavorite,
-  removeFromFavorite,
-  data,
-  initialQuantity,
+  addToFavorite = () => {},
+  removeFromFavorite = () => {},
+  data = [],
+  initialQuantity = 1,
   favoritePage,
   selectOption,
   ...restProps
@@ -13,7 +14,7 @@ const Comments = ({
   const [quantity, setQuantity] = useState(initialQuantity);
   const [selectedComments, setSelectedComments] = useState('all');
 
-  const selectOptions = [
+  const selectOptionsData = [
     { value: 'all', label: 'Wszystkie komentarze' },
     { value: 'liked', label: 'Polubione komentarze' },
     { value: 'unliked', label: 'Niepolubione komentarze' }
@@ -41,7 +42,7 @@ const Comments = ({
           <Select
             value={selectedComments}
             setSelect={setSelectedComments}
-            selectOptions={selectOptions}
+            selectOptions={selectOptionsData}
           />
         )}
       </Container>
@@ -64,6 +65,15 @@ const Comments = ({
       />
     </Container>
   );
+};
+
+Comments.propTypes = {
+  addToFavorite: PropTypes.func,
+  removeFromFavorite: PropTypes.func,
+  data: PropTypes.array.isRequired,
+  initialQuantity: PropTypes.number.isRequired,
+  favoritePage: PropTypes.bool,
+  selectOption: PropTypes.bool
 };
 
 export default Comments;

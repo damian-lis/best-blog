@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './dynamicIcon.module.css';
 
 const DynamicIcon = ({
@@ -45,6 +46,21 @@ const DynamicIcon = ({
       </div>
     </div>
   );
+};
+
+DynamicIcon.propTypes = {
+  number: PropTypes.number,
+  src: PropTypes.string,
+  srcTrue: PropTypes.string,
+  srcFalse: PropTypes.string,
+  toggle: PropTypes.bool,
+  label: PropTypes.string,
+  labelMedium: PropTypes.bool,
+  imgSmall: PropTypes.bool,
+  imgMedium: PropTypes.bool,
+  link: PropTypes.bool,
+  white: PropTypes.bool,
+  reverse: PropTypes.bool
 };
 
 export default DynamicIcon;
