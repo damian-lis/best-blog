@@ -5,14 +5,15 @@
 }
 
 .navigation__content{
-    max-width:1300px;
     display:flex;
-    height:60px;
     justify-content: space-between;
     align-items: center;
-    color: var(--main-text-color);
+    width:100%;
+    max-width:1300px;
+    height:60px;
     margin: 0 auto;
     padding:0 20px;
+    color: var(--main-text-color);
 }
 
 .navigation__list{
@@ -23,14 +24,14 @@
 
 @media(max-width:600px){
     .navigation__item{
+        width:53px;
         overflow: hidden;
         transition:.5s;
-        width:53px;
     }
 
     .navigation__item--dynamic {
-        opacity: 0;
         width: 0;
+        opacity: 0;
         visibility:hidden;
     }
 }

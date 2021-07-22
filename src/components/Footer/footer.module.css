@@ -5,12 +5,13 @@
 }
 
 .footer__content{
-    max-width:1300px;
     display:flex;
-    height:55px;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    width:100%;
+    max-width:1300px;
+    height:55px;
     margin: 0 auto;
     padding:0 20px;
+    color: #fff;  
 }

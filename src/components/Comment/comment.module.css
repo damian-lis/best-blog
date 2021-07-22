@@ -1,13 +1,13 @@
 .comment {
-    background-color: rgb(238, 238, 238);
-    border-radius: 10px;
-    padding:15px;
-    max-width:600px;
     width:100%;
-    -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
-    box-shadow: 1px 1px 5px 1px #d4d4d4;
+    max-width:600px;
     margin: 0 auto;
     margin-bottom:25px;
+    padding:15px;
+    background-color: rgb(238, 238, 238);
+    -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
+    box-shadow: 1px 1px 5px 1px #d4d4d4;
+    border-radius: 10px;
 }
 
 .comment__email {
@@ -27,16 +27,17 @@
 .comment__options{
     display:flex;
     align-items: center;
-    margin-top:20px;
     height:20px;
+    margin-top:20px;
+   
 }
 
 .comment__option{
     display:flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
     margin-left:5px;
+    cursor: pointer;
 }
 
 

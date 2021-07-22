@@ -1,36 +1,36 @@
 .quantityChanger{
-    margin: 30px auto;
     width:100%;
     max-width:360px;
+    margin: 30px auto;
 }
 
 .quantityChanger__info{
-    text-align: center;
     margin-bottom:15px;
+    text-align: center;
 }
 
 .quantityChanger__btnContainer{
-    margin-top:25px;
     display:flex;
     justify-content: space-evenly;
     align-items:center;
-    flex-wrap: wrap;
     width:100%;
+    margin-top:25px;
+    flex-wrap: wrap;
 }
 
 .quantityChanger__btn{
+    width:150px;
     margin: auto 10px;
     margin-bottom:15px;
-    font-size:15px;
-    width:150px;
-    border-radius: 5px;
     padding:15px;
     border:0;
+    border-radius: 5px;
     background-color: rgb(14, 111, 221);
     -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
     box-shadow: 1px 1px 5px 1px #d4d4d4;
-    cursor:pointer;
+    font-size:15px;
     color: #fff;
+    cursor:pointer;
 }
 
 .quantityChanger__btn--disabled{
