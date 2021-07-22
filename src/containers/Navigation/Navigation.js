@@ -34,7 +34,14 @@ const Navigation = () => {
             isSearchActive ? styles['navigation__item--dynamic'] : ''
           }`}>
           <Link to="/">
-            <DynamicIcon src={appLogo} label={!isMobile ? 'BestBlog' : ''} link white reverse />
+            <DynamicIcon
+              labelMedium
+              src={appLogo}
+              label={!isMobile ? 'BestBlog' : ''}
+              link
+              white
+              reverse
+            />
           </Link>
         </div>
         {!isSearchBarHide && (
@@ -53,6 +60,7 @@ const Navigation = () => {
             key={'favorites'}>
             <Link to="/favorites">
               <DynamicIcon
+                labelMedium
                 src={heartIcon}
                 number={favoritesNumber}
                 label={!isMobile ? 'Ulubione' : ''}
