@@ -2,14 +2,12 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavoritePost } from '/src/actions/posts.actions';
 import { removeFavoriteComment } from '/src/actions/comments.actions';
-import { SearchBar, Headline, Container, Line } from '/src/components';
 import { Comments, PostSneakPeeks } from '/src/containers';
-import { filterElements } from '/src/helpers';
+import { Container, Headline, Line } from '/src/components';
 
 const Favorites = () => {
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
-  const { searchPosts, searchComments } = useSelector((state) => state.searchState);
 
   const dispatch = useDispatch();
 
@@ -21,22 +19,15 @@ const Favorites = () => {
     dispatch(removeFavoriteComment(comment));
   };
 
-  const filteredFavoritePosts = filterElements(favoritePosts, 'title', searchPosts);
-
-  const filteredFavoriteComments = filterElements(favoriteComments, 'email', searchComments);
-
   return (
     <Container base>
       {favoritePosts.length ? (
         <Container base>
           <Headline>Ulubione posty ({favoritePosts.length})</Headline>
-          <Container style={{ marginBottom: 40 }}>
-            <SearchBar postsType />
-          </Container>
           <PostSneakPeeks
             isFavoritesPage
             initialQuantity={5}
-            posts={filteredFavoritePosts}
+            posts={favoritePosts}
             removeFavoritePost={handleRemoveFavoritePost}
           />
         </Container>
@@ -51,7 +42,7 @@ const Favorites = () => {
           <Headline> Ulubione komentarze ({favoriteComments.length})</Headline>
           <Comments
             isFavoritesPage
-            data={filteredFavoriteComments}
+            data={favoriteComments}
             initialQuantity={5}
             removeFavoriteComment={handleRemoveFavoriteComment}
           />

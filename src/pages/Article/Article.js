@@ -21,12 +21,9 @@ const Article = ({ match }) => {
     loading: isPostCommentsLoading,
     error: isPostCommentsError
   } = useSelector((state) => state.postCommentsState);
-  const { searchComments } = useSelector((state) => state.searchState);
 
   const dispatch = useDispatch();
   const id = Number(match.params.id);
-
-  const filteredComments = filterElements(postComments, 'email', searchComments);
 
   const handleRemoveFavoriteComment = (comment) => {
     dispatch(removeFavoriteComment(comment));
@@ -48,8 +45,8 @@ const Article = ({ match }) => {
   ) : (
     <Container base>
       <Post data={post} />
-      <Headline> Komentarze ({filteredComments.length})</Headline>
-      <Line />
+      {/* <Headline> Komentarze ({filteredComments.length})</Headline>
+      <Line /> */}
       {isPostCommentsLoading ? (
         <Loader />
       ) : isPostCommentsError ? (
@@ -57,7 +54,7 @@ const Article = ({ match }) => {
       ) : (
         <Comments
           withSelectOption
-          data={filteredComments}
+          data={postComments}
           initialQuantity={5}
           removeFavoriteComment={handleRemoveFavoriteComment}
           addFavoriteComment={handleAddFavoriteComment}

@@ -1,23 +1,37 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, PostSneakPeek, QuantityChanger } from '/src/components';
+import { Container, PostSneakPeek, QuantityChanger, SearchBar } from '/src/components';
+import { filterElements } from '/src/helpers';
 
 const PostSneakPeeks = ({
+  isFavoritesPage,
+  isHomePage,
   initialQuantity = 1,
   posts = [],
   comments = [],
   favoritePosts = [],
   favoriteComments = [],
-  isFavoritesPage,
   removeFavoritePost = () => {}
 }) => {
+  const [searchPost, setSearchPost] = useState('');
   const [quantity, setQuantity] = useState(initialQuantity);
 
-  const reducedPosts = posts.slice(0, quantity);
-  const countedQuantity = quantity > posts.length ? posts.length : quantity;
+  let postsData = posts;
+
+  if (!isHomePage) {
+    postsData = filterElements(postsData, 'title', searchPost);
+  }
+
+  const countedQuantity = quantity > postsData.length ? postsData.length : quantity;
+  const reducedPosts = postsData.slice(0, quantity);
 
   return (
     <Container base>
+      <Container style={{ marginBottom: 40 }}>
+        {!isHomePage && (
+          <SearchBar postsType searchWord={searchPost} setSearchWord={setSearchPost} />
+        )}
+      </Container>
       <Container wrap>
         {reducedPosts.map((post) => (
           <PostSneakPeek

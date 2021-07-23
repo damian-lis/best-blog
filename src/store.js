@@ -7,7 +7,7 @@ import {
   postCommentsReducer,
   favoriteCommentsReducer
 } from './reducers/comments.reducers';
-import { searchReducer } from './reducers/search.reducers';
+import { searchWordReducer } from './reducers/searchWord.reducers';
 
 const reducer = combineReducers({
   postsState: postsReducer,
@@ -16,7 +16,7 @@ const reducer = combineReducers({
   postCommentsState: postCommentsReducer,
   favoritePostsState: favoritePostsReducer,
   favoriteCommentsState: favoriteCommentsReducer,
-  searchState: searchReducer
+  searchWordState: searchWordReducer
 });
 
 const favoritePosts = localStorage.getItem('favoritePosts')
@@ -34,7 +34,7 @@ const initialState = {
   postCommentsState: { postComments: [], loading: false, error: null },
   favoritePostsState: { favoritePosts },
   favoriteCommentsState: { favoriteComments },
-  searchState: { searchPosts: '', searchComments: '' }
+  searchWordState: { searchWord: '' }
 };
 
 const middleware = [thunk];

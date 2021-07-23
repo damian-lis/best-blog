@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
 import PropTypes from 'prop-types';
-import { searchPosts, searchComments } from '/src/actions/search.actions';
 import { searchIcon, searchIconWhite, deleteIcon } from '/src/assets';
 import styles from './searchBar.module.css';
 
@@ -11,26 +9,21 @@ const SearchBar = ({
   commentsType,
   isNavigation,
   small,
-
+  searchWord,
+  setSearchWord,
   setSearchActive = () => {},
   searchActive,
   ...restProps
 }) => {
   const [isSearch, setIsSearch] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-
-  const dispatch = useDispatch();
   const isMobile = useWindowWidth() < 600;
 
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-    postsType && dispatch(searchPosts(e.target.value));
-    commentsType && dispatch(searchComments(e.target.value));
+    setSearchWord(e.target.value);
   };
 
   const handleDeleteIconClick = () => {
-    setInputValue('');
-    dispatch(postsType ? searchPosts('') : searchComments(''));
+    setSearchWord('');
   };
 
   const handleSearchIconClick = () => {
@@ -43,8 +36,8 @@ const SearchBar = ({
   };
 
   useEffect(() => {
-    dispatch(searchPosts(''));
-  }, [isSearch, dispatch]);
+    setSearchWord('');
+  }, [isSearch]);
 
   return (
     <div
@@ -59,7 +52,7 @@ const SearchBar = ({
         className={`${styles.searchBar__input}
         ${isNavigation ? styles['searchBar__input--nav'] : ''}
          ${isMobile && isNavigation && !isSearch ? styles['searchBar__input--mobileNav'] : ''}`}
-        value={inputValue}
+        value={searchWord}
         onChange={handleInputChange}
         placeholder={postsType ? 'Szukaj po tytule...' : 'Szukaj po emailu...'}
       />
@@ -71,7 +64,7 @@ const SearchBar = ({
         onClick={handleSearchIconClick}
         alt="searchIcon"
       />
-      {inputValue && (
+      {searchWord && (
         <img
           className={styles.searchBar__deleteIcon}
           src={deleteIcon}

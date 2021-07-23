@@ -13,13 +13,13 @@ const Home = () => {
     error: isPostsError
   } = useSelector((state) => state.postsState);
   const { comments } = useSelector((state) => state.commentsState);
-  const { searchPosts } = useSelector((state) => state.searchState);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
+  const { searchWord } = useSelector((state) => state.searchWordState);
+
+  const filteredPosts = filterElements(posts, 'title', searchWord);
 
   const dispatch = useDispatch();
-
-  const filteredPosts = filterElements(posts, 'title', searchPosts);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -34,6 +34,7 @@ const Home = () => {
     <Container base>
       <Headline big> Najlepsze artykuły!</Headline>
       <PostSneakPeeks
+        isHomePage
         posts={filteredPosts}
         initialQuantity={8}
         comments={comments}

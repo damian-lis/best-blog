@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SearchBar, Comment, QuantityChanger, Container, Select } from '/src/components';
-import { checkIsFavorite } from '/src/helpers';
+import { checkIsFavorite, filterElements } from '/src/helpers';
 
 const Comments = ({
-  addFavoriteComment = () => {},
-  removeFavoriteComment = () => {},
-  data = [],
   initialQuantity = 1,
   isFavoritesPage,
-  withSelectOption
+  withSelectOption,
+  data = [],
+  addFavoriteComment = () => {},
+  removeFavoriteComment = () => {}
 }) => {
+  const [searchComment, setSearchComment] = useState('');
   const [quantity, setQuantity] = useState(initialQuantity);
   const [selectedComments, setSelectedComments] = useState('all');
-
   const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
 
   const selectOptionsData = [
@@ -23,29 +23,33 @@ const Comments = ({
     { value: 'unliked', label: 'Niepolubione komentarze' }
   ];
 
-  let comments = data;
+  let filteredComments = filterElements(data, 'email', searchComment);
 
   if (withSelectOption) {
     switch (selectedComments) {
       case 'liked':
-        comments = comments.filter((comment) => checkIsFavorite(comment, favoriteComments));
+        filteredComments = filteredComments.filter((comment) =>
+          checkIsFavorite(comment, favoriteComments)
+        );
         break;
 
       case 'unliked':
-        comments = comments.filter((comment) => !checkIsFavorite(comment, favoriteComments));
+        filteredComments = filteredComments.filter(
+          (comment) => !checkIsFavorite(comment, favoriteComments)
+        );
 
       default:
         break;
     }
   }
 
-  const countedQuantity = quantity > comments.length ? comments.length : quantity;
-  const reducedComments = comments.slice(0, quantity);
+  const countedQuantity = quantity > filteredComments.length ? filteredComments.length : quantity;
+  const reducedComments = filteredComments.slice(0, quantity);
 
   return (
     <Container base>
       <Container wrap style={{ marginBottom: 50 }}>
-        <SearchBar commentsType small />
+        <SearchBar commentsType small searchWord={searchComment} setSearchWord={setSearchComment} />
         {withSelectOption && (
           <Select
             value={selectedComments}
@@ -68,7 +72,7 @@ const Comments = ({
       </Container>
       <QuantityChanger
         rangeSize={5}
-        maxSize={comments.length}
+        maxSize={filteredComments.length}
         quantity={countedQuantity}
         setQuantity={setQuantity}
       />
