@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useWindowWidth } from '@react-hook/window-size';
-import { SearchBar, DynamicIcon } from '/src/components';
+import { DynamicIcon } from '/src/components';
 import { appLogo, heartIcon } from '/src/assets';
 import styles from './navigation.module.css';
 
-const Navigation = ({ ...restProps }) => {
+const Navigation = ({ children, isSearchActive, setIsSearchActive, ...restProps }) => {
   const history = useHistory();
 
-  const [isSearchActive, setIsSearchActive] = useState(false);
   const [currentPagePath, setCurrentPagePath] = useState(history.location.pathname);
   const { favoritePosts } = useSelector((state) => state.favoritePostsState);
   const { favoriteComments } = useSelector((state) => state.favoriteCommentsState);
@@ -44,14 +43,9 @@ const Navigation = ({ ...restProps }) => {
             />
           </Link>
         </div>
-        {!isSearchBarHide && (
-          <SearchBar
-            isNavigation
-            postsType
-            setSearchActive={setIsSearchActive}
-            searchActive={isSearchActive}
-          />
-        )}
+
+        {!isSearchBarHide && children}
+
         <ul className={styles.navigation__list}>
           <li
             className={`${styles.navigation__item} ${
