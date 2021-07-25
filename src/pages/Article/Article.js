@@ -8,7 +8,6 @@ import {
 } from '/src/actions/comments.actions';
 import { Loader, Post, ErrorInfo, Headline, Container, Line } from '/src/components';
 import { Comments } from '/src/containers';
-import { filterElements } from '/src/helpers';
 
 const Article = ({ match }) => {
   const {
@@ -45,8 +44,8 @@ const Article = ({ match }) => {
   ) : (
     <Container base>
       <Post data={post} />
-      {/* <Headline> Komentarze ({filteredComments.length})</Headline>
-      <Line /> */}
+      <Line />
+      <Headline> Komentarze ({postComments.length})</Headline>
       {isPostCommentsLoading ? (
         <Loader />
       ) : isPostCommentsError ? (
