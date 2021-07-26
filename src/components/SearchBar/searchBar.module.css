@@ -4,8 +4,8 @@
     max-width:350px;
     height:45px;
     border-radius:5px;
-    -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
-    box-shadow: 1px 1px 5px 1px #d4d4d4;
+    -webkit-box-shadow: 1px 1px 5px 1px var(--box-shadow-color); 
+    box-shadow: 1px 1px 5px 1px var(--box-shadow-color);
     transition: .5s;
  }
  
@@ -29,13 +29,13 @@
  }
  
  .searchBar__input:focus{
-    -webkit-box-shadow: 1px 1px 5px 1px #b4b4b4; 
-    box-shadow: 1px 1px 5px 1px #b4b4b4; 
+    -webkit-box-shadow: 1px 1px 5px 1px var(--box-shadow-color); 
+    box-shadow: 1px 1px 5px 1px var(--box-shadow-color); 
  }
  
  .searchBar__input--nav:focus{
-    -webkit-box-shadow: 1px 1px 5px 1px rgb(140, 193, 253);
-    box-shadow: 1px 1px 5px 1px  rgb(140, 193, 253);
+    -webkit-box-shadow: 1px 1px 5px 1px var(--box-shadow-color-light);
+    box-shadow: 1px 1px 5px 1px var(--box-shadow-color-light);
     
  }
  
@@ -80,8 +80,8 @@
      }
  
      .searchBar__input--mobileNav:focus{
-        -webkit-box-shadow: 1px 1px 5px 1px #8a8a8a; 
-        box-shadow: 1px 1px 5px 1px #8a8a8a;
+        -webkit-box-shadow: 1px 1px 5px 1px var(--box-shadow-color-dark); 
+        box-shadow: 1px 1px 5px 1px var(--box-shadow-color-dark);
      }
  
      .searchBar__searchIcon--mobileNav{
@@ -97,8 +97,8 @@
      
      .searchBar--mobileActive{
         width:100%;
-        -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
-        box-shadow: 1px 1px 5px 1px #d4d4d4; 
+        -webkit-box-shadow: 1px 1px 5px 1px var(--box-shadow-color-dark); 
+        box-shadow: 1px 1px 5px 1px var(--box-shadow-color-dark); 
      }
  }
  

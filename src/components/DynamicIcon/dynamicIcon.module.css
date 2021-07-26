@@ -9,12 +9,12 @@
 }
 
 .dynamicIcon--link{
-    color: rgb(14, 111, 221);
+    color: var(--link-color);
     cursor: pointer;
 }
 
 .dynamicIcon--linkWhite{
-    color: rgb(255, 255, 255);
+    color: rgb(255,255,255);
 }
 
 .dynamicIcon--link:hover{
@@ -60,5 +60,5 @@
     transform: translate(-50%, -50%);
     font-weight: 700;
     font-size:15px;
-    color:#fff;
+    color:rgb(255,255,255);
 }

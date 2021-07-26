@@ -1,7 +1,7 @@
 .navigation{
-    -webkit-box-shadow: 1px 1px 5px 1px #dadada; 
-    box-shadow: 1px 1px 5px 1px #cccccc;
-    background-color: rgb(14, 111, 221);;
+    -webkit-box-shadow: 1px 1px 5px 1px var(--box-shadow-color); 
+    box-shadow: 1px 1px 5px 1px var(--box-shadow-color);
+    background-color: var(--blue-color);
 }
 
 .navigation__content{
@@ -13,7 +13,6 @@
     height:60px;
     margin: 0 auto;
     padding:0 20px;
-    color: var(--main-text-color);
 }
 
 .navigation__list{

@@ -6,15 +6,15 @@
     padding: 0 10px;
     border:0;
     border-radius:5px;
-    -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
-    box-shadow: 1px 1px 5px 1px #d4d4d4;
+    -webkit-box-shadow: 1px 1px 5px 1px var(--box-shadow-color); 
+    box-shadow: 1px 1px 5px 1px var(--box-shadow-color);
     font-size:15px;
     cursor:pointer;
 }
 
 .select:focus{
-    -webkit-box-shadow: 1px 1px 5px 1px #8a8a8a; 
-    box-shadow: 1px 1px 5px 1px #8a8a8a;
+    -webkit-box-shadow: 1px 1px 5px 1px var(--box-shadow-color-dark); 
+    box-shadow: 1px 1px 5px 1px var(--box-shadow-color-dark);
 }
 
 @media(max-width:600px){

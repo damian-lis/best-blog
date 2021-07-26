@@ -25,16 +25,16 @@
     padding:15px;
     border:0;
     border-radius: 5px;
-    background-color: rgb(14, 111, 221);
-    -webkit-box-shadow: 1px 1px 5px 1px #d4d4d4; 
-    box-shadow: 1px 1px 5px 1px #d4d4d4;
+    background-color: var(--blue-color);
+    -webkit-box-shadow: 1px 1px 5px 1px var(--box-shadow-color); 
+    box-shadow: 1px 1px 5px 1px var(--box-shadow-color);
     font-size:15px;
-    color: #fff;
+    color: rgb(255, 255, 255);
     cursor:pointer;
 }
 
 .quantityChanger__btn--disabled{
-    background-color: rgb(189, 189, 189);
-    color:#e9e9e9;
+    background-color: var(--disabled-bg-color);
+    color: var(--disabled-font-color);
     cursor:not-allowed;
 }

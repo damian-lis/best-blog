@@ -1,5 +1,16 @@
 :root {
-  --main-text-color: brown;
+  --box-shadow-color:rgb(212,212,212);
+  --box-shadow-color-light: rgb(140, 193, 253);
+  --box-shadow-color-dark: rgb(138,138,138);
+  --comment-bg-color:rgb(238, 238, 238);
+  --comment-email-font-color:rgb(0, 0, 0);
+  --comment-body-font-color:rgb(61, 61, 61);
+  --blue-color: rgb(14, 111, 221);
+  --link-color: rgb(14, 111, 221);
+  --line-color:rgb(206, 206, 206);
+  --disabled-font-color: rgb(233, 233, 233);
+  --disabled-bg-color:rgb(189, 189, 189);
+
 }
 
 *, ::before, ::after {
