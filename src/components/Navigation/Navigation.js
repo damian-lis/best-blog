@@ -23,7 +23,7 @@ const Navigation = ({ children, isSearchActive, setIsSearchActive, ...restProps 
 
   useEffect(() => {
     setIsSearchActive(false);
-  }, [currentPagePath]);
+  }, [currentPagePath, setIsSearchActive]);
 
   return (
     <nav {...restProps} className={styles.navigation}>

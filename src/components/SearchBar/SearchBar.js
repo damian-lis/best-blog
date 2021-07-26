@@ -37,7 +37,7 @@ const SearchBar = ({
 
   useEffect(() => {
     setSearchWord('');
-  }, [isSearch]);
+  }, [isSearch, setSearchWord]);
 
   return (
     <div

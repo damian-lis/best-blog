@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchWord } from '/src/actions/searchWord.actions';
 import { SearchBar, Navigation } from '/src/components';
@@ -9,9 +9,12 @@ const Header = () => {
 
   const dispatch = useDispatch();
 
-  const handleSearchPost = (value) => {
-    dispatch(setSearchWord(value));
-  };
+  const handleSearchPost = useCallback(
+    (value) => {
+      dispatch(setSearchWord(value));
+    },
+    [dispatch]
+  );
 
   return (
     <header>
